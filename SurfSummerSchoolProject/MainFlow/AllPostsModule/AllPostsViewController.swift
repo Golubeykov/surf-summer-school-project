@@ -8,22 +8,48 @@
 import UIKit
 
 class AllPostsViewController: UIViewController {
-
+    
+    private let postModel: AllPostsModel = .init()
+    @IBOutlet private weak var allPostsCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureAppearence()
+        configureModel()
+        postModel.getPosts()
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+private extension AllPostsViewController {
+    func configureAppearence() {
+        allPostsCollectionView.register(UINib(nibName: "\(AllPostsCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(AllPostsCollectionViewCell.self)")
+        allPostsCollectionView.dataSource = self
     }
-    */
+    func configureModel() {
+        postModel.didPostsUpdated = { [weak self] in
+            self?.allPostsCollectionView.reloadData()
+        }
+    }
+    
+    
+}
 
+//MARK: - UICollection
+
+extension AllPostsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        postModel.posts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = allPostsCollectionView.dequeueReusableCell(withReuseIdentifier: "\(AllPostsCollectionViewCell.self)", for: indexPath)
+        if let cell = cell as? AllPostsCollectionViewCell {
+            cell.titleText = postModel.posts[indexPath.item].title
+            cell.isFavorite = postModel.posts[indexPath.item].isFavorite
+            cell.image = postModel.posts[indexPath.item].image
+            
+        }
+        
+        return cell
+    }
+    
+    
 }

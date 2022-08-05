@@ -18,6 +18,9 @@
 		3A82DD6A289C4BC000453EE2 /* FavoritePostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD68289C4BC000453EE2 /* FavoritePostsViewController.xib */; };
 		3A82DD72289C4EC100453EE2 /* TabBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD71289C4EC100453EE2 /* TabBarModel.swift */; };
 		3A82DD74289C528600453EE2 /* TabBarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD73289C528600453EE2 /* TabBarConfigurator.swift */; };
+		3A82DD76289D82EF00453EE2 /* AllPostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD75289D82EF00453EE2 /* AllPostsModel.swift */; };
+		3A82DD79289D942100453EE2 /* AllPostsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD77289D942100453EE2 /* AllPostsCollectionViewCell.swift */; };
+		3A82DD7A289D942100453EE2 /* AllPostsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD78289D942100453EE2 /* AllPostsCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		3A82DD68289C4BC000453EE2 /* FavoritePostsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritePostsViewController.xib; sourceTree = "<group>"; };
 		3A82DD71289C4EC100453EE2 /* TabBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModel.swift; sourceTree = "<group>"; };
 		3A82DD73289C528600453EE2 /* TabBarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfigurator.swift; sourceTree = "<group>"; };
+		3A82DD75289D82EF00453EE2 /* AllPostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsModel.swift; sourceTree = "<group>"; };
+		3A82DD77289D942100453EE2 /* AllPostsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsCollectionViewCell.swift; sourceTree = "<group>"; };
+		3A82DD78289D942100453EE2 /* AllPostsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllPostsCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,9 @@
 			children = (
 				3A82DD63289C4BA900453EE2 /* AllPostsViewController.swift */,
 				3A82DD64289C4BA900453EE2 /* AllPostsViewController.xib */,
+				3A82DD75289D82EF00453EE2 /* AllPostsModel.swift */,
+				3A82DD77289D942100453EE2 /* AllPostsCollectionViewCell.swift */,
+				3A82DD78289D942100453EE2 /* AllPostsCollectionViewCell.xib */,
 			);
 			path = AllPostsModule;
 			sourceTree = "<group>";
@@ -192,6 +201,7 @@
 				3A82DD50289988D800453EE2 /* LaunchScreen.storyboard in Resources */,
 				3A82DD4D289988D800453EE2 /* Assets.xcassets in Resources */,
 				3A82DD62289C4A9100453EE2 /* ProfileViewController.xib in Resources */,
+				3A82DD7A289D942100453EE2 /* AllPostsCollectionViewCell.xib in Resources */,
 				3A82DD6A289C4BC000453EE2 /* FavoritePostsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,6 +213,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A82DD79289D942100453EE2 /* AllPostsCollectionViewCell.swift in Sources */,
+				3A82DD76289D82EF00453EE2 /* AllPostsModel.swift in Sources */,
 				3A82DD69289C4BC000453EE2 /* FavoritePostsViewController.swift in Sources */,
 				3A82DD65289C4BA900453EE2 /* AllPostsViewController.swift in Sources */,
 				3A82DD61289C4A9100453EE2 /* ProfileViewController.swift in Sources */,
