@@ -23,7 +23,7 @@ final class AllPostsModel {
 struct PostModel {
     let image: UIImage?
     let title: String
-    let isFavorite: Bool
+    var isFavorite: Bool
     let date: String
     let contentText: String
     

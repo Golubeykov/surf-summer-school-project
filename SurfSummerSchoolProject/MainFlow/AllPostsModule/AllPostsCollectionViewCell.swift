@@ -8,19 +8,28 @@
 import UIKit
 
 class AllPostsCollectionViewCell: UICollectionViewCell {
-//MARK: - Constants
+    //MARK: - Constants
     private enum Constants {
         static let favoriteTapped = UIImage(named: "favoriteTapped")
         static let favoriteUntapped = UIImage(named: "favoriteUntapped")
     }
-
-//MARK: - Views
+    
+    //MARK: - Views
     @IBOutlet private weak var postImageView: UIImageView!
     @IBOutlet private weak var postTextLabel: UILabel!
-    @IBOutlet weak var favoritePostButtonLabel: UIButton!
-
-//MARK: - Properties
-    var titleText: String = "" {
+    @IBOutlet private weak var favoritePostButtonLabel: UIButton!
+    
+    
+    //MARK: - Events
+    var didFavoriteTap: (() -> Void)?
+    
+    //MARK: - Calculated
+    var buttonImage: UIImage? {
+        return isFavorite ? Constants.favoriteTapped : Constants.favoriteUntapped
+    }
+    
+    //MARK: - Properties
+    var titleText: String = "Test" {
         didSet {
             postTextLabel.text = titleText
         }
@@ -32,19 +41,19 @@ class AllPostsCollectionViewCell: UICollectionViewCell {
     }
     var isFavorite = false {
         didSet {
-            let image = isFavorite ? Constants.favoriteTapped : Constants.favoriteUntapped
-            favoritePostButtonLabel.setImage(image, for: .normal)
+            favoritePostButtonLabel.setImage(buttonImage, for: .normal)
         }
     }
     
-//MARK: - Action
-    @IBAction func favoritePostButtonAction(_ sender: Any) {
+    //MARK: - Action
+    @IBAction func favoritePostButtonAction(_ sender: UIButton) {
+        didFavoriteTap?()
+        isFavorite.toggle()
     }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        configureCell()
     }
 }
 
@@ -57,6 +66,7 @@ private extension AllPostsCollectionViewCell {
         postImageView.layer.cornerRadius = 12
         
         favoritePostButtonLabel.tintColor = .white
+        isFavorite = false
     }
 }
 
