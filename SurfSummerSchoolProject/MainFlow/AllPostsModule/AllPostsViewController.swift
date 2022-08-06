@@ -32,6 +32,7 @@ class AllPostsViewController: UIViewController {
 //MARK: - Private methods
 private extension AllPostsViewController {
     func configureAppearence() {
+        navigationItem.title = "Главная"
         allPostsCollectionView.register(UINib(nibName: "\(AllPostsCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(AllPostsCollectionViewCell.self)")
         allPostsCollectionView.dataSource = self
         allPostsCollectionView.delegate = self
