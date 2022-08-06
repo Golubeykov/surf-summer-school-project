@@ -78,4 +78,9 @@ extension AllPostsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return Constants.hSpaceBetweenItems
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DetailedPostViewController()
+        vc.model = self.postModel.posts[indexPath.item]
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

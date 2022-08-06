@@ -21,6 +21,14 @@
 		3A82DD76289D82EF00453EE2 /* AllPostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD75289D82EF00453EE2 /* AllPostsModel.swift */; };
 		3A82DD79289D942100453EE2 /* AllPostsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD77289D942100453EE2 /* AllPostsCollectionViewCell.swift */; };
 		3A82DD7A289D942100453EE2 /* AllPostsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD78289D942100453EE2 /* AllPostsCollectionViewCell.xib */; };
+		3A82DD82289EA36900453EE2 /* DetailedPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD80289EA36900453EE2 /* DetailedPostViewController.swift */; };
+		3A82DD83289EA36A00453EE2 /* DetailedPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD81289EA36900453EE2 /* DetailedPostViewController.xib */; };
+		3A82DD87289EC25B00453EE2 /* DetailedPostImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD85289EC25B00453EE2 /* DetailedPostImageTableViewCell.swift */; };
+		3A82DD88289EC25B00453EE2 /* DetailedPostImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD86289EC25B00453EE2 /* DetailedPostImageTableViewCell.xib */; };
+		3A82DD8B289EC45400453EE2 /* DetailedPostTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD89289EC45400453EE2 /* DetailedPostTitleTableViewCell.swift */; };
+		3A82DD8C289EC45400453EE2 /* DetailedPostTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD8A289EC45400453EE2 /* DetailedPostTitleTableViewCell.xib */; };
+		3A82DD92289EC7B200453EE2 /* DetailedPostBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD90289EC7B200453EE2 /* DetailedPostBodyTableViewCell.swift */; };
+		3A82DD93289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD91289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +48,14 @@
 		3A82DD75289D82EF00453EE2 /* AllPostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsModel.swift; sourceTree = "<group>"; };
 		3A82DD77289D942100453EE2 /* AllPostsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsCollectionViewCell.swift; sourceTree = "<group>"; };
 		3A82DD78289D942100453EE2 /* AllPostsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllPostsCollectionViewCell.xib; sourceTree = "<group>"; };
+		3A82DD80289EA36900453EE2 /* DetailedPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostViewController.swift; sourceTree = "<group>"; };
+		3A82DD81289EA36900453EE2 /* DetailedPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedPostViewController.xib; sourceTree = "<group>"; };
+		3A82DD85289EC25B00453EE2 /* DetailedPostImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostImageTableViewCell.swift; sourceTree = "<group>"; };
+		3A82DD86289EC25B00453EE2 /* DetailedPostImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedPostImageTableViewCell.xib; sourceTree = "<group>"; };
+		3A82DD89289EC45400453EE2 /* DetailedPostTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostTitleTableViewCell.swift; sourceTree = "<group>"; };
+		3A82DD8A289EC45400453EE2 /* DetailedPostTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedPostTitleTableViewCell.xib; sourceTree = "<group>"; };
+		3A82DD90289EC7B200453EE2 /* DetailedPostBodyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostBodyTableViewCell.swift; sourceTree = "<group>"; };
+		3A82DD91289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedPostBodyTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +99,10 @@
 			isa = PBXGroup;
 			children = (
 				3A82DD6F289C4C2300453EE2 /* TabBar */,
+				3A82DD6C289C4BF900453EE2 /* AllPostsModule */,
+				3A82DD7B289EA27E00453EE2 /* DetailedPostModule */,
 				3A82DD6E289C4C1800453EE2 /* FavoritePostsModule */,
 				3A82DD6D289C4C0D00453EE2 /* ProfileModule */,
-				3A82DD6C289C4BF900453EE2 /* AllPostsModule */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
@@ -137,6 +154,53 @@
 				3A82DD51289988D800453EE2 /* Info.plist */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		3A82DD7B289EA27E00453EE2 /* DetailedPostModule */ = {
+			isa = PBXGroup;
+			children = (
+				3A82DD84289EC1F500453EE2 /* Cells */,
+				3A82DD80289EA36900453EE2 /* DetailedPostViewController.swift */,
+				3A82DD81289EA36900453EE2 /* DetailedPostViewController.xib */,
+			);
+			path = DetailedPostModule;
+			sourceTree = "<group>";
+		};
+		3A82DD84289EC1F500453EE2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3A82DD8F289EC77B00453EE2 /* PostBody */,
+				3A82DD8E289EC77200453EE2 /* PostTitle */,
+				3A82DD8D289EC76800453EE2 /* PostImage */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3A82DD8D289EC76800453EE2 /* PostImage */ = {
+			isa = PBXGroup;
+			children = (
+				3A82DD85289EC25B00453EE2 /* DetailedPostImageTableViewCell.swift */,
+				3A82DD86289EC25B00453EE2 /* DetailedPostImageTableViewCell.xib */,
+			);
+			path = PostImage;
+			sourceTree = "<group>";
+		};
+		3A82DD8E289EC77200453EE2 /* PostTitle */ = {
+			isa = PBXGroup;
+			children = (
+				3A82DD89289EC45400453EE2 /* DetailedPostTitleTableViewCell.swift */,
+				3A82DD8A289EC45400453EE2 /* DetailedPostTitleTableViewCell.xib */,
+			);
+			path = PostTitle;
+			sourceTree = "<group>";
+		};
+		3A82DD8F289EC77B00453EE2 /* PostBody */ = {
+			isa = PBXGroup;
+			children = (
+				3A82DD90289EC7B200453EE2 /* DetailedPostBodyTableViewCell.swift */,
+				3A82DD91289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib */,
+			);
+			path = PostBody;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,9 +264,13 @@
 				3A82DD66289C4BA900453EE2 /* AllPostsViewController.xib in Resources */,
 				3A82DD50289988D800453EE2 /* LaunchScreen.storyboard in Resources */,
 				3A82DD4D289988D800453EE2 /* Assets.xcassets in Resources */,
+				3A82DD8C289EC45400453EE2 /* DetailedPostTitleTableViewCell.xib in Resources */,
+				3A82DD83289EA36A00453EE2 /* DetailedPostViewController.xib in Resources */,
 				3A82DD62289C4A9100453EE2 /* ProfileViewController.xib in Resources */,
 				3A82DD7A289D942100453EE2 /* AllPostsCollectionViewCell.xib in Resources */,
 				3A82DD6A289C4BC000453EE2 /* FavoritePostsViewController.xib in Resources */,
+				3A82DD88289EC25B00453EE2 /* DetailedPostImageTableViewCell.xib in Resources */,
+				3A82DD93289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,11 +282,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A82DD79289D942100453EE2 /* AllPostsCollectionViewCell.swift in Sources */,
+				3A82DD82289EA36900453EE2 /* DetailedPostViewController.swift in Sources */,
 				3A82DD76289D82EF00453EE2 /* AllPostsModel.swift in Sources */,
+				3A82DD8B289EC45400453EE2 /* DetailedPostTitleTableViewCell.swift in Sources */,
 				3A82DD69289C4BC000453EE2 /* FavoritePostsViewController.swift in Sources */,
 				3A82DD65289C4BA900453EE2 /* AllPostsViewController.swift in Sources */,
 				3A82DD61289C4A9100453EE2 /* ProfileViewController.swift in Sources */,
 				3A82DD44289988D200453EE2 /* AppDelegate.swift in Sources */,
+				3A82DD87289EC25B00453EE2 /* DetailedPostImageTableViewCell.swift in Sources */,
+				3A82DD92289EC7B200453EE2 /* DetailedPostBodyTableViewCell.swift in Sources */,
 				3A82DD74289C528600453EE2 /* TabBarConfigurator.swift in Sources */,
 				3A82DD72289C4EC100453EE2 /* TabBarModel.swift in Sources */,
 			);
