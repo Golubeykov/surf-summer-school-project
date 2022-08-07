@@ -27,23 +27,38 @@ class AllPostsViewController: UIViewController {
         configureModel()
         postModel.getPosts()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar()
+    }
 }
 
 //MARK: - Private methods
 private extension AllPostsViewController {
     func configureAppearence() {
-        navigationItem.title = "Главная"
         allPostsCollectionView.register(UINib(nibName: "\(AllPostsCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(AllPostsCollectionViewCell.self)")
         allPostsCollectionView.dataSource = self
         allPostsCollectionView.delegate = self
         allPostsCollectionView.contentInset = .init(top: 10, left: 16, bottom: 10, right: 16)
+    }
+    func configureNavigationBar() {
+        navigationItem.title = "Главная"
+        let searchButton = UIBarButtonItem(image: UIImage(named: "searchBar"),
+                                         style: .plain,
+                                         target: self,
+                                           action: #selector(goToSearchVC(sender:)))
+        navigationItem.rightBarButtonItem = searchButton
+        navigationItem.rightBarButtonItem?.tintColor = .black
     }
     func configureModel() {
         postModel.didPostsUpdated = { [weak self] in
             self?.allPostsCollectionView.reloadData()
         }
     }
-    
+    @objc func goToSearchVC(sender: UIBarButtonItem) {
+        let vc = SearchPostsViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }
 

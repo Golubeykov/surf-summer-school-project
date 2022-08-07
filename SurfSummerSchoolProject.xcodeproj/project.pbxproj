@@ -29,6 +29,8 @@
 		3A82DD8C289EC45400453EE2 /* DetailedPostTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD8A289EC45400453EE2 /* DetailedPostTitleTableViewCell.xib */; };
 		3A82DD92289EC7B200453EE2 /* DetailedPostBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD90289EC7B200453EE2 /* DetailedPostBodyTableViewCell.swift */; };
 		3A82DD93289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD91289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib */; };
+		3A82DD97289FE24500453EE2 /* SearchPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD95289FE24500453EE2 /* SearchPostsViewController.swift */; };
+		3A82DD98289FE24500453EE2 /* SearchPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD96289FE24500453EE2 /* SearchPostsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		3A82DD8A289EC45400453EE2 /* DetailedPostTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedPostTitleTableViewCell.xib; sourceTree = "<group>"; };
 		3A82DD90289EC7B200453EE2 /* DetailedPostBodyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostBodyTableViewCell.swift; sourceTree = "<group>"; };
 		3A82DD91289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedPostBodyTableViewCell.xib; sourceTree = "<group>"; };
+		3A82DD95289FE24500453EE2 /* SearchPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostsViewController.swift; sourceTree = "<group>"; };
+		3A82DD96289FE24500453EE2 /* SearchPostsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPostsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 		3A82DD6B289C4BCF00453EE2 /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				3A82DD94289FE16100453EE2 /* SearchPostsModule */,
 				3A82DD6F289C4C2300453EE2 /* TabBar */,
 				3A82DD6C289C4BF900453EE2 /* AllPostsModule */,
 				3A82DD7B289EA27E00453EE2 /* DetailedPostModule */,
@@ -203,6 +208,15 @@
 			path = PostBody;
 			sourceTree = "<group>";
 		};
+		3A82DD94289FE16100453EE2 /* SearchPostsModule */ = {
+			isa = PBXGroup;
+			children = (
+				3A82DD95289FE24500453EE2 /* SearchPostsViewController.swift */,
+				3A82DD96289FE24500453EE2 /* SearchPostsViewController.xib */,
+			);
+			path = SearchPostsModule;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -271,6 +285,7 @@
 				3A82DD6A289C4BC000453EE2 /* FavoritePostsViewController.xib in Resources */,
 				3A82DD88289EC25B00453EE2 /* DetailedPostImageTableViewCell.xib in Resources */,
 				3A82DD93289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib in Resources */,
+				3A82DD98289FE24500453EE2 /* SearchPostsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +301,7 @@
 				3A82DD76289D82EF00453EE2 /* AllPostsModel.swift in Sources */,
 				3A82DD8B289EC45400453EE2 /* DetailedPostTitleTableViewCell.swift in Sources */,
 				3A82DD69289C4BC000453EE2 /* FavoritePostsViewController.swift in Sources */,
+				3A82DD97289FE24500453EE2 /* SearchPostsViewController.swift in Sources */,
 				3A82DD65289C4BA900453EE2 /* AllPostsViewController.swift in Sources */,
 				3A82DD61289C4A9100453EE2 /* ProfileViewController.swift in Sources */,
 				3A82DD44289988D200453EE2 /* AppDelegate.swift in Sources */,
