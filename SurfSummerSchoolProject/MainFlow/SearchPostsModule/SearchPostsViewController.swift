@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchPostsViewController: UIViewController, UIGestureRecognizerDelegate {
-//MARK: - Views
+    //MARK: - Views
     @IBOutlet private weak var searchUserNotificationImage: UIImageView!
     @IBOutlet private weak var searchUserNotificationText: UILabel!
     private var searchBar: UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 303, height: 32))
@@ -39,7 +39,6 @@ class SearchPostsViewController: UIViewController, UIGestureRecognizerDelegate {
                                          action: #selector(UINavigationController.popViewController(animated:)))
         let searchBarItem = UIBarButtonItem(customView: searchBar)
         navigationItem.rightBarButtonItem = searchBarItem
-        
         navigationItem.leftBarButtonItem = backButton
         navigationItem.leftBarButtonItem?.tintColor = .black
         navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -54,6 +53,9 @@ class SearchPostsViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillAppear(animated)
         configureNavigationBar()
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.searchBar.endEditing(true)
+    }
 }
 //MARK: - Search delegate
 
@@ -61,6 +63,7 @@ extension SearchPostsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
             print(searchText)
+            
             notifyImage = UIImage(named: "sadSmile")
             searchUserNotificationText.text = "По этому запросу нет результатов, попробуйте другой запрос"
         } else {
