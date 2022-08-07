@@ -31,6 +31,8 @@
 		3A82DD93289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD91289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib */; };
 		3A82DD97289FE24500453EE2 /* SearchPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD95289FE24500453EE2 /* SearchPostsViewController.swift */; };
 		3A82DD98289FE24500453EE2 /* SearchPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD96289FE24500453EE2 /* SearchPostsViewController.xib */; };
+		3A82DD9C28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD9A28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift */; };
+		3A82DD9D28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD9B28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		3A82DD91289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedPostBodyTableViewCell.xib; sourceTree = "<group>"; };
 		3A82DD95289FE24500453EE2 /* SearchPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostsViewController.swift; sourceTree = "<group>"; };
 		3A82DD96289FE24500453EE2 /* SearchPostsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPostsViewController.xib; sourceTree = "<group>"; };
+		3A82DD9A28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostBodyShortedTableViewCell.swift; sourceTree = "<group>"; };
+		3A82DD9B28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedPostBodyShortedTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,7 @@
 		3A82DD6E289C4C1800453EE2 /* FavoritePostsModule */ = {
 			isa = PBXGroup;
 			children = (
+				3A82DD9928A0154F00453EE2 /* PostBodyShorted */,
 				3A82DD67289C4BC000453EE2 /* FavoritePostsViewController.swift */,
 				3A82DD68289C4BC000453EE2 /* FavoritePostsViewController.xib */,
 			);
@@ -217,6 +222,15 @@
 			path = SearchPostsModule;
 			sourceTree = "<group>";
 		};
+		3A82DD9928A0154F00453EE2 /* PostBodyShorted */ = {
+			isa = PBXGroup;
+			children = (
+				3A82DD9A28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift */,
+				3A82DD9B28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib */,
+			);
+			path = PostBodyShorted;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -280,6 +294,7 @@
 				3A82DD4D289988D800453EE2 /* Assets.xcassets in Resources */,
 				3A82DD8C289EC45400453EE2 /* DetailedPostTitleTableViewCell.xib in Resources */,
 				3A82DD83289EA36A00453EE2 /* DetailedPostViewController.xib in Resources */,
+				3A82DD9D28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib in Resources */,
 				3A82DD62289C4A9100453EE2 /* ProfileViewController.xib in Resources */,
 				3A82DD7A289D942100453EE2 /* AllPostsCollectionViewCell.xib in Resources */,
 				3A82DD6A289C4BC000453EE2 /* FavoritePostsViewController.xib in Resources */,
@@ -299,6 +314,7 @@
 				3A82DD79289D942100453EE2 /* AllPostsCollectionViewCell.swift in Sources */,
 				3A82DD82289EA36900453EE2 /* DetailedPostViewController.swift in Sources */,
 				3A82DD76289D82EF00453EE2 /* AllPostsModel.swift in Sources */,
+				3A82DD9C28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift in Sources */,
 				3A82DD8B289EC45400453EE2 /* DetailedPostTitleTableViewCell.swift in Sources */,
 				3A82DD69289C4BC000453EE2 /* FavoritePostsViewController.swift in Sources */,
 				3A82DD97289FE24500453EE2 /* SearchPostsViewController.swift in Sources */,
