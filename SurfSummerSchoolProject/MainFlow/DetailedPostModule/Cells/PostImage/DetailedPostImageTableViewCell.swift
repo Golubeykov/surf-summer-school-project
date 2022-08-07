@@ -8,13 +8,34 @@
 import UIKit
 
 class DetailedPostImageTableViewCell: UITableViewCell {
+    //MARK: - Constants
+    private enum Constants {
+        static let favoriteTapped = UIImage(named: "favoriteTapped")
+        static let favoriteUntapped = UIImage(named: "favoriteUntapped")
+    }
+    
     //MARK: - Views
     @IBOutlet private weak var detailedPostImageView: UIImageView!
+    @IBOutlet weak var favoriteButtonLabel: UIButton!
+    
+    
+//    //MARK: - Events // Реализуется позже
+//    var didFavoriteTap: (() -> Void)?
+    
+    //MARK: - Calculated
+    var buttonImage: UIImage? {
+        return isFavorite ? Constants.favoriteTapped : Constants.favoriteUntapped
+    }
     
     //MARK: - Properties
     var image: UIImage? {
         didSet {
             detailedPostImageView.image = image
+        }
+    }
+    var isFavorite = false {
+        didSet {
+            favoriteButtonLabel.setImage(buttonImage, for: .normal)
         }
     }
     

@@ -21,9 +21,20 @@
                             <constraint firstAttribute="width" secondItem="5lJ-JO-jdq" secondAttribute="height" multiplier="343:326" id="klh-ye-1Ab"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQ5-bj-ofZ">
+                        <rect key="frame" x="312" y="18" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="F9g-hR-N3A"/>
+                            <constraint firstAttribute="width" constant="20" id="lKF-HU-tMj"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain"/>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="5lJ-JO-jdq" firstAttribute="trailing" secondItem="JQ5-bj-ofZ" secondAttribute="trailing" constant="10" id="CIb-Hj-nJd"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5lJ-JO-jdq" secondAttribute="bottom" constant="8" id="FEH-vS-ryu"/>
+                    <constraint firstItem="JQ5-bj-ofZ" firstAttribute="top" secondItem="5lJ-JO-jdq" secondAttribute="top" constant="10" id="G7R-aF-sCW"/>
                     <constraint firstAttribute="trailing" secondItem="5lJ-JO-jdq" secondAttribute="trailing" constant="16" id="H47-TW-Etr"/>
                     <constraint firstItem="5lJ-JO-jdq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="ZK9-eI-Lma"/>
                     <constraint firstItem="5lJ-JO-jdq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="rqv-9H-nCM"/>
@@ -31,6 +42,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="detailedPostImageView" destination="5lJ-JO-jdq" id="bPf-rU-u6Z"/>
+                <outlet property="favoriteButtonLabel" destination="JQ5-bj-ofZ" id="Esf-uN-mZC"/>
             </connections>
             <point key="canvasLocation" x="157.97101449275362" y="162.05357142857142"/>
         </tableViewCell>
