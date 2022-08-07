@@ -56,7 +56,7 @@ private extension AllPostsViewController {
         }
     }
     @objc func goToSearchVC(sender: UIBarButtonItem) {
-        let vc = SeachPostsViewController()
+        let vc = SearchPostsViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
