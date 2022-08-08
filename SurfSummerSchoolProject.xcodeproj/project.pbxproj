@@ -33,6 +33,20 @@
 		3A82DD98289FE24500453EE2 /* SearchPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD96289FE24500453EE2 /* SearchPostsViewController.xib */; };
 		3A82DD9C28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD9A28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift */; };
 		3A82DD9D28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD9B28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib */; };
+		3AE4172A28A12E34009E1AFE /* BaseTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4172928A12E34009E1AFE /* BaseTokenStorage.swift */; };
+		3AE4172C28A12E42009E1AFE /* TokenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4172B28A12E42009E1AFE /* TokenContainer.swift */; };
+		3AE4172E28A12E50009E1AFE /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4172D28A12E50009E1AFE /* TokenStorage.swift */; };
+		3AE4173028A12E94009E1AFE /* AuthRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4172F28A12E94009E1AFE /* AuthRequestModel.swift */; };
+		3AE4173228A12EA3009E1AFE /* AuthResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4173128A12EA3009E1AFE /* AuthResponseModel.swift */; };
+		3AE4173428A12EAC009E1AFE /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4173328A12EAC009E1AFE /* AuthService.swift */; };
+		3AE4173628A12EFA009E1AFE /* BaseNetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4173528A12EFA009E1AFE /* BaseNetworkTask.swift */; };
+		3AE4173828A12F05009E1AFE /* EmptyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4173728A12F05009E1AFE /* EmptyModel.swift */; };
+		3AE4173A28A12F12009E1AFE /* NetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4173928A12F12009E1AFE /* NetworkMethod.swift */; };
+		3AE4173C28A12F1D009E1AFE /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4173B28A12F1D009E1AFE /* NetworkTask.swift */; };
+		3AE4173E28A12F7D009E1AFE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4173D28A12F7D009E1AFE /* ImageLoader.swift */; };
+		3AE4174028A12FA9009E1AFE /* UIImageView+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4173F28A12FA9009E1AFE /* UIImageView+ImageLoader.swift */; };
+		3AE4174228A12FCE009E1AFE /* PictureResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4174128A12FCE009E1AFE /* PictureResponseModel.swift */; };
+		3AE4174428A12FDD009E1AFE /* PicturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4174328A12FDD009E1AFE /* PicturesService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +78,20 @@
 		3A82DD96289FE24500453EE2 /* SearchPostsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPostsViewController.xib; sourceTree = "<group>"; };
 		3A82DD9A28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostBodyShortedTableViewCell.swift; sourceTree = "<group>"; };
 		3A82DD9B28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedPostBodyShortedTableViewCell.xib; sourceTree = "<group>"; };
+		3AE4172928A12E34009E1AFE /* BaseTokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTokenStorage.swift; sourceTree = "<group>"; };
+		3AE4172B28A12E42009E1AFE /* TokenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenContainer.swift; sourceTree = "<group>"; };
+		3AE4172D28A12E50009E1AFE /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
+		3AE4172F28A12E94009E1AFE /* AuthRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestModel.swift; sourceTree = "<group>"; };
+		3AE4173128A12EA3009E1AFE /* AuthResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseModel.swift; sourceTree = "<group>"; };
+		3AE4173328A12EAC009E1AFE /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		3AE4173528A12EFA009E1AFE /* BaseNetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetworkTask.swift; sourceTree = "<group>"; };
+		3AE4173728A12F05009E1AFE /* EmptyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyModel.swift; sourceTree = "<group>"; };
+		3AE4173928A12F12009E1AFE /* NetworkMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMethod.swift; sourceTree = "<group>"; };
+		3AE4173B28A12F1D009E1AFE /* NetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
+		3AE4173D28A12F7D009E1AFE /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		3AE4173F28A12FA9009E1AFE /* UIImageView+ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageLoader.swift"; sourceTree = "<group>"; };
+		3AE4174128A12FCE009E1AFE /* PictureResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureResponseModel.swift; sourceTree = "<group>"; };
+		3AE4174328A12FDD009E1AFE /* PicturesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +127,7 @@
 				3A82DD43289988D200453EE2 /* AppDelegate.swift */,
 				3A82DD70289C4C4700453EE2 /* Application */,
 				3A82DD6B289C4BCF00453EE2 /* MainFlow */,
+				3AE4172228A12DBB009E1AFE /* Services */,
 			);
 			path = SurfSummerSchoolProject;
 			sourceTree = "<group>";
@@ -231,6 +260,75 @@
 			path = PostBodyShorted;
 			sourceTree = "<group>";
 		};
+		3AE4172228A12DBB009E1AFE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3AE4172428A12DD3009E1AFE /* Storage */,
+				3AE4172328A12DCB009E1AFE /* Networking */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3AE4172328A12DCB009E1AFE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				3AE4172828A12E0D009E1AFE /* PicturesService */,
+				3AE4172728A12E04009E1AFE /* ImageLoader */,
+				3AE4172628A12DFC009E1AFE /* Core */,
+				3AE4172528A12DF2009E1AFE /* AuthService */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		3AE4172428A12DD3009E1AFE /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				3AE4172928A12E34009E1AFE /* BaseTokenStorage.swift */,
+				3AE4172B28A12E42009E1AFE /* TokenContainer.swift */,
+				3AE4172D28A12E50009E1AFE /* TokenStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		3AE4172528A12DF2009E1AFE /* AuthService */ = {
+			isa = PBXGroup;
+			children = (
+				3AE4172F28A12E94009E1AFE /* AuthRequestModel.swift */,
+				3AE4173128A12EA3009E1AFE /* AuthResponseModel.swift */,
+				3AE4173328A12EAC009E1AFE /* AuthService.swift */,
+			);
+			path = AuthService;
+			sourceTree = "<group>";
+		};
+		3AE4172628A12DFC009E1AFE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3AE4173528A12EFA009E1AFE /* BaseNetworkTask.swift */,
+				3AE4173728A12F05009E1AFE /* EmptyModel.swift */,
+				3AE4173928A12F12009E1AFE /* NetworkMethod.swift */,
+				3AE4173B28A12F1D009E1AFE /* NetworkTask.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		3AE4172728A12E04009E1AFE /* ImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				3AE4173D28A12F7D009E1AFE /* ImageLoader.swift */,
+				3AE4173F28A12FA9009E1AFE /* UIImageView+ImageLoader.swift */,
+			);
+			path = ImageLoader;
+			sourceTree = "<group>";
+		};
+		3AE4172828A12E0D009E1AFE /* PicturesService */ = {
+			isa = PBXGroup;
+			children = (
+				3AE4174128A12FCE009E1AFE /* PictureResponseModel.swift */,
+				3AE4174328A12FDD009E1AFE /* PicturesService.swift */,
+			);
+			path = PicturesService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -311,18 +409,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AE4173628A12EFA009E1AFE /* BaseNetworkTask.swift in Sources */,
+				3AE4173C28A12F1D009E1AFE /* NetworkTask.swift in Sources */,
 				3A82DD79289D942100453EE2 /* AllPostsCollectionViewCell.swift in Sources */,
 				3A82DD82289EA36900453EE2 /* DetailedPostViewController.swift in Sources */,
 				3A82DD76289D82EF00453EE2 /* AllPostsModel.swift in Sources */,
+				3AE4172C28A12E42009E1AFE /* TokenContainer.swift in Sources */,
+				3AE4173828A12F05009E1AFE /* EmptyModel.swift in Sources */,
 				3A82DD9C28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift in Sources */,
 				3A82DD8B289EC45400453EE2 /* DetailedPostTitleTableViewCell.swift in Sources */,
+				3AE4172A28A12E34009E1AFE /* BaseTokenStorage.swift in Sources */,
+				3AE4173428A12EAC009E1AFE /* AuthService.swift in Sources */,
 				3A82DD69289C4BC000453EE2 /* FavoritePostsViewController.swift in Sources */,
+				3AE4173228A12EA3009E1AFE /* AuthResponseModel.swift in Sources */,
+				3AE4172E28A12E50009E1AFE /* TokenStorage.swift in Sources */,
 				3A82DD97289FE24500453EE2 /* SearchPostsViewController.swift in Sources */,
 				3A82DD65289C4BA900453EE2 /* AllPostsViewController.swift in Sources */,
+				3AE4174228A12FCE009E1AFE /* PictureResponseModel.swift in Sources */,
+				3AE4173A28A12F12009E1AFE /* NetworkMethod.swift in Sources */,
+				3AE4173E28A12F7D009E1AFE /* ImageLoader.swift in Sources */,
 				3A82DD61289C4A9100453EE2 /* ProfileViewController.swift in Sources */,
+				3AE4174428A12FDD009E1AFE /* PicturesService.swift in Sources */,
 				3A82DD44289988D200453EE2 /* AppDelegate.swift in Sources */,
 				3A82DD87289EC25B00453EE2 /* DetailedPostImageTableViewCell.swift in Sources */,
 				3A82DD92289EC7B200453EE2 /* DetailedPostBodyTableViewCell.swift in Sources */,
+				3AE4173028A12E94009E1AFE /* AuthRequestModel.swift in Sources */,
+				3AE4174028A12FA9009E1AFE /* UIImageView+ImageLoader.swift in Sources */,
 				3A82DD74289C528600453EE2 /* TabBarConfigurator.swift in Sources */,
 				3A82DD72289C4EC100453EE2 /* TabBarModel.swift in Sources */,
 			);
