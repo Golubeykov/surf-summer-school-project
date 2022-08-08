@@ -17,10 +17,9 @@ class FavoritePostsViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        postModel.getPosts()
         configureAppearance()
-        tableView.reloadData()
-
+        configureModel()
+        postModel.loadPosts()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,6 +40,13 @@ private extension FavoritePostsViewController {
                                            action: #selector(goToSearchVC(sender:)))
         navigationItem.rightBarButtonItem = searchButton
         navigationItem.rightBarButtonItem?.tintColor = .black
+    }
+    func configureModel() {
+        postModel.didPostsUpdated = { [weak self] in
+            DispatchQueue.main.async {
+                 self?.tableView.reloadData()
+             }
+        }
     }
     func configureTableView() {
         view.addSubview(tableView)
@@ -77,7 +83,7 @@ extension FavoritePostsViewController: UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailedPostImageTableViewCell.self)")
             if let cell = cell as? DetailedPostImageTableViewCell {
-                cell.image = postModel.posts[indexPath.section].image
+                cell.imageUrlInString = postModel.posts[indexPath.section].imageUrlInString ?? "https://i.pinimg.com/originals/ca/b9/1d/cab91d6b70c839ec073a6121a94bdad8.jpg"
                 cell.isFavorite = true
             }
             return cell ?? UITableViewCell()
@@ -85,13 +91,13 @@ extension FavoritePostsViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailedPostTitleTableViewCell.self)")
             if let cell = cell as? DetailedPostTitleTableViewCell {
                 cell.titleText = postModel.posts[indexPath.section].title
-                cell.titleDate = postModel.posts[indexPath.section].date
+                cell.titleDate = postModel.posts[indexPath.section].dateCreation
             }
             return cell ?? UITableViewCell()
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailedPostBodyShortedTableViewCell.self)")
             if let cell = cell as? DetailedPostBodyShortedTableViewCell {
-                cell.bodyText = postModel.posts[indexPath.section].contentText
+                cell.bodyText = postModel.posts[indexPath.section].content
             }
             return cell ?? UITableViewCell()
         default:

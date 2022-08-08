@@ -41,9 +41,12 @@ class AllPostsCollectionViewCell: UICollectionViewCell {
             postTextLabel.text = titleText
         }
     }
-    var image: UIImage? {
+    var imageUrlInString: String = "" {
         didSet {
-            postImageView.image = image
+            guard let url = URL(string: imageUrlInString) else {
+                 return
+             }
+             postImageView.loadImage(from: url)
         }
     }
     var isFavorite = false {

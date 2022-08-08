@@ -69,20 +69,20 @@ extension DetailedPostViewController: UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailedPostImageTableViewCell.self)")
             if let cell = cell as? DetailedPostImageTableViewCell {
-                cell.image = model?.image
+                cell.imageUrlInString = model?.imageUrlInString ?? ""
             }
             return cell ?? UITableViewCell()
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailedPostTitleTableViewCell.self)")
             if let cell = cell as? DetailedPostTitleTableViewCell {
                 cell.titleText = model?.title ?? ""
-                cell.titleDate = model?.date ?? ""
+                cell.titleDate = model?.dateCreation ?? ""
             }
             return cell ?? UITableViewCell()
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailedPostBodyTableViewCell.self)")
             if let cell = cell as? DetailedPostBodyTableViewCell {
-                cell.bodyText = model?.contentText ?? ""
+                cell.bodyText = model?.content ?? ""
             }
             return cell ?? UITableViewCell()
         default:

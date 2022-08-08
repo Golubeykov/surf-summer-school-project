@@ -10,6 +10,7 @@ import UIKit
 
 final class AllPostsModel {
     var didPostsUpdated: (()->Void)?
+    let pictureService = PicturesService()
     var posts: [PostModel] = [] {
         didSet {
             didPostsUpdated?()
@@ -18,16 +19,53 @@ final class AllPostsModel {
     func getPosts() {
         posts = Array(repeating: PostModel.createDefault(), count: 100)
     }
+    func loadPosts() {
+        pictureService.loadPictures { [weak self] result in
+            switch result {
+            case .success(let pictures):
+                self?.posts = pictures.map { pictureModel in
+                    PostModel(
+                        imageUrlInString: pictureModel.photoUrl,
+                        title: pictureModel.title,
+                        isFavorite: false, // TODO: - Need adding `FavoriteService`
+                        content: pictureModel.content,
+                        dateCreation: pictureModel.date
+                    )
+                }
+            case .failure(let error):
+                // TODO: - Implement error state there
+                break
+            }
+        }
+    }
 }
 
 struct PostModel {
-    let image: UIImage?
+    let imageUrlInString: String
     let title: String
     var isFavorite: Bool
-    let date: String
-    let contentText: String
+    let content: String
+    let dateCreation: String
+    
+    internal init(imageUrlInString: String, title: String, isFavorite: Bool, content: String, dateCreation: Date) {
+        self.imageUrlInString = imageUrlInString
+        self.title = title
+        self.isFavorite = isFavorite
+        self.content = content
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.mm.yyyy"
+        
+        self.dateCreation = formatter.string(from: dateCreation)
+    }
     
     static func createDefault() -> PostModel {
-        .init(image: UIImage(named: "korgi"), title: "Самый милый корги", isFavorite: false, date: "12.05.2022", contentText: "Для бариста и посетителей кофеен специальные кружки для кофе — это ещё один способ проконтролировать вкус напитка и приготовить его именно так, как нравится вам.\n \nТеперь, кроме регулировки экстракции, настройки помола, времени заваривания и многого что помогает выделять нужные характеристики кофе, вы сможете выбрать и кружку для кофе в зависимости от сорта.")
+        .init(
+            imageUrlInString: "",
+            title: "Самый милый корги",
+            isFavorite: false,
+            content: "Для бариста и посетителей кофеен специальные кружки для кофе — это ещё один способ проконтролировать вкус напитка и приготовить его именно так, как нравится вам. \n \nТеперь, кроме регулировки экстракции, настройки помола, времени заваривания и многого что помогает выделять нужные характеристики кофе, вы сможете выбрать и кружку для кофе в зависимости от сорта.",
+            dateCreation: Date()
+        )
     }
 }

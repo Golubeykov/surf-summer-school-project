@@ -25,7 +25,8 @@ class AllPostsViewController: UIViewController {
         super.viewDidLoad()
         configureAppearence()
         configureModel()
-        postModel.getPosts()
+        //postModel.getPosts()
+        postModel.loadPosts()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,7 +53,9 @@ private extension AllPostsViewController {
     }
     func configureModel() {
         postModel.didPostsUpdated = { [weak self] in
-            self?.allPostsCollectionView.reloadData()
+            DispatchQueue.main.async {
+                 self?.allPostsCollectionView.reloadData()
+             }
         }
     }
     @objc func goToSearchVC(sender: UIBarButtonItem) {
@@ -74,7 +77,7 @@ extension AllPostsViewController: UICollectionViewDataSource, UICollectionViewDe
         if let cell = cell as? AllPostsCollectionViewCell {
             cell.titleText = postModel.posts[indexPath.item].title
             cell.isFavorite = postModel.posts[indexPath.item].isFavorite
-            cell.image = postModel.posts[indexPath.item].image
+            cell.imageUrlInString = postModel.posts[indexPath.item].imageUrlInString
             cell.didFavoriteTap = { [weak self] in
                 self?.postModel.posts[indexPath.item].isFavorite.toggle()
             }

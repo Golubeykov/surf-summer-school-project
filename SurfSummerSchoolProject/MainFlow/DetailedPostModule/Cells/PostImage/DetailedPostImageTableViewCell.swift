@@ -28,9 +28,12 @@ class DetailedPostImageTableViewCell: UITableViewCell {
     }
     
     //MARK: - Properties
-    var image: UIImage? {
+    var imageUrlInString: String = "" {
         didSet {
-            detailedPostImageView.image = image
+            guard let url = URL(string: imageUrlInString) else {
+                 return
+             }
+             detailedPostImageView?.loadImage(from: url)
         }
     }
     var isFavorite = false {
