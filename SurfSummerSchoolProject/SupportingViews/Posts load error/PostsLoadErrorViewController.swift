@@ -12,10 +12,8 @@ class PostsLoadErrorViewController: UIViewController {
     var refreshButtonAction: ()->Void = {}
     
     @IBAction func refreshButton(_ sender: Any) {
-        print("test")
         refreshButtonAction()
         self.view.alpha = 0
-        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
