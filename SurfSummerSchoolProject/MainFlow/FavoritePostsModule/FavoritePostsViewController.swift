@@ -83,7 +83,7 @@ extension FavoritePostsViewController: UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailedPostImageTableViewCell.self)")
             if let cell = cell as? DetailedPostImageTableViewCell {
-                cell.imageUrlInString = postModel.posts[indexPath.section].imageUrlInString ?? "https://i.pinimg.com/originals/ca/b9/1d/cab91d6b70c839ec073a6121a94bdad8.jpg"
+                cell.imageUrlInString = postModel.posts[indexPath.section].imageUrlInString
                 cell.isFavorite = true
             }
             return cell ?? UITableViewCell()
