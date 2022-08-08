@@ -47,6 +47,8 @@
 		3AE4174028A12FA9009E1AFE /* UIImageView+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4173F28A12FA9009E1AFE /* UIImageView+ImageLoader.swift */; };
 		3AE4174228A12FCE009E1AFE /* PictureResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4174128A12FCE009E1AFE /* PictureResponseModel.swift */; };
 		3AE4174428A12FDD009E1AFE /* PicturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4174328A12FDD009E1AFE /* PicturesService.swift */; };
+		3AE4174B28A18FF1009E1AFE /* PostsLoadErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4174928A18FF1009E1AFE /* PostsLoadErrorViewController.swift */; };
+		3AE4174C28A18FF1009E1AFE /* PostsLoadErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE4174A28A18FF1009E1AFE /* PostsLoadErrorViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +94,8 @@
 		3AE4173F28A12FA9009E1AFE /* UIImageView+ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageLoader.swift"; sourceTree = "<group>"; };
 		3AE4174128A12FCE009E1AFE /* PictureResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureResponseModel.swift; sourceTree = "<group>"; };
 		3AE4174328A12FDD009E1AFE /* PicturesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesService.swift; sourceTree = "<group>"; };
+		3AE4174928A18FF1009E1AFE /* PostsLoadErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsLoadErrorViewController.swift; sourceTree = "<group>"; };
+		3AE4174A28A18FF1009E1AFE /* PostsLoadErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsLoadErrorViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 		3A82DD42289988D200453EE2 /* SurfSummerSchoolProject */ = {
 			isa = PBXGroup;
 			children = (
+				3AE4174628A18FAC009E1AFE /* SupportingViews */,
 				3A82DD43289988D200453EE2 /* AppDelegate.swift */,
 				3A82DD70289C4C4700453EE2 /* Application */,
 				3A82DD6B289C4BCF00453EE2 /* MainFlow */,
@@ -329,6 +334,23 @@
 			path = PicturesService;
 			sourceTree = "<group>";
 		};
+		3AE4174628A18FAC009E1AFE /* SupportingViews */ = {
+			isa = PBXGroup;
+			children = (
+				3AE4174728A18FBA009E1AFE /* Posts load error */,
+			);
+			path = SupportingViews;
+			sourceTree = "<group>";
+		};
+		3AE4174728A18FBA009E1AFE /* Posts load error */ = {
+			isa = PBXGroup;
+			children = (
+				3AE4174928A18FF1009E1AFE /* PostsLoadErrorViewController.swift */,
+				3AE4174A28A18FF1009E1AFE /* PostsLoadErrorViewController.xib */,
+			);
+			path = "Posts load error";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -391,6 +413,7 @@
 				3A82DD50289988D800453EE2 /* LaunchScreen.storyboard in Resources */,
 				3A82DD4D289988D800453EE2 /* Assets.xcassets in Resources */,
 				3A82DD8C289EC45400453EE2 /* DetailedPostTitleTableViewCell.xib in Resources */,
+				3AE4174C28A18FF1009E1AFE /* PostsLoadErrorViewController.xib in Resources */,
 				3A82DD83289EA36A00453EE2 /* DetailedPostViewController.xib in Resources */,
 				3A82DD9D28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib in Resources */,
 				3A82DD62289C4A9100453EE2 /* ProfileViewController.xib in Resources */,
@@ -427,6 +450,7 @@
 				3A82DD65289C4BA900453EE2 /* AllPostsViewController.swift in Sources */,
 				3AE4174228A12FCE009E1AFE /* PictureResponseModel.swift in Sources */,
 				3AE4173A28A12F12009E1AFE /* NetworkMethod.swift in Sources */,
+				3AE4174B28A18FF1009E1AFE /* PostsLoadErrorViewController.swift in Sources */,
 				3AE4173E28A12F7D009E1AFE /* ImageLoader.swift in Sources */,
 				3A82DD61289C4A9100453EE2 /* ProfileViewController.swift in Sources */,
 				3AE4174428A12FDD009E1AFE /* PicturesService.swift in Sources */,
