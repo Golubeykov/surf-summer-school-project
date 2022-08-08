@@ -14,10 +14,13 @@ class AllPostsViewController: UIViewController {
         static let hSpaceBetweenItems: CGFloat = 7
         static let vSpaceBetweenItems: CGFloat = 8
     }
+    let fetchPostsErrorVC = PostsLoadErrorViewController()
+    
     //MARK: - Private properties
     private let postModel: AllPostsModel = .init()
     
     //MARK: - Views
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet private weak var allPostsCollectionView: UICollectionView!
     
     //MARK: - Lifecycle
@@ -30,6 +33,11 @@ class AllPostsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        appendStateViewController {
+            self.postModel.loadPosts()
+            self.fetchPostsErrorVC.view.alpha = 0
+            self.activityIndicatorView.isHidden = false
+        }
         configureNavigationBar()
     }
 }
@@ -52,15 +60,36 @@ private extension AllPostsViewController {
         navigationItem.rightBarButtonItem?.tintColor = .black
     }
     func configureModel() {
+        postModel.didPostsFetchErrorHappened = { [weak self] in
+            DispatchQueue.main.async {
+                self?.activityIndicatorView.isHidden = true
+                self?.fetchPostsErrorVC.view.alpha = 1
+             }
+        }
         postModel.didPostsUpdated = { [weak self] in
             DispatchQueue.main.async {
-                 self?.allPostsCollectionView.reloadData()
+                self?.activityIndicatorView.isHidden = true
+                self?.allPostsCollectionView.reloadData()
              }
         }
     }
     @objc func goToSearchVC(sender: UIBarButtonItem) {
         let vc = SearchPostsViewController()
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func appendStateViewController(refreshButtonAction: @escaping ()->Void) {
+        fetchPostsErrorVC.view.translatesAutoresizingMaskIntoConstraints = false
+        self.addChild(fetchPostsErrorVC)
+        self.view.addSubview(fetchPostsErrorVC.view)
+        fetchPostsErrorVC.didMove(toParent: self)
+        
+        fetchPostsErrorVC.view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        fetchPostsErrorVC.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        fetchPostsErrorVC.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        fetchPostsErrorVC.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        fetchPostsErrorVC.view.alpha = 0
+        fetchPostsErrorVC.refreshButtonAction = refreshButtonAction
     }
     
 }

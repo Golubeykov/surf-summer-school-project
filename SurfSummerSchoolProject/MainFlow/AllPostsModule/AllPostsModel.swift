@@ -10,6 +10,8 @@ import UIKit
 
 final class AllPostsModel {
     var didPostsUpdated: (()->Void)?
+    var didPostsFetchErrorHappened: (()->Void)?
+    
     let pictureService = PicturesService()
     var posts: [PostModel] = [] {
         didSet {
@@ -34,7 +36,8 @@ final class AllPostsModel {
                 }
             case .failure(let error):
                 // TODO: - Implement error state there
-                break
+                self?.didPostsFetchErrorHappened?()
+                print(error)
             }
         }
     }
