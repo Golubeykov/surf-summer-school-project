@@ -23,15 +23,8 @@ class DetailedPostImageTableViewCell: UITableViewCell {
     
     //MARK: - Events // Реализуется позже
     var didFavoriteTap: (() -> Void)?
-    @IBAction func favoriteButtonAction(_ sender: Any) {
+    @IBAction func favoriteButtonAction(_ sender: Any) {        
         didFavoriteTap?()
-        if favoritesStorage.isPostFavorite(post: self.postTextLabel ) {
-            favoritesStorage.removeFavorite(favoritePost: self.postTextLabel )
-        } else {
-            favoritesStorage.addFavorite(favoritePost: self.postTextLabel )
-        }
-        isFavorite.toggle()
-        print("count:", FavoritesStorage.shared.myFavorites.count)
     }
     
     //MARK: - Calculated

@@ -11,7 +11,7 @@ class FavoritePostsViewController: UIViewController {
     //MARK: - Views
     private let tableView = UITableView()
     
-    //MARK: - Private properties
+    //MARK: - Singleton instances
     private let postModel: AllPostsModel = AllPostsModel.shared
     
     //MARK: - Lifecycle
@@ -35,8 +35,8 @@ private extension FavoritePostsViewController {
     func configureNavigationBar() {
         navigationItem.title = "Избранное"
         let searchButton = UIBarButtonItem(image: UIImage(named: "searchBar"),
-                                         style: .plain,
-                                         target: self,
+                                           style: .plain,
+                                           target: self,
                                            action: #selector(goToSearchVC(sender:)))
         navigationItem.rightBarButtonItem = searchButton
         navigationItem.rightBarButtonItem?.tintColor = .black
@@ -44,8 +44,8 @@ private extension FavoritePostsViewController {
     func configureModel() {
         postModel.didPostsUpdated = { [weak self] in
             DispatchQueue.main.async {
-                 self?.tableView.reloadData()
-             }
+                self?.tableView.reloadData()
+            }
         }
     }
     func configureTableView() {
@@ -83,14 +83,30 @@ extension FavoritePostsViewController: UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailedPostImageTableViewCell.self)")
             if let cell = cell as? DetailedPostImageTableViewCell {
-                cell.imageUrlInString = postModel.favoritePosts[indexPath.section].imageUrlInString
-                cell.isFavorite = postModel.favoritePosts[indexPath.section].isFavorite
-                cell.postTextLabel = postModel.favoritePosts[indexPath.section].title
+                let currentPost = postModel.favoritePosts[indexPath.section]
+                cell.imageUrlInString = currentPost.imageUrlInString
+                cell.isFavorite = currentPost.isFavorite
+                cell.postTextLabel = currentPost.title
                 cell.didFavoriteTap = { [weak self] in
-                    if let favoritePost = self?.postModel.favoritePosts[indexPath.section] {
-                    self?.postModel.favoritePost(for: favoritePost)
-                    }
-                    self?.tableView.reloadData()
+                    let alert = UIAlertController(title: "Внимание", message: "Вы точно хотите удалить из избранного?", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Да, точно", style: UIAlertAction.Style.default, handler: { action in
+                        let favoritesStorage: FavoritesStorage = FavoritesStorage.shared
+                        
+                        if favoritesStorage.isPostFavorite(post: currentPost.title) {
+                            favoritesStorage.removeFavorite(favoritePost: currentPost.title)
+                        } else {
+                            favoritesStorage.addFavorite(favoritePost: currentPost.title)
+                        }
+                        cell.isFavorite.toggle()
+                        if let favoritePost = self?.postModel.favoritePosts[indexPath.section] {
+                        self?.postModel.favoritePost(for: favoritePost)
+                        self?.tableView.reloadData()
+                        }
+                        }))
+                    alert.addAction(UIAlertAction(title: "Нет", style: UIAlertAction.Style.cancel, handler: nil))
+                    self?.present(alert, animated: true, completion: nil)
+                    
+
                 }
             }
             return cell ?? UITableViewCell()

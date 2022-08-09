@@ -36,7 +36,7 @@ class AllPostsViewController: UIViewController {
         appendStateViewController {
             self.postModel.loadPosts()
             self.fetchPostsErrorVC.view.alpha = 0
-            self.activityIndicatorView.isHidden = false
+            //self.activityIndicatorView.isHidden = false
         }
         configureNavigationBar()
     }
@@ -104,6 +104,7 @@ extension AllPostsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = allPostsCollectionView.dequeueReusableCell(withReuseIdentifier: "\(AllPostsCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? AllPostsCollectionViewCell {
+            self.activityIndicatorView.isHidden = true
             cell.titleText = postModel.posts[indexPath.item].title
             cell.isFavorite = postModel.posts[indexPath.item].isFavorite
             cell.imageUrlInString = postModel.posts[indexPath.item].imageUrlInString
