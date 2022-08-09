@@ -10,7 +10,13 @@ import UIKit
 
 final class AllPostsModel {
     static let shared = AllPostsModel.init()
+    enum LoadState {
+        case idle
+        case success
+        case error
+    }
     
+    var currentState: LoadState = .idle
     var didPostsUpdated: (()->Void)?
     var didPostsFetchErrorHappened: (()->Void)?
     
@@ -25,6 +31,7 @@ final class AllPostsModel {
     }
     func loadPosts() {
         pictureService.loadPictures { [weak self] result in
+            self?.currentState = .idle
             switch result {
             case .success(let pictures):
                 self?.posts = pictures.map { pictureModel in
@@ -36,8 +43,11 @@ final class AllPostsModel {
                         dateCreation: pictureModel.date
                     )
                 }
+                self?.currentState = .success
                 self?.didPostsUpdated?()
+                
             case .failure(let error):
+                self?.currentState = .error
                 self?.didPostsFetchErrorHappened?()
                 print(error)
             }

@@ -22,8 +22,8 @@ class FavoritePostsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
         configureNavigationBar()
+        tableView.reloadData()
     }
 }
 //MARK: - Private methods

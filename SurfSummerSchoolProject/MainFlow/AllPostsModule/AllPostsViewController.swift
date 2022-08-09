@@ -36,7 +36,11 @@ class AllPostsViewController: UIViewController {
         appendStateViewController {
             self.postModel.loadPosts()
             self.fetchPostsErrorVC.view.alpha = 0
-            //self.activityIndicatorView.isHidden = false
+            self.activityIndicatorView.isHidden = false
+        }
+        if postModel.currentState == .error {
+            fetchPostsErrorVC.view.alpha = 1
+            configureModel()
         }
         configureNavigationBar()
     }
