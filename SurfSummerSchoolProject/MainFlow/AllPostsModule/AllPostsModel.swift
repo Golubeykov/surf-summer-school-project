@@ -9,16 +9,18 @@ import Foundation
 import UIKit
 
 final class AllPostsModel {
+    static let shared = AllPostsModel.init()
+    
     var didPostsUpdated: (()->Void)?
     var didPostsFetchErrorHappened: (()->Void)?
     
+    let favoritesStorage = FavoritesStorage.shared
     let pictureService = PicturesService()
-    var posts: [PostModel] = [] {
-        didSet {
-            didPostsUpdated?()
-        }
+    var posts: [PostModel] = []
+    var favoritePosts: [PostModel] {
+        posts.filter { $0.isFavorite }
     }
-    func getPosts() {
+    func createMockPosts() {
         posts = Array(repeating: PostModel.createDefault(), count: 100)
     }
     func loadPosts() {
@@ -29,21 +31,25 @@ final class AllPostsModel {
                     PostModel(
                         imageUrlInString: pictureModel.photoUrl,
                         title: pictureModel.title,
-                        isFavorite: false, // TODO: - Need adding `FavoriteService`
+                        isFavorite: self?.favoritesStorage.isPostFavorite(post: pictureModel.title) ?? false,
                         content: pictureModel.content,
                         dateCreation: pictureModel.date
                     )
                 }
+                self?.didPostsUpdated?()
             case .failure(let error):
-                // TODO: - Implement error state there
                 self?.didPostsFetchErrorHappened?()
                 print(error)
             }
         }
     }
+    func favoritePost(for post: PostModel) {
+        guard let index = posts.firstIndex(where: { $0 == post }) else { return }
+        posts[index].isFavorite.toggle()
+    }
 }
 
-struct PostModel {
+struct PostModel: Equatable {
     let imageUrlInString: String
     let title: String
     var isFavorite: Bool

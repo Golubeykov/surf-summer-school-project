@@ -13,6 +13,7 @@ class AllPostsCollectionViewCell: UICollectionViewCell {
         static let favoriteTapped = UIImage(named: "favoriteTapped")
         static let favoriteUntapped = UIImage(named: "favoriteUntapped")
     }
+    let favoritesStorage = FavoritesStorage.shared
     
     //MARK: - Views
     @IBOutlet private weak var postImageView: UIImageView!
@@ -36,7 +37,7 @@ class AllPostsCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Properties
-    var titleText: String = "Test" {
+    var titleText: String = "" {
         didSet {
             postTextLabel.text = titleText
         }
@@ -56,14 +57,27 @@ class AllPostsCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Action
+
     @IBAction func favoritePostButtonAction(_ sender: UIButton) {
         didFavoriteTap?()
+        if favoritesStorage.isPostFavorite(post: self.postTextLabel.text ?? "") {
+            favoritesStorage.removeFavorite(favoritePost: self.postTextLabel.text ?? "")
+        } else {
+            favoritesStorage.addFavorite(favoritePost: self.postTextLabel.text ?? "")
+        }
         isFavorite.toggle()
+        print("count:", FavoritesStorage.shared.myFavorites.count)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configureCell()
+    }
+    override func prepareForReuse() {
+        imageUrlInString = ""
+        titleText = ""
+        postImageView.image = UIImage()
+        
     }
 }
 

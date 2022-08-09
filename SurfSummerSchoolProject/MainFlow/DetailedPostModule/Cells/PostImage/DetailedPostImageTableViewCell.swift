@@ -13,14 +13,26 @@ class DetailedPostImageTableViewCell: UITableViewCell {
         static let favoriteTapped = UIImage(named: "favoriteTapped")
         static let favoriteUntapped = UIImage(named: "favoriteUntapped")
     }
+    let favoritesStorage = FavoritesStorage.shared
+    var postTextLabel: String = ""
     
     //MARK: - Views
     @IBOutlet private weak var detailedPostImageView: UIImageView!
     @IBOutlet weak var favoriteButtonLabel: UIButton!
     
     
-//    //MARK: - Events // Реализуется позже
-//    var didFavoriteTap: (() -> Void)?
+    //MARK: - Events // Реализуется позже
+    var didFavoriteTap: (() -> Void)?
+    @IBAction func favoriteButtonAction(_ sender: Any) {
+        didFavoriteTap?()
+        if favoritesStorage.isPostFavorite(post: self.postTextLabel ) {
+            favoritesStorage.removeFavorite(favoritePost: self.postTextLabel )
+        } else {
+            favoritesStorage.addFavorite(favoritePost: self.postTextLabel )
+        }
+        isFavorite.toggle()
+        print("count:", FavoritesStorage.shared.myFavorites.count)
+    }
     
     //MARK: - Calculated
     var buttonImage: UIImage? {

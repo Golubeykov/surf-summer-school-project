@@ -12,17 +12,17 @@ class FavoritePostsViewController: UIViewController {
     private let tableView = UITableView()
     
     //MARK: - Private properties
-    private let postModel: AllPostsModel = .init()
+    private let postModel: AllPostsModel = AllPostsModel.shared
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAppearance()
         configureModel()
-        postModel.loadPosts()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.reloadData()
         configureNavigationBar()
     }
 }
@@ -71,7 +71,7 @@ private extension FavoritePostsViewController {
 //MARK: - TableView DataSource
 extension FavoritePostsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return postModel.posts.count
+        return postModel.favoritePosts.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,21 +83,28 @@ extension FavoritePostsViewController: UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailedPostImageTableViewCell.self)")
             if let cell = cell as? DetailedPostImageTableViewCell {
-                cell.imageUrlInString = postModel.posts[indexPath.section].imageUrlInString
-                cell.isFavorite = true
+                cell.imageUrlInString = postModel.favoritePosts[indexPath.section].imageUrlInString
+                cell.isFavorite = postModel.favoritePosts[indexPath.section].isFavorite
+                cell.postTextLabel = postModel.favoritePosts[indexPath.section].title
+                cell.didFavoriteTap = { [weak self] in
+                    if let favoritePost = self?.postModel.favoritePosts[indexPath.section] {
+                    self?.postModel.favoritePost(for: favoritePost)
+                    }
+                    self?.tableView.reloadData()
+                }
             }
             return cell ?? UITableViewCell()
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailedPostTitleTableViewCell.self)")
             if let cell = cell as? DetailedPostTitleTableViewCell {
-                cell.titleText = postModel.posts[indexPath.section].title
-                cell.titleDate = postModel.posts[indexPath.section].dateCreation
+                cell.titleText = postModel.favoritePosts[indexPath.section].title
+                cell.titleDate = postModel.favoritePosts[indexPath.section].dateCreation
             }
             return cell ?? UITableViewCell()
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailedPostBodyShortedTableViewCell.self)")
             if let cell = cell as? DetailedPostBodyShortedTableViewCell {
-                cell.bodyText = postModel.posts[indexPath.section].content
+                cell.bodyText = postModel.favoritePosts[indexPath.section].content
             }
             return cell ?? UITableViewCell()
         default:

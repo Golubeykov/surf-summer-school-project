@@ -17,7 +17,7 @@ class AllPostsViewController: UIViewController {
     let fetchPostsErrorVC = PostsLoadErrorViewController()
     
     //MARK: - Private properties
-    private let postModel: AllPostsModel = .init()
+    private let postModel = AllPostsModel.shared
     
     //MARK: - Views
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -26,13 +26,13 @@ class AllPostsViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        postModel.loadPosts()
         configureAppearence()
         configureModel()
-        //postModel.getPosts()
-        postModel.loadPosts()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        allPostsCollectionView.reloadData()
         appendStateViewController {
             self.postModel.loadPosts()
             self.fetchPostsErrorVC.view.alpha = 0

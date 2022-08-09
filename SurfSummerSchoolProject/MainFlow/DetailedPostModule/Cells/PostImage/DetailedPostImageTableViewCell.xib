@@ -29,6 +29,9 @@
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain"/>
+                        <connections>
+                            <action selector="favoriteButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9Km-RJ-C8F"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
