@@ -22,6 +22,9 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
      let method: NetworkMethod
      let session: URLSession = URLSession(configuration: .default)
      let isNeedInjectToken: Bool
+    var urlCache: URLCache {
+             URLCache.shared
+         }
 
      var tokenStorage: TokenStorage {
          BaseTokenStorage()
@@ -43,12 +46,22 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
      ) {
          do {
              let request = try getRequest(with: input)
+             
+             if let cachedResponse = getCachedResponseFromCache(by: request) {
+
+                 let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: cachedResponse.data)
+                 onResponseWasReceived(.success(mappedModel))
+
+                 return
+             }
+
              session.dataTask(with: request) { data, response, error in
                  if let error = error {
                      onResponseWasReceived(.failure(error))
                  } else if let data = data {
                      do {
                          let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
+                         saveResponseToCache(response, cachedData: data, by: request)
                          onResponseWasReceived(.success(mappedModel))
                      } catch {
                          onResponseWasReceived(.failure(error))
@@ -71,6 +84,24 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
 
      func performRequest(_ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, Error>) -> Void) {
          performRequest(input: EmptyModel(), onResponseWasReceived)
+     }
+
+ }
+// MARK: - Cache logic
+
+ private extension BaseNetworkTask {
+
+     func getCachedResponseFromCache(by request: URLRequest) -> CachedURLResponse? {
+         return urlCache.cachedResponse(for: request)
+     }
+
+     func saveResponseToCache(_ response: URLResponse?, cachedData: Data?, by request: URLRequest) {
+         guard let response = response, let cachedData = cachedData else {
+             return
+         }
+
+         let cachedUrlResponse = CachedURLResponse(response: response, data: cachedData)
+         urlCache.storeCachedResponse(cachedUrlResponse, for: request)
      }
 
  }
