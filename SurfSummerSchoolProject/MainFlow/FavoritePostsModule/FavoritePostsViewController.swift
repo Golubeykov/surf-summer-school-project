@@ -61,6 +61,7 @@ private extension FavoritePostsViewController {
         tableView.register(UINib(nibName: "\(DetailedPostTitleTableViewCell.self)", bundle: .main), forCellReuseIdentifier: "\(DetailedPostTitleTableViewCell.self)")
         tableView.register(UINib(nibName: "\(DetailedPostBodyShortedTableViewCell.self)", bundle: .main), forCellReuseIdentifier: "\(DetailedPostBodyShortedTableViewCell.self)")
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
     }
     @objc func goToSearchVC(sender: UIBarButtonItem) {
@@ -69,7 +70,7 @@ private extension FavoritePostsViewController {
     }
 }
 //MARK: - TableView DataSource
-extension FavoritePostsViewController: UITableViewDataSource {
+extension FavoritePostsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return postModel.favoritePosts.count
     }
@@ -126,6 +127,11 @@ extension FavoritePostsViewController: UITableViewDataSource {
         default:
             return UITableViewCell()
         }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                let vc = DetailedPostViewController()
+                vc.model = self.postModel.favoritePosts[indexPath.section]
+                navigationController?.pushViewController(vc, animated: true)
     }
 }
 
