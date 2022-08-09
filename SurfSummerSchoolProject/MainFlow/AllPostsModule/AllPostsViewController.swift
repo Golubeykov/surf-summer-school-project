@@ -17,7 +17,7 @@ class AllPostsViewController: UIViewController {
     let fetchPostsErrorVC = PostsLoadErrorViewController()
     
     //MARK: - Private properties
-    private let postModel: AllPostsModel = .init()
+    private let postModel = AllPostsModel.shared
     
     //MARK: - Views
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -26,17 +26,17 @@ class AllPostsViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        postModel.loadPosts()
         configureAppearence()
         configureModel()
-        //postModel.getPosts()
-        postModel.loadPosts()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        allPostsCollectionView.reloadData()
         appendStateViewController {
             self.postModel.loadPosts()
             self.fetchPostsErrorVC.view.alpha = 0
-            self.activityIndicatorView.isHidden = false
+            //self.activityIndicatorView.isHidden = false
         }
         configureNavigationBar()
     }
@@ -104,6 +104,7 @@ extension AllPostsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = allPostsCollectionView.dequeueReusableCell(withReuseIdentifier: "\(AllPostsCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? AllPostsCollectionViewCell {
+            self.activityIndicatorView.isHidden = true
             cell.titleText = postModel.posts[indexPath.item].title
             cell.isFavorite = postModel.posts[indexPath.item].isFavorite
             cell.imageUrlInString = postModel.posts[indexPath.item].imageUrlInString

@@ -49,6 +49,7 @@
 		3AE4174428A12FDD009E1AFE /* PicturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4174328A12FDD009E1AFE /* PicturesService.swift */; };
 		3AE4174B28A18FF1009E1AFE /* PostsLoadErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4174928A18FF1009E1AFE /* PostsLoadErrorViewController.swift */; };
 		3AE4174C28A18FF1009E1AFE /* PostsLoadErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE4174A28A18FF1009E1AFE /* PostsLoadErrorViewController.xib */; };
+		3AE4175428A291E6009E1AFE /* FavoritesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4175328A291E6009E1AFE /* FavoritesStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		3AE4174328A12FDD009E1AFE /* PicturesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesService.swift; sourceTree = "<group>"; };
 		3AE4174928A18FF1009E1AFE /* PostsLoadErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsLoadErrorViewController.swift; sourceTree = "<group>"; };
 		3AE4174A28A18FF1009E1AFE /* PostsLoadErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsLoadErrorViewController.xib; sourceTree = "<group>"; };
+		3AE4175328A291E6009E1AFE /* FavoritesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				3A82DD42289988D200453EE2 /* SurfSummerSchoolProject */,
+				3AE4172428A12DD3009E1AFE /* Storage */,
 				3A82DD41289988D200453EE2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -268,7 +271,6 @@
 		3AE4172228A12DBB009E1AFE /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				3AE4172428A12DD3009E1AFE /* Storage */,
 				3AE4172328A12DCB009E1AFE /* Networking */,
 			);
 			path = Services;
@@ -288,9 +290,8 @@
 		3AE4172428A12DD3009E1AFE /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				3AE4172928A12E34009E1AFE /* BaseTokenStorage.swift */,
-				3AE4172B28A12E42009E1AFE /* TokenContainer.swift */,
-				3AE4172D28A12E50009E1AFE /* TokenStorage.swift */,
+				3AE4175228A291B9009E1AFE /* FavoritesStorage */,
+				3AE4175128A29076009E1AFE /* TokenStorage */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -349,6 +350,24 @@
 				3AE4174A28A18FF1009E1AFE /* PostsLoadErrorViewController.xib */,
 			);
 			path = "Posts load error";
+			sourceTree = "<group>";
+		};
+		3AE4175128A29076009E1AFE /* TokenStorage */ = {
+			isa = PBXGroup;
+			children = (
+				3AE4172928A12E34009E1AFE /* BaseTokenStorage.swift */,
+				3AE4172B28A12E42009E1AFE /* TokenContainer.swift */,
+				3AE4172D28A12E50009E1AFE /* TokenStorage.swift */,
+			);
+			path = TokenStorage;
+			sourceTree = "<group>";
+		};
+		3AE4175228A291B9009E1AFE /* FavoritesStorage */ = {
+			isa = PBXGroup;
+			children = (
+				3AE4175328A291E6009E1AFE /* FavoritesStorage.swift */,
+			);
+			path = FavoritesStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -459,6 +478,7 @@
 				3A82DD92289EC7B200453EE2 /* DetailedPostBodyTableViewCell.swift in Sources */,
 				3AE4173028A12E94009E1AFE /* AuthRequestModel.swift in Sources */,
 				3AE4174028A12FA9009E1AFE /* UIImageView+ImageLoader.swift in Sources */,
+				3AE4175428A291E6009E1AFE /* FavoritesStorage.swift in Sources */,
 				3A82DD74289C528600453EE2 /* TabBarConfigurator.swift in Sources */,
 				3A82DD72289C4EC100453EE2 /* TabBarModel.swift in Sources */,
 			);
