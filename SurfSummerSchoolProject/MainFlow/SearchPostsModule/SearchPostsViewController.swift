@@ -8,9 +8,18 @@
 import UIKit
 
 class SearchPostsViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    //MARK: - Constants
+    private enum Constants {
+        static let collectionViewPadding: CGFloat = 16
+        static let hSpaceBetweenItems: CGFloat = 7
+        static let vSpaceBetweenItems: CGFloat = 8
+    }
+    
     //MARK: - Views
     @IBOutlet private weak var searchUserNotificationImage: UIImageView!
     @IBOutlet private weak var searchUserNotificationText: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     private var searchBar: UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 303, height: 32))
     
     //MARK: - Properties
@@ -24,13 +33,24 @@ class SearchPostsViewController: UIViewController, UIGestureRecognizerDelegate {
             searchUserNotificationText.text = notifyText
         }
     }
+    var posts = AllPostsModel.shared.filteredPosts(searchText: "")
+    
     //MARK: - Methods
     func configureApperance() {
         searchUserNotificationText.font = .systemFont(ofSize: 14, weight: .light)
         notifyImage = UIImage(named: "searchLens")
         searchUserNotificationText.text = "Введите ваш запрос"
         searchBar.delegate = self
+        collectionView.register(UINib(nibName: "\(AllPostsCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(AllPostsCollectionViewCell.self)")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.contentInset = .init(top: 10, left: 16, bottom: 10, right: 16)
     }
+    //TO DO: пока что не работает
+//    @objc func resignSearchBar() {
+//        //searchBar.resignFirstResponder()
+//        self.searchBar.endEditing(true)
+//    }
     
     func configureNavigationBar() {
         let backButton = UIBarButtonItem(image: UIImage(named: "backArrow"),
@@ -60,15 +80,63 @@ class SearchPostsViewController: UIViewController, UIGestureRecognizerDelegate {
 //MARK: - Search delegate
 
 extension SearchPostsViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else { return }
+        searchBar.resignFirstResponder()
         if !searchText.isEmpty {
-            print(searchText)
-            
-            notifyImage = UIImage(named: "sadSmile")
-            searchUserNotificationText.text = "По этому запросу нет результатов, попробуйте другой запрос"
+            posts = AllPostsModel.shared.filteredPosts(searchText: searchBar.text ?? "")
+            notifyImage = UIImage()
+            searchUserNotificationText.text = ""
+            if posts.isEmpty {
+                notifyImage = UIImage(named: "sadSmile")
+                searchUserNotificationText.text = "По этому запросу нет результатов, попробуйте другой запрос"
+                collectionView.reloadData()
+            } else {
+                collectionView.reloadData()
+            }
         } else {
+            posts = []
+            collectionView.reloadData()
             notifyImage = UIImage(named: "searchLens")
             searchUserNotificationText.text = "Введите ваш запрос"
         }
     }
 }
+
+extension SearchPostsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(AllPostsCollectionViewCell.self)", for: indexPath)
+        if let cell = cell as? AllPostsCollectionViewCell {
+            cell.titleText = posts[indexPath.item].title
+            cell.isFavorite = posts[indexPath.item].isFavorite
+            cell.imageUrlInString = posts[indexPath.item].imageUrlInString
+            cell.didFavoriteTap = { [weak self] in
+                self?.posts[indexPath.item].isFavorite.toggle()
+                AllPostsModel.shared.favoritePost(for: self?.posts[indexPath.item] ?? PostModel.createDefault())
+            }
+        }
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemWidth = (view.frame.width - Constants.collectionViewPadding * 2 - Constants.hSpaceBetweenItems) / 2
+        return CGSize(width: itemWidth, height: itemWidth / 168 * 246)
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return Constants.vSpaceBetweenItems
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return Constants.hSpaceBetweenItems
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DetailedPostViewController()
+        vc.model = posts[indexPath.item]
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+

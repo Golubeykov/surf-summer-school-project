@@ -26,6 +26,9 @@ final class AllPostsModel {
     var favoritePosts: [PostModel] {
         posts.filter { $0.isFavorite }
     }
+    func filteredPosts(searchText: String)->[PostModel] {
+        posts.filter { $0.title.lowercased().contains(searchText.lowercased()) }
+    }
     func createMockPosts() {
         posts = Array(repeating: PostModel.createDefault(), count: 100)
     }
@@ -54,7 +57,7 @@ final class AllPostsModel {
         }
     }
     func favoritePost(for post: PostModel) {
-        guard let index = posts.firstIndex(where: { $0 == post }) else { return }
+        guard let index = posts.firstIndex(where: { $0.title == post.title }) else { return }
         posts[index].isFavorite.toggle()
     }
 }
@@ -76,6 +79,10 @@ struct PostModel: Equatable {
         formatter.dateFormat = "dd.mm.yyyy"
         
         self.dateCreation = formatter.string(from: dateCreation)
+    }
+    func createEmptyModel() -> PostModel {
+        let emptyModel = PostModel(imageUrlInString: "", title: "", isFavorite: false, content: "", dateCreation: Date())
+        return emptyModel
     }
     
     static func createDefault() -> PostModel {
