@@ -16,7 +16,16 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var loginButtonLabel: UIButton!
     
     //MARK: - Properties
-
+    private let maxNumberCountInPhoneNumberField = 11
+    private var regex: NSRegularExpression? {
+        do {
+           let regexExpression = try NSRegularExpression(pattern: "[\\+\\s-\\(\\)]", options: .caseInsensitive)
+            return regexExpression
+        } catch {
+            print(error)
+            return nil
+        }
+    }
     
     //MARK: - Methods
     @IBAction func loginButtonAction(_ sender: Any) {
@@ -48,6 +57,8 @@ private extension AuthViewController {
         self.loginTextField.clipsToBounds = true
         self.loginTextField.layer.cornerRadius = 10
         self.loginTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        self.loginTextField.delegate = self
+        self.loginTextField.keyboardType = .numberPad
         
         self.passwordTextField.backgroundColor = ColorsStorage.lightBackgroundGray
         self.passwordTextField.clipsToBounds = true
@@ -56,6 +67,43 @@ private extension AuthViewController {
     }
     func configureNavigationBar() {
         self.navigationItem.title = "Вход"
+    }
+}
+
+// MARK: - Handle entering a phone number
+extension AuthViewController: UITextFieldDelegate {
+    private func format(phoneNumber: String, shouldRemoveLastDigit: Bool) -> String {
+        let range = NSString(string: phoneNumber).range(of: phoneNumber)
+        guard let regex = regex else { return "\(phoneNumber)" }
+        guard !(shouldRemoveLastDigit && phoneNumber.count <= 2) else { return "+" }
+        var number = regex.stringByReplacingMatches(in: phoneNumber, options: [], range: range, withTemplate: "")
+        
+        if number.count > maxNumberCountInPhoneNumberField {
+            let maxIndex = number.index(number.startIndex, offsetBy: maxNumberCountInPhoneNumberField)
+            number = String(number[number.startIndex..<maxIndex])
+        }
+        if shouldRemoveLastDigit {
+            let maxIndex = number.index(number.startIndex, offsetBy: number.count - 1)
+            number = String(number[number.startIndex..<maxIndex])
+        }
+        
+        let maxIndex = number.index(number.startIndex, offsetBy: number.count)
+        let regRange = number.startIndex..<maxIndex
+        
+        if number.count < 7 {
+            let pattern = "(\\d)(\\d{3})(\\d+)"
+            number = number.replacingOccurrences(of: pattern, with: "$1 ($2) $3", options: .regularExpression, range: regRange)
+        } else {
+            let pattern = "(\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
+            number = number.replacingOccurrences(of: pattern, with: "$1 ($2) $3-$4-$5", options: .regularExpression, range: regRange)
+        }
+        return "+" + number
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let fullString = (textField.text ?? "") + string
+        textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
+        return false
     }
 }
 
