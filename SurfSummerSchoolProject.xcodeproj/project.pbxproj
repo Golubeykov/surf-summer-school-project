@@ -130,9 +130,9 @@
 		3A82DD42289988D200453EE2 /* SurfSummerSchoolProject */ = {
 			isa = PBXGroup;
 			children = (
+				3A82DD43289988D200453EE2 /* AppDelegate.swift */,
 				3AE4172428A12DD3009E1AFE /* Storage */,
 				3AE4174628A18FAC009E1AFE /* SupportingViews */,
-				3A82DD43289988D200453EE2 /* AppDelegate.swift */,
 				3A82DD70289C4C4700453EE2 /* Application */,
 				3A82DD6B289C4BCF00453EE2 /* MainFlow */,
 				3AE4172228A12DBB009E1AFE /* Services */,
