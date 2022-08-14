@@ -59,6 +59,8 @@ private extension AuthViewController {
         self.loginTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         self.loginTextField.delegate = self
         self.loginTextField.keyboardType = .numberPad
+        self.loginTextField.placeholder = "  Логин"
+//        self.loginTextField.attributedPlaceholder = NSAttributedString(string: "  Логин", attributes: [N])
         
         self.passwordTextField.backgroundColor = ColorsStorage.lightBackgroundGray
         self.passwordTextField.clipsToBounds = true
@@ -90,9 +92,15 @@ extension AuthViewController: UITextFieldDelegate {
         let maxIndex = number.index(number.startIndex, offsetBy: number.count)
         let regRange = number.startIndex..<maxIndex
         
-        if number.count < 7 {
+        if number.count <= 4 {
+            let pattern = "(\\d)(\\d+)"
+            number = number.replacingOccurrences(of: pattern, with: "$1 ($2)", options: .regularExpression, range: regRange)
+        } else if number.count <= 7 {
             let pattern = "(\\d)(\\d{3})(\\d+)"
             number = number.replacingOccurrences(of: pattern, with: "$1 ($2) $3", options: .regularExpression, range: regRange)
+        } else if number.count < 10 {
+            let pattern = "(\\d)(\\d{3})(\\d{3})(\\d+)"
+            number = number.replacingOccurrences(of: pattern, with: "$1 ($2) $3-$4", options: .regularExpression, range: regRange)
         } else {
             let pattern = "(\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
             number = number.replacingOccurrences(of: pattern, with: "$1 ($2) $3-$4-$5", options: .regularExpression, range: regRange)
