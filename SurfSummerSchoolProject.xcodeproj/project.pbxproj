@@ -10,6 +10,7 @@
 		3A6ADAF628A9629B00461A46 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6ADAF428A9629B00461A46 /* AuthViewController.swift */; };
 		3A6ADAF728A9629B00461A46 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A6ADAF528A9629B00461A46 /* AuthViewController.xib */; };
 		3A6ADAFA28A9752300461A46 /* ColorsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6ADAF928A9752300461A46 /* ColorsStorage.swift */; };
+		3A6ADAFD28AA432D00461A46 /* ImagesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6ADAFC28AA432D00461A46 /* ImagesStorage.swift */; };
 		3A82DD44289988D200453EE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD43289988D200453EE2 /* AppDelegate.swift */; };
 		3A82DD4D289988D800453EE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD4C289988D800453EE2 /* Assets.xcassets */; };
 		3A82DD50289988D800453EE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD4E289988D800453EE2 /* LaunchScreen.storyboard */; };
@@ -59,6 +60,7 @@
 		3A6ADAF428A9629B00461A46 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		3A6ADAF528A9629B00461A46 /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		3A6ADAF928A9752300461A46 /* ColorsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsStorage.swift; sourceTree = "<group>"; };
+		3A6ADAFC28AA432D00461A46 /* ImagesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesStorage.swift; sourceTree = "<group>"; };
 		3A82DD40289988D200453EE2 /* SurfSummerSchoolProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurfSummerSchoolProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A82DD43289988D200453EE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A82DD4C289988D800453EE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,6 +134,14 @@
 				3A6ADAF928A9752300461A46 /* ColorsStorage.swift */,
 			);
 			path = ColorsStorage;
+			sourceTree = "<group>";
+		};
+		3A6ADAFB28AA431500461A46 /* ImagesStorage */ = {
+			isa = PBXGroup;
+			children = (
+				3A6ADAFC28AA432D00461A46 /* ImagesStorage.swift */,
+			);
+			path = ImagesStorage;
 			sourceTree = "<group>";
 		};
 		3A82DD37289988D200453EE2 = {
@@ -314,6 +324,7 @@
 		3AE4172428A12DD3009E1AFE /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				3A6ADAFB28AA431500461A46 /* ImagesStorage */,
 				3A6ADAF828A9750C00461A46 /* ColorsStorage */,
 				3AE4175228A291B9009E1AFE /* FavoritesStorage */,
 				3AE4175128A29076009E1AFE /* TokenStorage */,
@@ -496,6 +507,7 @@
 				3AE4174228A12FCE009E1AFE /* PictureResponseModel.swift in Sources */,
 				3AE4173A28A12F12009E1AFE /* NetworkMethod.swift in Sources */,
 				3AE4174B28A18FF1009E1AFE /* PostsLoadErrorViewController.swift in Sources */,
+				3A6ADAFD28AA432D00461A46 /* ImagesStorage.swift in Sources */,
 				3AE4173E28A12F7D009E1AFE /* ImageLoader.swift in Sources */,
 				3A82DD61289C4A9100453EE2 /* ProfileViewController.swift in Sources */,
 				3A6ADAFA28A9752300461A46 /* ColorsStorage.swift in Sources */,

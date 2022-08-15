@@ -14,6 +14,7 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBOutlet weak var loginButtonLabel: UIButton!
+    private let showHidePasswordButton = UIButton(type: .custom)
     
     //MARK: - Properties
     private let maxNumberCountInPhoneNumberField = 11
@@ -27,6 +28,7 @@ class AuthViewController: UIViewController {
         }
     }
     
+    
     //MARK: - Methods
     @IBAction func loginButtonAction(_ sender: Any) {
         print("Test")
@@ -36,6 +38,7 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureApperance()
+        enablePasswordToggle()
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
     }
@@ -53,22 +56,57 @@ class AuthViewController: UIViewController {
 //MARK: - Configure view
 private extension AuthViewController {
     func configureApperance() {
+        self.loginTextField.placeholder = "Логин"
         self.loginTextField.backgroundColor = ColorsStorage.lightBackgroundGray
         self.loginTextField.clipsToBounds = true
         self.loginTextField.layer.cornerRadius = 10
         self.loginTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         self.loginTextField.delegate = self
         self.loginTextField.keyboardType = .numberPad
-        self.loginTextField.placeholder = "  Логин"
-//        self.loginTextField.attributedPlaceholder = NSAttributedString(string: "  Логин", attributes: [N])
+        self.loginTextField.setLeftPaddingPoints(18)
         
+        self.passwordTextField.placeholder = "Пароль"
         self.passwordTextField.backgroundColor = ColorsStorage.lightBackgroundGray
         self.passwordTextField.clipsToBounds = true
         self.passwordTextField.layer.cornerRadius = 10
         self.passwordTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        self.passwordTextField.setLeftPaddingPoints(18)
+        //self.passwordTextField.setRightPaddingPoints(60)
     }
     func configureNavigationBar() {
         self.navigationItem.title = "Вход"
+    }
+}
+
+//MARK: - Configuring UITextfield
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
+}
+//MARK: - Configuring password field
+extension AuthViewController {
+    
+    func enablePasswordToggle(){
+        showHidePasswordButton.setImage(ImagesStorage.passwordIsHiddenIcon, for: .normal)
+        showHidePasswordButton.setImage(ImagesStorage.passwordIsShownIcon, for: .selected)
+        showHidePasswordButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
+        showHidePasswordButton.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
+        passwordTextField.rightView = showHidePasswordButton
+        passwordTextField.rightViewMode = .always
+        showHidePasswordButton.alpha = 0.4
+    }
+    
+    @objc func togglePasswordView(_ sender: Any) {
+        passwordTextField.isSecureTextEntry.toggle()
+        showHidePasswordButton.isSelected.toggle()
     }
 }
 
@@ -77,7 +115,8 @@ extension AuthViewController: UITextFieldDelegate {
     private func format(phoneNumber: String, shouldRemoveLastDigit: Bool) -> String {
         let range = NSString(string: phoneNumber).range(of: phoneNumber)
         guard let regex = regex else { return "\(phoneNumber)" }
-        guard !(shouldRemoveLastDigit && phoneNumber.count <= 2) else { return "+" }
+        guard !(shouldRemoveLastDigit && phoneNumber.count <= 2 && phoneNumber.count >= 1) else { return "" }
+
         var number = regex.stringByReplacingMatches(in: phoneNumber, options: [], range: range, withTemplate: "")
         
         if number.count > maxNumberCountInPhoneNumberField {
