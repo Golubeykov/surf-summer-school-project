@@ -16,6 +16,10 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var loginButtonLabel: UIButton!
     private let showHidePasswordButton = UIButton(type: .custom)
     
+    @IBOutlet weak var passwordConstraint: NSLayoutConstraint!
+    @IBOutlet weak var buttonConstraint: NSLayoutConstraint!
+    @IBOutlet weak var loginBottomLine: UIView!
+    @IBOutlet weak var passwordBottomLine: UIView!
     //MARK: - Properties
     private let maxNumberCountInPhoneNumberField = 11
     private var regex: NSRegularExpression? {
@@ -32,6 +36,10 @@ class AuthViewController: UIViewController {
     //MARK: - Methods
     @IBAction func loginButtonAction(_ sender: Any) {
         print("Test")
+        if loginTextField.text == "" && passwordTextField.text == "" {
+            showEmptyFieldsNotification()
+        }
+        
     }
     
     //MARK: - View lifecycle
@@ -70,6 +78,7 @@ private extension AuthViewController {
         self.passwordTextField.clipsToBounds = true
         self.passwordTextField.layer.cornerRadius = 10
         self.passwordTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        self.passwordTextField.delegate = self
         self.passwordTextField.setLeftPaddingPoints(18)
         //self.passwordTextField.setRightPaddingPoints(60)
     }
@@ -151,6 +160,22 @@ extension AuthViewController: UITextFieldDelegate {
         let fullString = (textField.text ?? "") + string
         textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
         return false
+    }
+}
+
+//MARK: - Handle empty text fields
+extension AuthViewController {
+    func showEmptyFieldsNotification() {
+        loginBottomLine.backgroundColor = .red
+        passwordBottomLine.backgroundColor = .red
+    }
+    func dismissEmptyFieldsNotidication() {
+        loginBottomLine.backgroundColor = ColorsStorage.lightTextGray
+        passwordBottomLine.backgroundColor = ColorsStorage.lightTextGray
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("beginEditing")
+        dismissEmptyFieldsNotidication()
     }
 }
 

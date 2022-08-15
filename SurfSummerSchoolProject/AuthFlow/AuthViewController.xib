@@ -10,8 +10,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="SurfSummerSchoolProject" customModuleProvider="target">
             <connections>
+                <outlet property="buttonConstraint" destination="HZk-Xf-PbJ" id="bdC-bJ-II7"/>
+                <outlet property="loginBottomLine" destination="YZ7-eS-Mky" id="T1m-GY-WiB"/>
                 <outlet property="loginButtonLabel" destination="NEd-QN-eHj" id="Knq-S6-IBM"/>
                 <outlet property="loginTextField" destination="sin-jd-j4V" id="HnM-mk-z7z"/>
+                <outlet property="passwordBottomLine" destination="ss5-0q-oes" id="3A2-5r-xQ1"/>
+                <outlet property="passwordConstraint" destination="cuM-Ad-fdq" id="pra-VI-UYe"/>
                 <outlet property="passwordTextField" destination="NbT-Xe-urh" id="6R0-bM-TEt"/>
                 <outlet property="scrollView" destination="yGA-ZV-EV8" id="8H9-iX-qWg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
