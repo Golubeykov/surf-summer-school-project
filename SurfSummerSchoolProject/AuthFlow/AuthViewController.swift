@@ -35,11 +35,15 @@ class AuthViewController: UIViewController {
     
     //MARK: - Methods
     @IBAction func loginButtonAction(_ sender: Any) {
-        print("Test")
-        if loginTextField.text == "" && passwordTextField.text == "" {
-            showEmptyFieldsNotification()
+        if loginTextField.text == "" {
+            showEmptyLoginNotification()
         }
-        
+        if passwordTextField.text == "" {
+            showEmptyPasswordNotification()
+        }
+        if !(loginTextField.text == "" && passwordTextField.text == "") {
+            print("Test")
+        }
     }
     
     //MARK: - View lifecycle
@@ -158,23 +162,68 @@ extension AuthViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let fullString = (textField.text ?? "") + string
+        if textField == loginTextField {
         textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
         return false
+        }
+        return true
     }
 }
 
 //MARK: - Handle empty text fields
 extension AuthViewController {
-    func showEmptyFieldsNotification() {
+    func showEmptyLoginNotification() {
         loginBottomLine.backgroundColor = .red
-        passwordBottomLine.backgroundColor = .red
+        
+        let loginEmptyNotification = UILabel(frame: CGRect(x: 0, y: 0, width: loginTextField.frame.width, height: 16))
+        loginEmptyNotification.textAlignment = .left
+        loginEmptyNotification.text = "Поле не может быть пустым"
+        loginEmptyNotification.font = .systemFont(ofSize: 12)
+        loginEmptyNotification.textColor = .red
+        loginEmptyNotification.tag = 100
+        self.view.addSubview(loginEmptyNotification)
+        loginEmptyNotification.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loginEmptyNotification.rightAnchor.constraint(equalTo: loginTextField.rightAnchor)
+        ])
+        NSLayoutConstraint(item: loginEmptyNotification, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 32.0).isActive = true
+        NSLayoutConstraint(item: loginEmptyNotification, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: loginTextField, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 8.0).isActive = true
+        passwordConstraint.constant = 40
+        self.view.layoutIfNeeded()
     }
+    func showEmptyPasswordNotification() {
+        passwordBottomLine.backgroundColor = .red
+        let passwordEmptyNotification = UILabel(frame: CGRect(x: 0, y: 0, width: loginTextField.frame.width, height: 16))
+        passwordEmptyNotification.textAlignment = .left
+        passwordEmptyNotification.text = "Поле не может быть пустым"
+        passwordEmptyNotification.font = .systemFont(ofSize: 12)
+        passwordEmptyNotification.textColor = .red
+        passwordEmptyNotification.tag = 150
+        self.view.addSubview(passwordEmptyNotification)
+        passwordEmptyNotification.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            passwordEmptyNotification.rightAnchor.constraint(equalTo: loginTextField.rightAnchor)
+        ])
+        NSLayoutConstraint(item: passwordEmptyNotification, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: 32.0).isActive = true
+        NSLayoutConstraint(item: passwordEmptyNotification, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: passwordTextField, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 8.0).isActive = true
+        buttonConstraint.constant = 56
+        self.view.layoutIfNeeded()
+    }
+    
     func dismissEmptyFieldsNotidication() {
         loginBottomLine.backgroundColor = ColorsStorage.lightTextGray
         passwordBottomLine.backgroundColor = ColorsStorage.lightTextGray
+        if let emptyLoginNotificationLabel = self.view.viewWithTag(100) {
+            emptyLoginNotificationLabel.removeFromSuperview()
+        }
+        if let emptyPasswordNotificationLabel = self.view.viewWithTag(150) {
+            emptyPasswordNotificationLabel.removeFromSuperview()
+        }
+        passwordConstraint.constant = 17
+        buttonConstraint.constant = 32
+        self.view.layoutIfNeeded()
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("beginEditing")
         dismissEmptyFieldsNotidication()
     }
 }
