@@ -8,6 +8,7 @@
 import UIKit
 
 class AuthViewController: UIViewController {
+    
     //MARK: - Views
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginTextField: UITextField!
@@ -20,6 +21,7 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var buttonConstraint: NSLayoutConstraint!
     @IBOutlet weak var loginBottomLine: UIView!
     @IBOutlet weak var passwordBottomLine: UIView!
+    
     //MARK: - Properties
     //Маска номера телефона
     private let maxNumberCountInPhoneNumberField = 11
@@ -44,17 +46,12 @@ class AuthViewController: UIViewController {
         if passwordTextField.text == "" {
             showEmptyPasswordNotification()
         }
-        if !(loginTextField.text == "" && passwordTextField.text == "") {
-            print("Test")
+        if !(loginTextField.text == "" || passwordTextField.text == "") {
             showButtonLoading()
             guard let phoneNumber = loginTextField.text else { return }
             let phoneNumberClearedFromMask = clearPhoneNumberFromMask(phoneNumber: phoneNumber)
             guard let password = passwordTextField.text else { return }
-            
-            print(phoneNumberClearedFromMask)
-            print(password)
-            //let credentials = AuthRequestModel(phone: phoneNumberClearedFromMask, password: password)
-            let credentials = AuthRequestModel(phone: "+79876543219", password: "qwerty")
+            let credentials = AuthRequestModel(phone: phoneNumberClearedFromMask, password: password)
             AuthService()
                 .performLoginRequestAndSaveToken(credentials: credentials) { [weak self] result in
                     switch result {
@@ -66,8 +63,13 @@ class AuthViewController: UIViewController {
                             }
                         }
                     case .failure:
-                        print("failure")
-                        self?.hideButtonLoading()
+                        DispatchQueue.main.async {
+                            let model = SnackbarModel(text: "Логин или пароль введен неправильно")
+                            let snackbar = SnackbarView(model: model)
+                            guard let `self` = self else { return }
+                            snackbar.showSnackBar(on: self, with: model)
+                            self.hideButtonLoading()
+                        }
                     }
                 }
         }

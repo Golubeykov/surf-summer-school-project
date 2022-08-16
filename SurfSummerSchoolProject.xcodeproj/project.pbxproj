@@ -54,6 +54,8 @@
 		3AE4174B28A18FF1009E1AFE /* PostsLoadErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4174928A18FF1009E1AFE /* PostsLoadErrorViewController.swift */; };
 		3AE4174C28A18FF1009E1AFE /* PostsLoadErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE4174A28A18FF1009E1AFE /* PostsLoadErrorViewController.xib */; };
 		3AE4175428A291E6009E1AFE /* FavoritesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4175328A291E6009E1AFE /* FavoritesStorage.swift */; };
+		3AFC3A6428AC021C0077E14C /* SnackbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC3A6328AC021C0077E14C /* SnackbarView.swift */; };
+		3AFC3A6628AC02480077E14C /* SnackbarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC3A6528AC02480077E14C /* SnackbarModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +108,8 @@
 		3AE4174928A18FF1009E1AFE /* PostsLoadErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsLoadErrorViewController.swift; sourceTree = "<group>"; };
 		3AE4174A28A18FF1009E1AFE /* PostsLoadErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsLoadErrorViewController.xib; sourceTree = "<group>"; };
 		3AE4175328A291E6009E1AFE /* FavoritesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStorage.swift; sourceTree = "<group>"; };
+		3AFC3A6328AC021C0077E14C /* SnackbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarView.swift; sourceTree = "<group>"; };
+		3AFC3A6528AC02480077E14C /* SnackbarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +378,7 @@
 		3AE4174628A18FAC009E1AFE /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
+				3AFC3A6228AC01B50077E14C /* Snackbar */,
 				3AE4174728A18FBA009E1AFE /* Posts load error */,
 			);
 			path = SupportingViews;
@@ -404,6 +409,15 @@
 				3AE4175328A291E6009E1AFE /* FavoritesStorage.swift */,
 			);
 			path = FavoritesStorage;
+			sourceTree = "<group>";
+		};
+		3AFC3A6228AC01B50077E14C /* Snackbar */ = {
+			isa = PBXGroup;
+			children = (
+				3AFC3A6328AC021C0077E14C /* SnackbarView.swift */,
+				3AFC3A6528AC02480077E14C /* SnackbarModel.swift */,
+			);
+			path = Snackbar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -510,6 +524,7 @@
 				3A6ADAFD28AA432D00461A46 /* ImagesStorage.swift in Sources */,
 				3AE4173E28A12F7D009E1AFE /* ImageLoader.swift in Sources */,
 				3A82DD61289C4A9100453EE2 /* ProfileViewController.swift in Sources */,
+				3AFC3A6628AC02480077E14C /* SnackbarModel.swift in Sources */,
 				3A6ADAFA28A9752300461A46 /* ColorsStorage.swift in Sources */,
 				3AE4174428A12FDD009E1AFE /* PicturesService.swift in Sources */,
 				3A82DD44289988D200453EE2 /* AppDelegate.swift in Sources */,
@@ -521,6 +536,7 @@
 				3A82DD74289C528600453EE2 /* TabBarConfigurator.swift in Sources */,
 				3A82DD72289C4EC100453EE2 /* TabBarModel.swift in Sources */,
 				3A6ADAF628A9629B00461A46 /* AuthViewController.swift in Sources */,
+				3AFC3A6428AC021C0077E14C /* SnackbarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
