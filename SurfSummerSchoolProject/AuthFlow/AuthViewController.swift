@@ -25,7 +25,7 @@ class AuthViewController: UIViewController {
     private let maxNumberCountInPhoneNumberField = 11
     private var regex: NSRegularExpression? {
         do {
-           let regexExpression = try NSRegularExpression(pattern: "[\\+\\s-\\(\\)]", options: .caseInsensitive)
+            let regexExpression = try NSRegularExpression(pattern: "[\\+\\s-\\(\\)]", options: .caseInsensitive)
             return regexExpression
         } catch {
             print(error)
@@ -47,9 +47,29 @@ class AuthViewController: UIViewController {
         if !(loginTextField.text == "" && passwordTextField.text == "") {
             print("Test")
             showButtonLoading()
-            DispatchQueue.main.asyncAfter(deadline:.now()+3) {
-                self.hideButtonLoading()
-            }
+            guard let phoneNumber = loginTextField.text else { return }
+            let phoneNumberClearedFromMask = clearPhoneNumberFromMask(phoneNumber: phoneNumber)
+            guard let password = passwordTextField.text else { return }
+            
+            print(phoneNumberClearedFromMask)
+            print(password)
+            //let credentials = AuthRequestModel(phone: phoneNumberClearedFromMask, password: password)
+            let credentials = AuthRequestModel(phone: "+79876543219", password: "qwerty")
+            AuthService()
+                .performLoginRequestAndSaveToken(credentials: credentials) { [weak self] result in
+                    switch result {
+                    case .success:
+                        DispatchQueue.main.async {
+                            if let delegate = UIApplication.shared.delegate as? AppDelegate {
+                                let mainViewController = TabBarConfigurator().configure()
+                                delegate.window?.rootViewController = mainViewController
+                            }
+                        }
+                    case .failure:
+                        print("failure")
+                        self?.hideButtonLoading()
+                    }
+                }
         }
     }
     
@@ -136,7 +156,7 @@ extension AuthViewController: UITextFieldDelegate {
         let range = NSString(string: phoneNumber).range(of: phoneNumber)
         guard let regex = regex else { return "\(phoneNumber)" }
         guard !(shouldRemoveLastDigit && phoneNumber.count <= 2 && phoneNumber.count >= 1) else { return "" }
-
+        
         var number = regex.stringByReplacingMatches(in: phoneNumber, options: [], range: range, withTemplate: "")
         
         if number.count > maxNumberCountInPhoneNumberField {
@@ -167,11 +187,16 @@ extension AuthViewController: UITextFieldDelegate {
         return "+" + number
     }
     
+    func clearPhoneNumberFromMask(phoneNumber: String) -> String {
+        let phoneNumberClearedFromSymbols = phoneNumber.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
+        return phoneNumberClearedFromSymbols
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let fullString = (textField.text ?? "") + string
         if textField == loginTextField {
-        textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
-        return false
+            textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
+            return false
         }
         return true
     }
@@ -246,26 +271,26 @@ extension AuthViewController {
         
         showSpinning()
     }
-
+    
     func hideButtonLoading() {
         loginButtonLabel.setTitle(originalButtonText, for: .normal)
         activityIndicator.stopAnimating()
     }
-
+    
     private func createActivityIndicator() -> UIActivityIndicatorView {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = .lightGray
         return activityIndicator
     }
-
+    
     private func showSpinning() {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         loginButtonLabel.addSubview(activityIndicator)
         centerActivityIndicatorInButton()
         activityIndicator.startAnimating()
     }
-
+    
     private func centerActivityIndicatorInButton() {
         guard loginButtonLabel != nil else { return }
         let xCenterConstraint = NSLayoutConstraint(item: loginButtonLabel!, attribute: .centerX, relatedBy: .equal, toItem: activityIndicator, attribute: .centerX, multiplier: 1, constant: 0)
