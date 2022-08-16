@@ -21,6 +21,7 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var loginBottomLine: UIView!
     @IBOutlet weak var passwordBottomLine: UIView!
     //MARK: - Properties
+    //Маска номера телефона
     private let maxNumberCountInPhoneNumberField = 11
     private var regex: NSRegularExpression? {
         do {
@@ -31,7 +32,9 @@ class AuthViewController: UIViewController {
             return nil
         }
     }
-    
+    //Activity indicator для кнопки Войти
+    private var originalButtonText: String = "Войти"
+    var activityIndicator: UIActivityIndicatorView!
     
     //MARK: - Methods
     @IBAction func loginButtonAction(_ sender: Any) {
@@ -43,6 +46,10 @@ class AuthViewController: UIViewController {
         }
         if !(loginTextField.text == "" && passwordTextField.text == "") {
             print("Test")
+            showButtonLoading()
+            DispatchQueue.main.asyncAfter(deadline:.now()+3) {
+                self.hideButtonLoading()
+            }
         }
     }
     
@@ -225,6 +232,47 @@ extension AuthViewController {
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         dismissEmptyFieldsNotidication()
+    }
+}
+
+//MARK: - Adding activity indicator to Button after tap
+extension AuthViewController {
+    func showButtonLoading() {
+        loginButtonLabel.setTitle("", for: .normal)
+        
+        if (activityIndicator == nil) {
+            activityIndicator = createActivityIndicator()
+        }
+        
+        showSpinning()
+    }
+
+    func hideButtonLoading() {
+        loginButtonLabel.setTitle(originalButtonText, for: .normal)
+        activityIndicator.stopAnimating()
+    }
+
+    private func createActivityIndicator() -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .lightGray
+        return activityIndicator
+    }
+
+    private func showSpinning() {
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loginButtonLabel.addSubview(activityIndicator)
+        centerActivityIndicatorInButton()
+        activityIndicator.startAnimating()
+    }
+
+    private func centerActivityIndicatorInButton() {
+        guard loginButtonLabel != nil else { return }
+        let xCenterConstraint = NSLayoutConstraint(item: loginButtonLabel!, attribute: .centerX, relatedBy: .equal, toItem: activityIndicator, attribute: .centerX, multiplier: 1, constant: 0)
+        loginButtonLabel.addConstraint(xCenterConstraint)
+        
+        let yCenterConstraint = NSLayoutConstraint(item: loginButtonLabel!, attribute: .centerY, relatedBy: .equal, toItem: activityIndicator, attribute: .centerY, multiplier: 1, constant: 0)
+        loginButtonLabel.addConstraint(yCenterConstraint)
     }
 }
 
