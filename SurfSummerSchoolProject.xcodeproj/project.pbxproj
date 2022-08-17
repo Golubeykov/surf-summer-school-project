@@ -37,6 +37,11 @@
 		3A82DD98289FE24500453EE2 /* SearchPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD96289FE24500453EE2 /* SearchPostsViewController.xib */; };
 		3A82DD9C28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD9A28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift */; };
 		3A82DD9D28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD9B28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib */; };
+		3AC3BDB228AC423F0036762E /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC3BDB028AC423F0036762E /* ContactsCell.swift */; };
+		3AC3BDB328AC423F0036762E /* ContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC3BDB128AC423F0036762E /* ContactsCell.xib */; };
+		3AC3BDB628AC42540036762E /* ProfileMainInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC3BDB428AC42540036762E /* ProfileMainInfoCell.swift */; };
+		3AC3BDB728AC42540036762E /* ProfileMainInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC3BDB528AC42540036762E /* ProfileMainInfoCell.xib */; };
+		3AC3BDBA28AC43DA0036762E /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC3BDB928AC43DA0036762E /* ProfileModel.swift */; };
 		3AE4172A28A12E34009E1AFE /* BaseTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4172928A12E34009E1AFE /* BaseTokenStorage.swift */; };
 		3AE4172C28A12E42009E1AFE /* TokenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4172B28A12E42009E1AFE /* TokenContainer.swift */; };
 		3AE4172E28A12E50009E1AFE /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4172D28A12E50009E1AFE /* TokenStorage.swift */; };
@@ -91,6 +96,11 @@
 		3A82DD96289FE24500453EE2 /* SearchPostsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPostsViewController.xib; sourceTree = "<group>"; };
 		3A82DD9A28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostBodyShortedTableViewCell.swift; sourceTree = "<group>"; };
 		3A82DD9B28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedPostBodyShortedTableViewCell.xib; sourceTree = "<group>"; };
+		3AC3BDB028AC423F0036762E /* ContactsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
+		3AC3BDB128AC423F0036762E /* ContactsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsCell.xib; sourceTree = "<group>"; };
+		3AC3BDB428AC42540036762E /* ProfileMainInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainInfoCell.swift; sourceTree = "<group>"; };
+		3AC3BDB528AC42540036762E /* ProfileMainInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileMainInfoCell.xib; sourceTree = "<group>"; };
+		3AC3BDB928AC43DA0036762E /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		3AE4172928A12E34009E1AFE /* BaseTokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTokenStorage.swift; sourceTree = "<group>"; };
 		3AE4172B28A12E42009E1AFE /* TokenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenContainer.swift; sourceTree = "<group>"; };
 		3AE4172D28A12E50009E1AFE /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
@@ -206,8 +216,10 @@
 		3A82DD6D289C4C0D00453EE2 /* ProfileModule */ = {
 			isa = PBXGroup;
 			children = (
+				3AC3BDB828AC431A0036762E /* Model */,
 				3A82DD5F289C4A9100453EE2 /* ProfileViewController.swift */,
 				3A82DD60289C4A9100453EE2 /* ProfileViewController.xib */,
+				3AFC3A6728AC41830077E14C /* Cells */,
 			);
 			path = ProfileModule;
 			sourceTree = "<group>";
@@ -304,6 +316,14 @@
 				3A82DD9B28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib */,
 			);
 			path = PostBodyShorted;
+			sourceTree = "<group>";
+		};
+		3AC3BDB828AC431A0036762E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3AC3BDB928AC43DA0036762E /* ProfileModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3AE4172228A12DBB009E1AFE /* Services */ = {
@@ -420,6 +440,33 @@
 			path = Snackbar;
 			sourceTree = "<group>";
 		};
+		3AFC3A6728AC41830077E14C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3AFC3A6928AC41D90077E14C /* ContactsCell */,
+				3AFC3A6828AC41950077E14C /* ProfileMainInfoCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3AFC3A6828AC41950077E14C /* ProfileMainInfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				3AC3BDB428AC42540036762E /* ProfileMainInfoCell.swift */,
+				3AC3BDB528AC42540036762E /* ProfileMainInfoCell.xib */,
+			);
+			path = ProfileMainInfoCell;
+			sourceTree = "<group>";
+		};
+		3AFC3A6928AC41D90077E14C /* ContactsCell */ = {
+			isa = PBXGroup;
+			children = (
+				3AC3BDB028AC423F0036762E /* ContactsCell.swift */,
+				3AC3BDB128AC423F0036762E /* ContactsCell.xib */,
+			);
+			path = ContactsCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -487,6 +534,8 @@
 				3A82DD9D28A0159A00453EE2 /* DetailedPostBodyShortedTableViewCell.xib in Resources */,
 				3A82DD62289C4A9100453EE2 /* ProfileViewController.xib in Resources */,
 				3A82DD7A289D942100453EE2 /* AllPostsCollectionViewCell.xib in Resources */,
+				3AC3BDB328AC423F0036762E /* ContactsCell.xib in Resources */,
+				3AC3BDB728AC42540036762E /* ProfileMainInfoCell.xib in Resources */,
 				3A82DD6A289C4BC000453EE2 /* FavoritePostsViewController.xib in Resources */,
 				3A6ADAF728A9629B00461A46 /* AuthViewController.xib in Resources */,
 				3A82DD88289EC25B00453EE2 /* DetailedPostImageTableViewCell.xib in Resources */,
@@ -525,6 +574,7 @@
 				3AE4173E28A12F7D009E1AFE /* ImageLoader.swift in Sources */,
 				3A82DD61289C4A9100453EE2 /* ProfileViewController.swift in Sources */,
 				3AFC3A6628AC02480077E14C /* SnackbarModel.swift in Sources */,
+				3AC3BDBA28AC43DA0036762E /* ProfileModel.swift in Sources */,
 				3A6ADAFA28A9752300461A46 /* ColorsStorage.swift in Sources */,
 				3AE4174428A12FDD009E1AFE /* PicturesService.swift in Sources */,
 				3A82DD44289988D200453EE2 /* AppDelegate.swift in Sources */,
@@ -534,6 +584,8 @@
 				3AE4174028A12FA9009E1AFE /* UIImageView+ImageLoader.swift in Sources */,
 				3AE4175428A291E6009E1AFE /* FavoritesStorage.swift in Sources */,
 				3A82DD74289C528600453EE2 /* TabBarConfigurator.swift in Sources */,
+				3AC3BDB628AC42540036762E /* ProfileMainInfoCell.swift in Sources */,
+				3AC3BDB228AC423F0036762E /* ContactsCell.swift in Sources */,
 				3A82DD72289C4EC100453EE2 /* TabBarModel.swift in Sources */,
 				3A6ADAF628A9629B00461A46 /* AuthViewController.swift in Sources */,
 				3AFC3A6428AC021C0077E14C /* SnackbarView.swift in Sources */,

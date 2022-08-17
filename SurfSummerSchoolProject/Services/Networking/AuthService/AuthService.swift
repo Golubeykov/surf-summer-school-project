@@ -27,7 +27,7 @@ struct AuthService {
                             
                              // TODO: - Handle error if token not was received from server
                          }
-                     }
+                     } 
 
                      onResponseWasReceived(result)
                  }
