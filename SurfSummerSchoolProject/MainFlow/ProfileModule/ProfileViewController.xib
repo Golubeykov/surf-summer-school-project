@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="SurfSummerSchoolProject" customModuleProvider="target">
             <connections>
+                <outlet property="logoutButtonLabel" destination="AOD-Ca-h0E" id="7Sb-R7-rjT"/>
+                <outlet property="tableView" destination="Mjh-VR-U9H" id="4bp-Gg-hcd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,14 +19,44 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOD-Ca-h0E">
+                    <rect key="frame" x="16" y="790" width="382" height="48"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="isC-gE-dDs"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Выйти">
+                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="logoutButtonAction:" destination="-1" eventType="touchUpInside" id="tAx-vo-4WN"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Mjh-VR-U9H">
+                    <rect key="frame" x="0.0" y="44" width="414" height="722"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemGreenColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Mjh-VR-U9H" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="27a-Ev-jQt"/>
+                <constraint firstItem="Mjh-VR-U9H" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2LD-Qt-tfA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Mjh-VR-U9H" secondAttribute="trailing" id="9MS-fM-sBf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AOD-Ca-h0E" secondAttribute="bottom" constant="24" id="Bh5-MO-zeR"/>
+                <constraint firstItem="AOD-Ca-h0E" firstAttribute="top" secondItem="Mjh-VR-U9H" secondAttribute="bottom" constant="24" id="QRa-HS-JcJ"/>
+                <constraint firstItem="AOD-Ca-h0E" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="SWV-0H-W2n"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AOD-Ca-h0E" secondAttribute="trailing" constant="16" id="emK-lY-Hh0"/>
+            </constraints>
             <point key="canvasLocation" x="132" y="66"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

@@ -23,12 +23,12 @@ struct AuthService {
                      if case let .success(responseModel) = result {
                          do {
                              try dataTask.tokenStorage.set(newToken: TokenContainer(token: responseModel.token, receivingDate: .now))
+                             try dataTask.profileStorage.set(profile: responseModel.user_info)
                          } catch {
                             
                              // TODO: - Handle error if token not was received from server
                          }
                      }
-
                      onResponseWasReceived(result)
                  }
      }

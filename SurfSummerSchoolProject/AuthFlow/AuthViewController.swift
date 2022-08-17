@@ -74,6 +74,10 @@ class AuthViewController: UIViewController {
                 }
         }
     }
+    @IBAction func demoButtonAction(_ sender: Any) {
+        loginTextField.text = "+7 (987) 654-32-19"
+        passwordTextField.text = "qwerty"
+    }
     
     //MARK: - View lifecycle
     override func viewDidLoad() {

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="186" id="KGk-i7-Jjw" customClass="ProfileMainInfoCell" customModule="SurfSummerSchoolProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="350" height="186"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="350" height="186"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VrK-4N-noF">
+                        <rect key="frame" x="16" y="16" width="154" height="154"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="VrK-4N-noF" secondAttribute="height" multiplier="1:1" id="oEr-Fa-5OC"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тест" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYQ-JE-iSF">
+                        <rect key="frame" x="186" y="16" width="39.5" height="21.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94q-QP-NfA">
+                        <rect key="frame" x="186" y="66.5" width="128" height="43"/>
+                        <string key="text">«Светлое будущее живет 
+в вечности»</string>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тестович" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ba7-nU-zkr">
+                        <rect key="frame" x="186" y="37.5" width="81" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Ba7-nU-zkr" firstAttribute="top" secondItem="zYQ-JE-iSF" secondAttribute="bottom" id="B6O-D6-OXZ"/>
+                    <constraint firstItem="VrK-4N-noF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="DqV-f1-GTg"/>
+                    <constraint firstItem="zYQ-JE-iSF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Fhx-sE-4ay"/>
+                    <constraint firstItem="94q-QP-NfA" firstAttribute="leading" secondItem="VrK-4N-noF" secondAttribute="trailing" constant="16" id="J79-CJ-xPL"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zYQ-JE-iSF" secondAttribute="trailing" constant="16" id="M07-lE-13w"/>
+                    <constraint firstAttribute="bottom" secondItem="VrK-4N-noF" secondAttribute="bottom" constant="16" id="Mnk-FK-ad7"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="94q-QP-NfA" secondAttribute="trailing" constant="16" id="Vz6-9P-yy2"/>
+                    <constraint firstItem="Ba7-nU-zkr" firstAttribute="leading" secondItem="VrK-4N-noF" secondAttribute="trailing" constant="16" id="Ydm-ol-owG"/>
+                    <constraint firstItem="94q-QP-NfA" firstAttribute="top" secondItem="Ba7-nU-zkr" secondAttribute="bottom" constant="8" id="aTW-Vu-VV6"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ba7-nU-zkr" secondAttribute="trailing" constant="16" id="bIm-ob-WGZ"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="94q-QP-NfA" secondAttribute="bottom" constant="16" id="d9L-au-6KZ"/>
+                    <constraint firstItem="VrK-4N-noF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="iR3-LI-Q3v"/>
+                    <constraint firstItem="zYQ-JE-iSF" firstAttribute="leading" secondItem="VrK-4N-noF" secondAttribute="trailing" constant="16" id="vdb-Pe-4II"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="profileFirstNameLabel" destination="zYQ-JE-iSF" id="OFp-QW-zDb"/>
+                <outlet property="profileImageView" destination="VrK-4N-noF" id="G35-dI-4j1"/>
+                <outlet property="profileLastNameLabel" destination="Ba7-nU-zkr" id="Xjy-6D-N55"/>
+                <outlet property="profileQuoteLabel" destination="94q-QP-NfA" id="2SS-RS-0jc"/>
+            </connections>
+            <point key="canvasLocation" x="153.62318840579712" y="75"/>
+        </tableViewCell>
+    </objects>
+</document>
