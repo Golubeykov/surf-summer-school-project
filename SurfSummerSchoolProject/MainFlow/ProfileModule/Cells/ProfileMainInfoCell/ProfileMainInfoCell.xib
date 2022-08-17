@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="350" height="186"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="korgi" translatesAutoresizingMaskIntoConstraints="NO" id="VrK-4N-noF">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VrK-4N-noF">
                         <rect key="frame" x="16" y="16" width="154" height="154"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="VrK-4N-noF" secondAttribute="height" multiplier="1:1" id="oEr-Fa-5OC"/>
@@ -69,7 +69,4 @@
             <point key="canvasLocation" x="153.62318840579712" y="75"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="korgi" width="790" height="898"/>
-    </resources>
 </document>

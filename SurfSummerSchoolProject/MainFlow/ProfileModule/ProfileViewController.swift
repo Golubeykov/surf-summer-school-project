@@ -22,9 +22,13 @@ class ProfileViewController: UIViewController {
     let numberOfRows = 4
     let mainInfoCellHeight: CGFloat = 160
     let contactsCellHeight: CGFloat = 72
+    //Activity indicator для кнопки Войти
+    private var originalButtonText: String = "Выйти"
+    var activityIndicator: UIActivityIndicatorView!
     
     //MARK: - Actions
     @IBAction func logoutButtonAction(_ sender: Any) {
+        showButtonLoading()
         LogoutService()
             .performLogoutRequestAndRemoveToken() { [weak self] result in
                 switch result {
@@ -38,6 +42,7 @@ class ProfileViewController: UIViewController {
                     }
                 case .failure:
                     DispatchQueue.main.async {
+                        self?.hideButtonLoading()
                         let model = SnackbarModel(text: "Не получилось выйти")
                         let snackbar = SnackbarView(model: model)
                         guard let `self` = self else { return }
@@ -118,3 +123,45 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
 }
+
+//MARK: - Adding activity indicator to Button after tap
+extension ProfileViewController {
+    func showButtonLoading() {
+        logoutButtonLabel.setTitle("", for: .normal)
+        
+        if (activityIndicator == nil) {
+            activityIndicator = createActivityIndicator()
+        }
+        
+        showSpinning()
+    }
+    
+    func hideButtonLoading() {
+        logoutButtonLabel.setTitle(originalButtonText, for: .normal)
+        activityIndicator.stopAnimating()
+    }
+    
+    private func createActivityIndicator() -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .lightGray
+        return activityIndicator
+    }
+    
+    private func showSpinning() {
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        logoutButtonLabel.addSubview(activityIndicator)
+        centerActivityIndicatorInButton()
+        activityIndicator.startAnimating()
+    }
+    
+    private func centerActivityIndicatorInButton() {
+        guard logoutButtonLabel != nil else { return }
+        let xCenterConstraint = NSLayoutConstraint(item: logoutButtonLabel!, attribute: .centerX, relatedBy: .equal, toItem: activityIndicator, attribute: .centerX, multiplier: 1, constant: 0)
+        logoutButtonLabel.addConstraint(xCenterConstraint)
+        
+        let yCenterConstraint = NSLayoutConstraint(item: logoutButtonLabel!, attribute: .centerY, relatedBy: .equal, toItem: activityIndicator, attribute: .centerY, multiplier: 1, constant: 0)
+        logoutButtonLabel.addConstraint(yCenterConstraint)
+    }
+}
+
