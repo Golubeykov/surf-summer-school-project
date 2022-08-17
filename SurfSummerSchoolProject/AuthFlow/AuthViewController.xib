@@ -47,7 +47,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zyo-oR-hOc" userLabel="InternalView">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="282"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="293"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Логин" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sin-jd-j4V">
                                     <rect key="frame" x="16" y="35" width="382" height="55"/>
@@ -96,22 +96,37 @@
                                         <constraint firstAttribute="height" constant="1" id="2lI-H2-6fJ"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWK-Ph-28o">
+                                    <rect key="frame" x="157" y="252" width="100" height="31"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="wHL-lC-7jd"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Демо-вход">
+                                        <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="14"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="demoButtonAction:" destination="-1" eventType="touchUpInside" id="BUv-Iu-Odm"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="NbT-Xe-urh" secondAttribute="trailing" constant="16" id="7f7-Vh-KtT"/>
                                 <constraint firstItem="sin-jd-j4V" firstAttribute="top" secondItem="Zyo-oR-hOc" secondAttribute="top" constant="35" id="AHe-fy-Xnn"/>
                                 <constraint firstItem="NEd-QN-eHj" firstAttribute="top" secondItem="NbT-Xe-urh" secondAttribute="bottom" constant="32" id="HZk-Xf-PbJ"/>
+                                <constraint firstItem="ZWK-Ph-28o" firstAttribute="top" secondItem="NEd-QN-eHj" secondAttribute="bottom" constant="10" id="Kh4-52-ymg"/>
                                 <constraint firstItem="ss5-0q-oes" firstAttribute="top" secondItem="NbT-Xe-urh" secondAttribute="bottom" id="LJC-5a-poW"/>
                                 <constraint firstAttribute="trailing" secondItem="YZ7-eS-Mky" secondAttribute="trailing" constant="16" id="NZG-qX-21J"/>
+                                <constraint firstAttribute="bottom" secondItem="ZWK-Ph-28o" secondAttribute="bottom" constant="10" id="T5m-oM-3gv"/>
                                 <constraint firstAttribute="trailing" secondItem="ss5-0q-oes" secondAttribute="trailing" constant="16" id="WAr-ub-0cl"/>
                                 <constraint firstAttribute="trailing" secondItem="NEd-QN-eHj" secondAttribute="trailing" constant="16" id="adW-MQ-hz5"/>
                                 <constraint firstItem="NEd-QN-eHj" firstAttribute="leading" secondItem="Zyo-oR-hOc" secondAttribute="leading" constant="16" id="b1w-M2-IQ7"/>
                                 <constraint firstItem="NbT-Xe-urh" firstAttribute="top" secondItem="sin-jd-j4V" secondAttribute="bottom" constant="17" id="cuM-Ad-fdq"/>
                                 <constraint firstItem="NbT-Xe-urh" firstAttribute="leading" secondItem="Zyo-oR-hOc" secondAttribute="leading" constant="16" id="ftY-MU-PB1"/>
                                 <constraint firstItem="ss5-0q-oes" firstAttribute="leading" secondItem="Zyo-oR-hOc" secondAttribute="leading" constant="16" id="lDS-Hk-tZh"/>
-                                <constraint firstAttribute="bottom" secondItem="NEd-QN-eHj" secondAttribute="bottom" constant="40" id="muB-L2-CRv"/>
                                 <constraint firstItem="sin-jd-j4V" firstAttribute="leading" secondItem="Zyo-oR-hOc" secondAttribute="leading" constant="16" id="s2R-nC-UEs"/>
+                                <constraint firstItem="ZWK-Ph-28o" firstAttribute="centerX" secondItem="Zyo-oR-hOc" secondAttribute="centerX" id="uC7-MO-adZ"/>
                                 <constraint firstItem="YZ7-eS-Mky" firstAttribute="top" secondItem="sin-jd-j4V" secondAttribute="bottom" id="uqR-mJ-sYT"/>
                                 <constraint firstItem="YZ7-eS-Mky" firstAttribute="leading" secondItem="Zyo-oR-hOc" secondAttribute="leading" constant="16" id="z4Y-5A-hVu"/>
                                 <constraint firstAttribute="trailing" secondItem="sin-jd-j4V" secondAttribute="trailing" constant="16" id="zFP-Lq-lUI"/>
