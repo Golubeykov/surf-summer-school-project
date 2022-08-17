@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A6ADAF628A9629B00461A46 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6ADAF428A9629B00461A46 /* AuthViewController.swift */; };
+		3A6ADAF728A9629B00461A46 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A6ADAF528A9629B00461A46 /* AuthViewController.xib */; };
+		3A6ADAFA28A9752300461A46 /* ColorsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6ADAF928A9752300461A46 /* ColorsStorage.swift */; };
+		3A6ADAFD28AA432D00461A46 /* ImagesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6ADAFC28AA432D00461A46 /* ImagesStorage.swift */; };
 		3A82DD44289988D200453EE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A82DD43289988D200453EE2 /* AppDelegate.swift */; };
 		3A82DD4D289988D800453EE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD4C289988D800453EE2 /* Assets.xcassets */; };
 		3A82DD50289988D800453EE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A82DD4E289988D800453EE2 /* LaunchScreen.storyboard */; };
@@ -50,9 +54,15 @@
 		3AE4174B28A18FF1009E1AFE /* PostsLoadErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4174928A18FF1009E1AFE /* PostsLoadErrorViewController.swift */; };
 		3AE4174C28A18FF1009E1AFE /* PostsLoadErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE4174A28A18FF1009E1AFE /* PostsLoadErrorViewController.xib */; };
 		3AE4175428A291E6009E1AFE /* FavoritesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4175328A291E6009E1AFE /* FavoritesStorage.swift */; };
+		3AFC3A6428AC021C0077E14C /* SnackbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC3A6328AC021C0077E14C /* SnackbarView.swift */; };
+		3AFC3A6628AC02480077E14C /* SnackbarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC3A6528AC02480077E14C /* SnackbarModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A6ADAF428A9629B00461A46 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		3A6ADAF528A9629B00461A46 /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
+		3A6ADAF928A9752300461A46 /* ColorsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsStorage.swift; sourceTree = "<group>"; };
+		3A6ADAFC28AA432D00461A46 /* ImagesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesStorage.swift; sourceTree = "<group>"; };
 		3A82DD40289988D200453EE2 /* SurfSummerSchoolProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurfSummerSchoolProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A82DD43289988D200453EE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A82DD4C289988D800453EE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,6 +108,8 @@
 		3AE4174928A18FF1009E1AFE /* PostsLoadErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsLoadErrorViewController.swift; sourceTree = "<group>"; };
 		3AE4174A28A18FF1009E1AFE /* PostsLoadErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsLoadErrorViewController.xib; sourceTree = "<group>"; };
 		3AE4175328A291E6009E1AFE /* FavoritesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStorage.swift; sourceTree = "<group>"; };
+		3AFC3A6328AC021C0077E14C /* SnackbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarView.swift; sourceTree = "<group>"; };
+		3AFC3A6528AC02480077E14C /* SnackbarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +123,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A6ADAF328A9627300461A46 /* AuthFlow */ = {
+			isa = PBXGroup;
+			children = (
+				3A6ADAF428A9629B00461A46 /* AuthViewController.swift */,
+				3A6ADAF528A9629B00461A46 /* AuthViewController.xib */,
+			);
+			path = AuthFlow;
+			sourceTree = "<group>";
+		};
+		3A6ADAF828A9750C00461A46 /* ColorsStorage */ = {
+			isa = PBXGroup;
+			children = (
+				3A6ADAF928A9752300461A46 /* ColorsStorage.swift */,
+			);
+			path = ColorsStorage;
+			sourceTree = "<group>";
+		};
+		3A6ADAFB28AA431500461A46 /* ImagesStorage */ = {
+			isa = PBXGroup;
+			children = (
+				3A6ADAFC28AA432D00461A46 /* ImagesStorage.swift */,
+			);
+			path = ImagesStorage;
+			sourceTree = "<group>";
+		};
 		3A82DD37289988D200453EE2 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +171,7 @@
 				3AE4172428A12DD3009E1AFE /* Storage */,
 				3AE4174628A18FAC009E1AFE /* SupportingViews */,
 				3A82DD70289C4C4700453EE2 /* Application */,
+				3A6ADAF328A9627300461A46 /* AuthFlow */,
 				3A82DD6B289C4BCF00453EE2 /* MainFlow */,
 				3AE4172228A12DBB009E1AFE /* Services */,
 			);
@@ -290,6 +328,8 @@
 		3AE4172428A12DD3009E1AFE /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				3A6ADAFB28AA431500461A46 /* ImagesStorage */,
+				3A6ADAF828A9750C00461A46 /* ColorsStorage */,
 				3AE4175228A291B9009E1AFE /* FavoritesStorage */,
 				3AE4175128A29076009E1AFE /* TokenStorage */,
 			);
@@ -338,6 +378,7 @@
 		3AE4174628A18FAC009E1AFE /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
+				3AFC3A6228AC01B50077E14C /* Snackbar */,
 				3AE4174728A18FBA009E1AFE /* Posts load error */,
 			);
 			path = SupportingViews;
@@ -368,6 +409,15 @@
 				3AE4175328A291E6009E1AFE /* FavoritesStorage.swift */,
 			);
 			path = FavoritesStorage;
+			sourceTree = "<group>";
+		};
+		3AFC3A6228AC01B50077E14C /* Snackbar */ = {
+			isa = PBXGroup;
+			children = (
+				3AFC3A6328AC021C0077E14C /* SnackbarView.swift */,
+				3AFC3A6528AC02480077E14C /* SnackbarModel.swift */,
+			);
+			path = Snackbar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,6 +488,7 @@
 				3A82DD62289C4A9100453EE2 /* ProfileViewController.xib in Resources */,
 				3A82DD7A289D942100453EE2 /* AllPostsCollectionViewCell.xib in Resources */,
 				3A82DD6A289C4BC000453EE2 /* FavoritePostsViewController.xib in Resources */,
+				3A6ADAF728A9629B00461A46 /* AuthViewController.xib in Resources */,
 				3A82DD88289EC25B00453EE2 /* DetailedPostImageTableViewCell.xib in Resources */,
 				3A82DD93289EC7B200453EE2 /* DetailedPostBodyTableViewCell.xib in Resources */,
 				3A82DD98289FE24500453EE2 /* SearchPostsViewController.xib in Resources */,
@@ -470,8 +521,11 @@
 				3AE4174228A12FCE009E1AFE /* PictureResponseModel.swift in Sources */,
 				3AE4173A28A12F12009E1AFE /* NetworkMethod.swift in Sources */,
 				3AE4174B28A18FF1009E1AFE /* PostsLoadErrorViewController.swift in Sources */,
+				3A6ADAFD28AA432D00461A46 /* ImagesStorage.swift in Sources */,
 				3AE4173E28A12F7D009E1AFE /* ImageLoader.swift in Sources */,
 				3A82DD61289C4A9100453EE2 /* ProfileViewController.swift in Sources */,
+				3AFC3A6628AC02480077E14C /* SnackbarModel.swift in Sources */,
+				3A6ADAFA28A9752300461A46 /* ColorsStorage.swift in Sources */,
 				3AE4174428A12FDD009E1AFE /* PicturesService.swift in Sources */,
 				3A82DD44289988D200453EE2 /* AppDelegate.swift in Sources */,
 				3A82DD87289EC25B00453EE2 /* DetailedPostImageTableViewCell.swift in Sources */,
@@ -481,6 +535,8 @@
 				3AE4175428A291E6009E1AFE /* FavoritesStorage.swift in Sources */,
 				3A82DD74289C528600453EE2 /* TabBarConfigurator.swift in Sources */,
 				3A82DD72289C4EC100453EE2 /* TabBarModel.swift in Sources */,
+				3A6ADAF628A9629B00461A46 /* AuthViewController.swift in Sources */,
+				3AFC3A6428AC021C0077E14C /* SnackbarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
