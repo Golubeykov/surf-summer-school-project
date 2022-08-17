@@ -29,6 +29,10 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
      var tokenStorage: TokenStorage {
          BaseTokenStorage()
      }
+    var profileStorage: ProfileStorage {
+        BaseProfileStorage()
+    }
+    
 
      // MARK: - Initializtion
 

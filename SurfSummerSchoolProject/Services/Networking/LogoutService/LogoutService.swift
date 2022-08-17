@@ -21,6 +21,7 @@ struct LogoutService {
                      if case let .success(responseModel) = result {
                          do {
                              try dataTask.tokenStorage.removeTokenFromContainer()
+                             try dataTask.profileStorage.removeProfile()
                          } catch {
                             
                              // TODO: - Handle error if token not was received from server

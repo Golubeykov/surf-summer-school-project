@@ -13,6 +13,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var logoutButtonLabel: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    //MARK: - Model
+    var profileModel: ProfileModel = ProfileInstance.shared.profileModel
+    
     //MARK: - Properties
     let profileMainInfoCell: String = "\(ProfileMainInfoCell.self)"
     let contactsCell: String = "\(ContactsCell.self)"
@@ -22,7 +25,6 @@ class ProfileViewController: UIViewController {
     
     //MARK: - Actions
     @IBAction func logoutButtonAction(_ sender: Any) {
-        print("testTap")
         LogoutService()
             .performLogoutRequestAndRemoveToken() { [weak self] result in
                 switch result {
@@ -77,29 +79,31 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: profileMainInfoCell)
             if let cell = cell as? ProfileMainInfoCell {
-                cell.profileFirstNameLabel.text = "Иван"
-                cell.profileLastNameLabel.text = "Иваныч"
+                cell.imageUrlInString = profileModel.avatar
+                cell.profileQuoteLabel.text = profileModel.about
+                cell.profileFirstNameLabel.text = profileModel.firstName
+                cell.profileLastNameLabel.text = profileModel.lastName
             }
             return cell ?? UITableViewCell()
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: contactsCell)
             if let cell = cell as? ContactsCell {
                 cell.contactTypeLabel.text = "Город"
-                cell.contactDetailLabel.text = "Санкт-Петербург"
+                cell.contactDetailLabel.text = profileModel.city
             }
             return cell ?? UITableViewCell()
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: contactsCell)
             if let cell = cell as? ContactsCell {
                 cell.contactTypeLabel.text = "Телефон"
-                cell.contactDetailLabel.text = "+7 (921) 856 21 45"
+                cell.contactDetailLabel.text = profileModel.phone
             }
             return cell ?? UITableViewCell()
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: contactsCell)
             if let cell = cell as? ContactsCell {
                 cell.contactTypeLabel.text = "Почта"
-                cell.contactDetailLabel.text = "HelloIvan@gmail.com"
+                cell.contactDetailLabel.text = profileModel.email
             }
             return cell ?? UITableViewCell()
         }
