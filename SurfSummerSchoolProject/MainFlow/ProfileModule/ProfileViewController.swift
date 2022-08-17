@@ -57,9 +57,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: profileMainInfoCell)
             if let cell = cell as? ProfileMainInfoCell {
-                cell.profileNameLabel.text = "Иван \nИваныч"
+                cell.profileFirstNameLabel.text = "Иван"
+                cell.profileLastNameLabel.text = "Иваныч"
             }
-            //150
             return cell ?? UITableViewCell()
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: contactsCell)

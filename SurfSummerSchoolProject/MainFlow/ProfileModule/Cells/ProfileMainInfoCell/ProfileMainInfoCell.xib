@@ -22,38 +22,48 @@
                             <constraint firstAttribute="width" secondItem="VrK-4N-noF" secondAttribute="height" multiplier="1:1" id="oEr-Fa-5OC"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тест                        Тестовый" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYQ-JE-iSF">
-                        <rect key="frame" x="186" y="16" width="143" height="43"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тест" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYQ-JE-iSF">
+                        <rect key="frame" x="186" y="16" width="39.5" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94q-QP-NfA">
-                        <rect key="frame" x="186" y="67" width="128" height="43"/>
+                        <rect key="frame" x="186" y="66.5" width="128" height="43"/>
                         <string key="text">«Светлое будущее живет 
 в вечности»</string>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тестович" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ba7-nU-zkr">
+                        <rect key="frame" x="186" y="37.5" width="81" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Ba7-nU-zkr" firstAttribute="top" secondItem="zYQ-JE-iSF" secondAttribute="bottom" id="B6O-D6-OXZ"/>
                     <constraint firstItem="VrK-4N-noF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="DqV-f1-GTg"/>
                     <constraint firstItem="zYQ-JE-iSF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Fhx-sE-4ay"/>
                     <constraint firstItem="94q-QP-NfA" firstAttribute="leading" secondItem="VrK-4N-noF" secondAttribute="trailing" constant="16" id="J79-CJ-xPL"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zYQ-JE-iSF" secondAttribute="trailing" constant="16" id="M07-lE-13w"/>
                     <constraint firstAttribute="bottom" secondItem="VrK-4N-noF" secondAttribute="bottom" constant="16" id="Mnk-FK-ad7"/>
                     <constraint firstAttribute="trailingMargin" secondItem="94q-QP-NfA" secondAttribute="trailing" constant="16" id="Vz6-9P-yy2"/>
+                    <constraint firstItem="Ba7-nU-zkr" firstAttribute="leading" secondItem="VrK-4N-noF" secondAttribute="trailing" constant="16" id="Ydm-ol-owG"/>
+                    <constraint firstItem="94q-QP-NfA" firstAttribute="top" secondItem="Ba7-nU-zkr" secondAttribute="bottom" constant="8" id="aTW-Vu-VV6"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ba7-nU-zkr" secondAttribute="trailing" constant="16" id="bIm-ob-WGZ"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="94q-QP-NfA" secondAttribute="bottom" constant="16" id="d9L-au-6KZ"/>
                     <constraint firstItem="VrK-4N-noF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="iR3-LI-Q3v"/>
                     <constraint firstItem="zYQ-JE-iSF" firstAttribute="leading" secondItem="VrK-4N-noF" secondAttribute="trailing" constant="16" id="vdb-Pe-4II"/>
-                    <constraint firstItem="94q-QP-NfA" firstAttribute="top" secondItem="zYQ-JE-iSF" secondAttribute="bottom" constant="8" id="xG6-Bd-sxz"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="profileFirstNameLabel" destination="zYQ-JE-iSF" id="OFp-QW-zDb"/>
                 <outlet property="profileImageView" destination="VrK-4N-noF" id="G35-dI-4j1"/>
-                <outlet property="profileNameLabel" destination="zYQ-JE-iSF" id="OFp-QW-zDb"/>
+                <outlet property="profileLastNameLabel" destination="Ba7-nU-zkr" id="Xjy-6D-N55"/>
                 <outlet property="profileQuoteLabel" destination="94q-QP-NfA" id="2SS-RS-0jc"/>
             </connections>
             <point key="canvasLocation" x="153.62318840579712" y="75"/>
