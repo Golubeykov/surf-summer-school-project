@@ -23,6 +23,26 @@ class ProfileViewController: UIViewController {
     //MARK: - Actions
     @IBAction func logoutButtonAction(_ sender: Any) {
         print("testTap")
+        LogoutService()
+            .performLogoutRequestAndRemoveToken() { [weak self] result in
+                switch result {
+                case .success:
+                    DispatchQueue.main.async {
+                        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+                            let authViewController = AuthViewController()
+                            let navigationAuthViewController = UINavigationController(rootViewController: authViewController)
+                            delegate.window?.rootViewController = navigationAuthViewController
+                        }
+                    }
+                case .failure:
+                    DispatchQueue.main.async {
+                        let model = SnackbarModel(text: "Не получилось выйти")
+                        let snackbar = SnackbarView(model: model)
+                        guard let `self` = self else { return }
+                        snackbar.showSnackBar(on: self, with: model)
+                    }
+                }
+            }
     }
     
     //MARK: - Views lifecycle
