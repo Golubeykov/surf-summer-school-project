@@ -8,12 +8,14 @@
 import UIKit
 
 class SnackbarView: UIView {
+    //MARK: - Constants
+    let whiteColor = ColorsStorage.white
     
     //MARK: - Properties
     let model: SnackbarModel
     private let label: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = ColorsStorage.white
         label.font = .systemFont(ofSize: 14, weight: .light)
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -28,7 +30,7 @@ class SnackbarView: UIView {
         
         addSubview(label)
         
-        backgroundColor = .red
+        backgroundColor = ColorsStorage.red
         clipsToBounds = true
         
         configure()

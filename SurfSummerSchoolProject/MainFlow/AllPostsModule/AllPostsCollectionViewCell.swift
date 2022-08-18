@@ -66,7 +66,6 @@ class AllPostsCollectionViewCell: UICollectionViewCell {
             favoritesStorage.addFavorite(favoritePost: self.postTextLabel.text ?? "")
         }
         isFavorite.toggle()
-        print("count:", FavoritesStorage.shared.myFavorites.count)
     }
     
     override func awakeFromNib() {

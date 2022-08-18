@@ -7,6 +7,15 @@
 
 import UIKit
 
+class ColorsStorage {
+    static let white = UIColor(rgb: 0xFFFFFF)
+    static let black = UIColor(rgb: 0x000000)
+    static let red = UIColor(rgb: 0xF35858)
+    static let lightGray = UIColor(rgb: 0xB0B0B0)
+    static let lightBackgroundGray = UIColor(rgb: 0xFBFBFB)
+    static let lightTextGray = UIColor(rgb: 0xDFDFDF)
+}
+
 extension UIColor {
    convenience init(red: Int, green: Int, blue: Int) {
        assert(red >= 0 && red <= 255, "Invalid red component")
@@ -23,9 +32,4 @@ extension UIColor {
            blue: rgb & 0xFF
        )
    }
-}
-
-struct ColorsStorage {
-    static let lightBackgroundGray = UIColor(rgb: 0xFBFBFB)
-    static let lightTextGray = UIColor(rgb: 0xDFDFDF)
 }

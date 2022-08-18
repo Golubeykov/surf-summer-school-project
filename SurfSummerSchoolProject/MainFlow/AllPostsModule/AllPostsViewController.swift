@@ -9,12 +9,17 @@ import UIKit
 
 class AllPostsViewController: UIViewController {
     //MARK: - Constants
-    private enum Constants {
+    private enum ConstantConstraints {
         static let collectionViewPadding: CGFloat = 16
         static let hSpaceBetweenItems: CGFloat = 7
         static let vSpaceBetweenItems: CGFloat = 8
     }
-    let fetchPostsErrorVC = PostsLoadErrorViewController()
+    private enum ConstantImages {
+        static let searchBar: UIImage? = ImagesStorage.searchBar
+    }
+    private let fetchPostsErrorVC = PostsLoadErrorViewController()
+    private let cellProportion: Double = 246/168
+    private let allPostsCollectionViewCell: String = "\(AllPostsCollectionViewCell.self)"
     
     //MARK: - Private properties
     private let postModel = AllPostsModel.shared
@@ -56,12 +61,12 @@ private extension AllPostsViewController {
     }
     func configureNavigationBar() {
         navigationItem.title = "Главная"
-        let searchButton = UIBarButtonItem(image: UIImage(named: "searchBar"),
+        let searchButton = UIBarButtonItem(image: ConstantImages.searchBar,
                                          style: .plain,
                                          target: self,
                                            action: #selector(goToSearchVC(sender:)))
         navigationItem.rightBarButtonItem = searchButton
-        navigationItem.rightBarButtonItem?.tintColor = .black
+        navigationItem.rightBarButtonItem?.tintColor = ColorsStorage.black
     }
     func configureModel() {
         postModel.didPostsFetchErrorHappened = { [weak self] in
@@ -106,7 +111,7 @@ extension AllPostsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = allPostsCollectionView.dequeueReusableCell(withReuseIdentifier: "\(AllPostsCollectionViewCell.self)", for: indexPath)
+        let cell = allPostsCollectionView.dequeueReusableCell(withReuseIdentifier: allPostsCollectionViewCell, for: indexPath)
         if let cell = cell as? AllPostsCollectionViewCell {
             self.activityIndicatorView.isHidden = true
             cell.titleText = postModel.posts[indexPath.item].title
@@ -119,16 +124,16 @@ extension AllPostsViewController: UICollectionViewDataSource, UICollectionViewDe
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemWidth = (view.frame.width - Constants.collectionViewPadding * 2 - Constants.hSpaceBetweenItems) / 2
-        return CGSize(width: itemWidth, height: itemWidth / 168 * 246)
+        let itemWidth = (view.frame.width - ConstantConstraints.collectionViewPadding * 2 - ConstantConstraints.hSpaceBetweenItems) / 2
+        return CGSize(width: itemWidth, height: itemWidth * cellProportion)
     
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return Constants.vSpaceBetweenItems
+        return ConstantConstraints.vSpaceBetweenItems
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return Constants.hSpaceBetweenItems
+        return ConstantConstraints.hSpaceBetweenItems
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailedPostViewController()

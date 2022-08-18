@@ -24,7 +24,7 @@ class DetailedPostBodyShortedTableViewCell: UITableViewCell {
     private func configureApperance() {
         selectionStyle = .none
         bodyTextShorted.font = .systemFont(ofSize: 12, weight: .light)
-        bodyTextShorted.textColor = .black
+        bodyTextShorted.textColor = ColorsStorage.black
     }
     
 }

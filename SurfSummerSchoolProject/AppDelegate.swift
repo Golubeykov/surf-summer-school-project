@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var tokenStorage: TokenStorage {
         BaseTokenStorage()
     }
+    let lauchScreenStoryBoard = UIStoryboard(name: "LaunchScreen", bundle: .main)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -49,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func runLaunchScreen() {
-        let lauchScreenViewController = UIStoryboard(name: "LaunchScreen", bundle: .main)
+        let lauchScreenViewController = lauchScreenStoryBoard
             .instantiateInitialViewController()
         window?.rootViewController = lauchScreenViewController
     }

@@ -19,9 +19,9 @@ class TabBarConfigurator {
 private extension TabBarConfigurator {
     func constructTabBarController() -> UITabBarController {
         let tabBarController = UITabBarController()
-        tabBarController.tabBar.tintColor = .black
-        tabBarController.tabBar.unselectedItemTintColor = .lightGray
-        tabBarController.tabBar.backgroundColor = .white
+        tabBarController.tabBar.tintColor = ColorsStorage.black
+        tabBarController.tabBar.unselectedItemTintColor = ColorsStorage.lightGray
+        tabBarController.tabBar.backgroundColor = ColorsStorage.white
         tabBarController.viewControllers = getControllers()
         return tabBarController
     }
