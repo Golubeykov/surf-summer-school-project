@@ -126,14 +126,14 @@ extension FavoritePostsViewController: UITableViewDataSource, UITableViewDelegat
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: detailedPostTitleTableViewCell)
             if let cell = cell as? DetailedPostTitleTableViewCell {
-                cell.titleText = postModel.favoritePosts[indexPath.section].title
-                cell.titleDate = postModel.favoritePosts[indexPath.section].dateCreation
+                cell.titlePostText.text = postModel.favoritePosts[indexPath.section].title
+                cell.titlePostDate.text = postModel.favoritePosts[indexPath.section].dateCreation
             }
             return cell ?? UITableViewCell()
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: detailedPostBodyShortedTableViewCell)
             if let cell = cell as? DetailedPostBodyShortedTableViewCell {
-                cell.bodyText = postModel.favoritePosts[indexPath.section].content
+                cell.bodyTextShorted.text = postModel.favoritePosts[indexPath.section].content
             }
             return cell ?? UITableViewCell()
         default:

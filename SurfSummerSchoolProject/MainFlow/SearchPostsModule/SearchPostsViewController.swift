@@ -29,22 +29,12 @@ class SearchPostsViewController: UIViewController, UIGestureRecognizerDelegate {
     private var searchBar: UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 303, height: 32))
     
     //MARK: - Properties
-    var notifyImage: UIImage? {
-        didSet {
-            searchUserNotificationImage.image = notifyImage
-        }
-    }
-    var notifyText: String = "" {
-        didSet {
-            searchUserNotificationText.text = notifyText
-        }
-    }
     var posts = AllPostsModel.shared.filteredPosts(searchText: "")
     
     //MARK: - Methods
     func configureApperance() {
         searchUserNotificationText.font = .systemFont(ofSize: 14, weight: .light)
-        notifyImage = ConstantImages.searchLens
+        searchUserNotificationImage.image = ConstantImages.searchLens
         searchUserNotificationText.text = "Введите ваш запрос"
         searchBar.delegate = self
         collectionView.register(UINib(nibName: "\(AllPostsCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(AllPostsCollectionViewCell.self)")
@@ -86,10 +76,10 @@ extension SearchPostsViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         if !searchText.isEmpty {
             posts = AllPostsModel.shared.filteredPosts(searchText: searchBar.text ?? "")
-            notifyImage = UIImage()
+            searchUserNotificationImage.image = UIImage()
             searchUserNotificationText.text = ""
             if posts.isEmpty {
-                notifyImage = ConstantImages.sadSmile
+                searchUserNotificationImage.image = ConstantImages.sadSmile
                 searchUserNotificationText.text = "По этому запросу нет результатов, попробуйте другой запрос"
                 collectionView.reloadData()
             } else {
@@ -98,7 +88,7 @@ extension SearchPostsViewController: UISearchBarDelegate {
         } else {
             posts = []
             collectionView.reloadData()
-            notifyImage = ConstantImages.searchLens
+            searchUserNotificationImage.image = ConstantImages.searchLens
             searchUserNotificationText.text = "Введите ваш запрос"
         }
     }

@@ -8,14 +8,9 @@
 import UIKit
 
 class DetailedPostBodyShortedTableViewCell: UITableViewCell {
-//MARK: - Views
+    //MARK: - Views
     @IBOutlet weak var bodyTextShorted: UILabel!
-    //MARK: - Properties
-    var bodyText: String = "" {
-        didSet {
-            bodyTextShorted.text = bodyText
-        }
-    }
+    
     //MARK: - Methods
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -83,14 +83,14 @@ extension DetailedPostViewController: UITableViewDataSource {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: detailedPostTitleTableViewCell)
             if let cell = cell as? DetailedPostTitleTableViewCell {
-                cell.titleText = model?.title ?? ""
-                cell.titleDate = model?.dateCreation ?? ""
+                cell.titlePostText.text = model?.title ?? ""
+                cell.titlePostDate.text = model?.dateCreation ?? ""
             }
             return cell ?? UITableViewCell()
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: detailedPostBodyTableViewCell)
             if let cell = cell as? DetailedPostBodyTableViewCell {
-                cell.bodyText = model?.content ?? ""
+                cell.postBodyText.text = model?.content ?? ""
             }
             return cell ?? UITableViewCell()
         default:
