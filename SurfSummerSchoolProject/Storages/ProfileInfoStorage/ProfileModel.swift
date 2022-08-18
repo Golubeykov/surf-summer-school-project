@@ -28,7 +28,7 @@ struct ProfileInstance {
         self.profileModel = profile
         } catch {
         print(error)
-        self.profileModel = ProfileModel(phone: "+7 (9**) *** ** **", email: "helloWorld@hello.com", firstName: "Иван", lastName: "Иваныч", avatar: "", city: "Санкт-Петербург", about: "Что-то пошло не так с загрузкой профиля, но хотя бы сейчас здесь корги :)")
+        self.profileModel = ProfileModel(phone: "+7 (9**) *** ** **", email: "helloWorld@hello.com", firstName: "Иван", lastName: "Иваныч", avatar: "", city: "Санкт-Петербург", about: "Что-то пошло не так с загрузкой профиля, но любые проблемы решаемы, в том числе и эта :)")
         }
     }
 }

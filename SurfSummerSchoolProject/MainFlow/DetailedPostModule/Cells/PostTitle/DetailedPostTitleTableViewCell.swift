@@ -36,7 +36,7 @@ class DetailedPostTitleTableViewCell: UITableViewCell {
         selectionStyle = .none
         titlePostText.font = .systemFont(ofSize: 16)
         titlePostDate.font = .systemFont(ofSize: 10)
-        titlePostDate.textColor = UIColor(displayP3Red: 0xB3 / 255, green: 0xB3 / 255, blue: 0xB3 / 255, alpha: 1)
+        titlePostDate.textColor = ColorsStorage.lightGray
     }
     
 }

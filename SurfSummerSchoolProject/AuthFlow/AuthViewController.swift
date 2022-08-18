@@ -211,13 +211,13 @@ extension AuthViewController: UITextFieldDelegate {
 //MARK: - Handle empty text fields
 extension AuthViewController {
     func showEmptyLoginNotification() {
-        loginBottomLine.backgroundColor = .red
+        loginBottomLine.backgroundColor = ColorsStorage.red
         
         let loginEmptyNotification = UILabel(frame: CGRect(x: 0, y: 0, width: loginTextField.frame.width, height: 16))
         loginEmptyNotification.textAlignment = .left
         loginEmptyNotification.text = "Поле не может быть пустым"
         loginEmptyNotification.font = .systemFont(ofSize: 12)
-        loginEmptyNotification.textColor = .red
+        loginEmptyNotification.textColor = ColorsStorage.red
         loginEmptyNotification.tag = 100
         self.view.addSubview(loginEmptyNotification)
         loginEmptyNotification.translatesAutoresizingMaskIntoConstraints = false
@@ -230,12 +230,12 @@ extension AuthViewController {
         self.view.layoutIfNeeded()
     }
     func showEmptyPasswordNotification() {
-        passwordBottomLine.backgroundColor = .red
+        passwordBottomLine.backgroundColor = ColorsStorage.red
         let passwordEmptyNotification = UILabel(frame: CGRect(x: 0, y: 0, width: loginTextField.frame.width, height: 16))
         passwordEmptyNotification.textAlignment = .left
         passwordEmptyNotification.text = "Поле не может быть пустым"
         passwordEmptyNotification.font = .systemFont(ofSize: 12)
-        passwordEmptyNotification.textColor = .red
+        passwordEmptyNotification.textColor = ColorsStorage.red
         passwordEmptyNotification.tag = 150
         self.view.addSubview(passwordEmptyNotification)
         passwordEmptyNotification.translatesAutoresizingMaskIntoConstraints = false

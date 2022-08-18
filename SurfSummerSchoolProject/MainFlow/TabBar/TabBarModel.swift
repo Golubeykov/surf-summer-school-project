@@ -5,8 +5,13 @@
 //  Created by Антон Голубейков on 04.08.2022.
 //
 
-import Foundation
 import UIKit
+
+private enum TabBarImages {
+    static let allPostsTab: UIImage? = ImagesStorage.allPostsTab
+    static let favoritePosts: UIImage? = ImagesStorage.favoritePostsTab
+    static let profileTab: UIImage? = ImagesStorage.profileTab
+}
 
 enum TabBarModel {
     case allPosts
@@ -26,11 +31,11 @@ enum TabBarModel {
     var image: UIImage? {
         switch self {
         case .allPosts:
-            return UIImage(named: "allPostsTab")
+            return TabBarImages.allPostsTab
         case .favoritePosts:
-            return UIImage(named: "favoritePostsTab")
+            return TabBarImages.favoritePosts
         case .profile:
-            return UIImage(named: "profileTab")
+            return TabBarImages.profileTab
         }
     }
     

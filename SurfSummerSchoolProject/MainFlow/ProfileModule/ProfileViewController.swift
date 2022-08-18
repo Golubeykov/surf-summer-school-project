@@ -8,6 +8,12 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    //MARK: - Constants
+    let profileMainInfoCell: String = "\(ProfileMainInfoCell.self)"
+    let contactsCell: String = "\(ContactsCell.self)"
+    let numberOfRows = 4
+    let mainInfoCellHeight: CGFloat = 160
+    let contactsCellHeight: CGFloat = 72
     
     //MARK: - Views
     @IBOutlet weak var logoutButtonLabel: UIButton!
@@ -17,11 +23,6 @@ class ProfileViewController: UIViewController {
     var profileModel: ProfileModel = ProfileInstance.shared.profileModel
     
     //MARK: - Properties
-    let profileMainInfoCell: String = "\(ProfileMainInfoCell.self)"
-    let contactsCell: String = "\(ContactsCell.self)"
-    let numberOfRows = 4
-    let mainInfoCellHeight: CGFloat = 160
-    let contactsCellHeight: CGFloat = 72
     //Activity indicator для кнопки Войти
     private var originalButtonText: String = "Выйти"
     var activityIndicator: UIActivityIndicatorView!
