@@ -22,6 +22,9 @@ class FavoritePostsViewController: UIViewController {
     //MARK: - Singleton instances
     private let postModel: AllPostsModel = AllPostsModel.shared
     
+    //MARK: - Public properties
+    static var favoriteTapStatus: Bool = false
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +34,10 @@ class FavoritePostsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
-        tableView.reloadData()
+        if FavoritePostsViewController.favoriteTapStatus {
+            tableView.reloadData()
+            FavoritePostsViewController.favoriteTapStatus = false
+        }
     }
 }
 //MARK: - Private methods

@@ -24,6 +24,9 @@ class AllPostsViewController: UIViewController {
     //MARK: - Private properties
     private let postModel = AllPostsModel.shared
     
+    //MARK: - Public properties
+    static var favoriteTapStatus: Bool = false
+    
     //MARK: - Views
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet private weak var allPostsCollectionView: UICollectionView!
@@ -37,7 +40,10 @@ class AllPostsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        allPostsCollectionView.reloadData()
+        if AllPostsViewController.favoriteTapStatus {
+            allPostsCollectionView.reloadData()
+            AllPostsViewController.favoriteTapStatus = false
+        }
         appendStateViewController {
             self.postModel.loadPosts()
             self.fetchPostsErrorVC.view.alpha = 0

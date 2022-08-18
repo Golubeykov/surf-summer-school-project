@@ -35,10 +35,15 @@ class FavoritesStorage {
             myFavorites.append(favoritePost)
         }
         defaults.set(myFavorites, forKey: keyForFavoritesStorage)
+        AllPostsViewController.favoriteTapStatus = true
+        FavoritePostsViewController.favoriteTapStatus = true
     }
     func removeFavorite(favoritePost: String) {
         guard let index = myFavorites.firstIndex(of: favoritePost) else { return }
         myFavorites.remove(at: index)
         defaults.set(myFavorites, forKey: keyForFavoritesStorage)
+        AllPostsViewController.favoriteTapStatus = true
+        FavoritePostsViewController.favoriteTapStatus = true
     }
 }
+
