@@ -18,7 +18,7 @@ class DetailedPostImageTableViewCell: UITableViewCell {
     
     //MARK: - Views
     @IBOutlet private weak var detailedPostImageView: UIImageView!
-    @IBOutlet weak var favoriteButtonLabel: UIButton!
+    @IBOutlet private weak var favoriteButtonLabel: UIButton!
     
     
     //MARK: - Events // Реализуется позже

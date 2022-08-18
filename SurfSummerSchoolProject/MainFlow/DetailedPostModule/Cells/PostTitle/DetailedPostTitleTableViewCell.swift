@@ -9,22 +9,8 @@ import UIKit
 
 class DetailedPostTitleTableViewCell: UITableViewCell {
     //MARK: - Views
-    
-    
     @IBOutlet weak var titlePostText: UILabel!
-    @IBOutlet private weak var titlePostDate: UILabel!
-    
-    //MARK: - Properties
-    var titleText: String = "" {
-        didSet {
-            titlePostText.text = titleText
-        }
-    }
-    var titleDate: String = "" {
-        didSet {
-            titlePostDate.text = titleDate
-        }
-    }
+    @IBOutlet weak var titlePostDate: UILabel!
     
     //MARK: - Methods
     override func awakeFromNib() {
