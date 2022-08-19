@@ -52,6 +52,8 @@ final class AllPostsModel {
                     switch networkError {
                     case .noNetworkConnection:
                         AllPostsModel.errorDescription = "Отсутствует интернет-соединение \nПопробуйте позже"
+                    case .nonAuthorizedAccess:
+                        AllPostsModel.errorDescription = "Токен недействителен"
                     default:
                         AllPostsModel.errorDescription = "Что-то пошло не так"
                     }

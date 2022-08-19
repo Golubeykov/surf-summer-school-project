@@ -16,4 +16,5 @@ enum PossibleErrors: Error {
     case badRequest([String:String])
     case noNetworkConnection
     case unknownServerError
+    case nonAuthorizedAccess
 }
