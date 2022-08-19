@@ -104,7 +104,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: contactsCell)
             if let cell = cell as? ContactsCell {
                 cell.contactTypeLabel.text = "Телефон"
-                cell.contactDetailLabel.text = profileModel.phone
+                cell.contactDetailLabel.text = applyPhoneMask(phoneNumber: profileModel.phone, shouldRemoveLastDigit: false) 
             }
             return cell ?? UITableViewCell()
         default:
