@@ -9,7 +9,10 @@ import UIKit
 
 class FavoritePostsViewController: UIViewController {
     //MARK: Constants
-    private let searchBar: UIImage? = ImagesStorage.searchBar
+    private enum ConstantImages {
+        static let searchBar: UIImage? = ImagesStorage.searchBar
+        static let sadSmile: UIImage? = ImagesStorage.sadSmile
+    }
     
     private let detailedPostImageTableViewCell: String = "\(DetailedPostImageTableViewCell.self)"
     private let detailedPostTitleTableViewCell: String = "\(DetailedPostTitleTableViewCell.self)"
@@ -18,12 +21,15 @@ class FavoritePostsViewController: UIViewController {
     private let numberOfRows = 3
     //MARK: - Views
     private let tableView = UITableView()
+    @IBOutlet private weak var emptyFavoritesNotificationImage: UIImageView!
+    @IBOutlet private weak var emptyFavoritesNotificationText: UILabel!
     
     //MARK: - Singleton instances
     private let postModel: AllPostsModel = AllPostsModel.shared
     
     //MARK: - Public properties
     static var favoriteTapStatus: Bool = false
+    static var successLoadingPostsAfterZeroScreen: Bool = false //флаг для edge-кейса, когда мы зашли в приложение без сети, получили zero-скрины на главном и избранном, обновили данные на главном и хотим, чтобы на соседней вкладке с избранным данные тоже обновились. 
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -34,9 +40,14 @@ class FavoritePostsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
+        if !(postModel.favoritePosts.isEmpty) && FavoritePostsViewController.successLoadingPostsAfterZeroScreen {
+            nonEmptyFavoritesNotification()
+            tableView.reloadData()
+        }
         if FavoritePostsViewController.favoriteTapStatus {
             tableView.reloadData()
             FavoritePostsViewController.favoriteTapStatus = false
+            postModel.favoritePosts.isEmpty ? emptyFavoritesNotification() : nonEmptyFavoritesNotification()
         }
     }
 }
@@ -48,7 +59,7 @@ private extension FavoritePostsViewController {
     
     func configureNavigationBar() {
         navigationItem.title = "Избранное"
-        let searchButton = UIBarButtonItem(image: searchBar,
+        let searchButton = UIBarButtonItem(image: ConstantImages.searchBar,
                                            style: .plain,
                                            target: self,
                                            action: #selector(goToSearchVC(sender:)))
@@ -56,9 +67,12 @@ private extension FavoritePostsViewController {
         navigationItem.rightBarButtonItem?.tintColor = ColorsStorage.black
     }
     func configureModel() {
+        emptyFavoritesNotification()
         postModel.didPostsUpdated = { [weak self] in
             DispatchQueue.main.async {
-                self?.tableView.reloadData()
+                guard let `self` = self else { return }
+                self.tableView.reloadData()
+                self.postModel.favoritePosts.isEmpty ? self.emptyFavoritesNotification() : self.nonEmptyFavoritesNotification()
             }
         }
     }
@@ -81,6 +95,17 @@ private extension FavoritePostsViewController {
     @objc func goToSearchVC(sender: UIBarButtonItem) {
         let vc = SearchPostsViewController()
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    func emptyFavoritesNotification() {
+        view.bringSubviewToFront(emptyFavoritesNotificationImage)
+        view.bringSubviewToFront(emptyFavoritesNotificationText)
+        emptyFavoritesNotificationImage.image = ConstantImages.sadSmile
+        emptyFavoritesNotificationText.font = .systemFont(ofSize: 14, weight: .light)
+        emptyFavoritesNotificationText.text = "В избранном пусто"
+    }
+    func nonEmptyFavoritesNotification() {
+        emptyFavoritesNotificationImage.image = UIImage()
+        emptyFavoritesNotificationText.text = ""
     }
 }
 //MARK: - TableView DataSource
@@ -116,6 +141,7 @@ extension FavoritePostsViewController: UITableViewDataSource, UITableViewDelegat
                         let favoritePost = self.postModel.favoritePosts[indexPath.section]
                         self.postModel.favoritePost(for: favoritePost)
                         self.tableView.reloadData()
+                        self.postModel.favoritePosts.isEmpty ? self.emptyFavoritesNotification() : self.nonEmptyFavoritesNotification()
                     }
                 }
             }

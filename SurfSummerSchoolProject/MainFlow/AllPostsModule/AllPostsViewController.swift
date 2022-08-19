@@ -94,6 +94,7 @@ private extension AllPostsViewController {
             DispatchQueue.main.async {
                 self?.activityIndicatorView.isHidden = true
                 self?.allPostsCollectionView.reloadData()
+                FavoritePostsViewController.successLoadingPostsAfterZeroScreen = true
              }
         }
     }
