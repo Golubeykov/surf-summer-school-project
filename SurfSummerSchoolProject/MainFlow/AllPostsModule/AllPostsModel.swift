@@ -73,7 +73,7 @@ struct PostModel: Equatable {
         self.content = content
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.mm.yyyy"
+        formatter.dateFormat = "dd.MM.yyyy"
         
         self.dateCreation = formatter.string(from: dateCreation)
     }

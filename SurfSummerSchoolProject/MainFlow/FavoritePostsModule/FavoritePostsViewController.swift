@@ -14,7 +14,7 @@ class FavoritePostsViewController: UIViewController {
     private let detailedPostImageTableViewCell: String = "\(DetailedPostImageTableViewCell.self)"
     private let detailedPostTitleTableViewCell: String = "\(DetailedPostTitleTableViewCell.self)"
     private let detailedPostBodyShortedTableViewCell: String = "\(DetailedPostBodyShortedTableViewCell.self)"
-    
+    private let alertViewText: String = "Вы точно хотите удалить из избранного?"
     private let numberOfRows = 3
     //MARK: - Views
     private let tableView = UITableView()
@@ -103,8 +103,8 @@ extension FavoritePostsViewController: UITableViewDataSource, UITableViewDelegat
                 cell.isFavorite = currentPost.isFavorite
                 cell.postTextLabel = currentPost.title
                 cell.didFavoriteTap = { [weak self] in
-                    let alert = UIAlertController(title: "Внимание", message: "Вы точно хотите удалить из избранного?", preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "Да, точно", style: UIAlertAction.Style.default, handler: { action in
+                    guard let `self` = self else { return }
+                    appendConfirmingAlertView(for: self, text: self.alertViewText) { action in
                         let favoritesStorage: FavoritesStorage = FavoritesStorage.shared
                         
                         if favoritesStorage.isPostFavorite(post: currentPost.title) {
@@ -113,13 +113,10 @@ extension FavoritePostsViewController: UITableViewDataSource, UITableViewDelegat
                             favoritesStorage.addFavorite(favoritePost: currentPost.title)
                         }
                         cell.isFavorite.toggle()
-                        if let favoritePost = self?.postModel.favoritePosts[indexPath.section] {
-                        self?.postModel.favoritePost(for: favoritePost)
-                        self?.tableView.reloadData()
-                        }
-                        }))
-                    alert.addAction(UIAlertAction(title: "Нет", style: UIAlertAction.Style.cancel, handler: nil))
-                    self?.present(alert, animated: true, completion: nil)
+                        let favoritePost = self.postModel.favoritePosts[indexPath.section]
+                        self.postModel.favoritePost(for: favoritePost)
+                        self.tableView.reloadData()
+                    }
                 }
             }
             return cell ?? UITableViewCell()

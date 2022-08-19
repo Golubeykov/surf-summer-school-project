@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A1B1B9128AF819D000346D7 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1B1B9028AF819D000346D7 /* AlertView.swift */; };
 		3A4190FC28ACFD7D00204734 /* LogoutRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4190FB28ACFD7C00204734 /* LogoutRequestModel.swift */; };
 		3A4190FE28ACFD8900204734 /* LogoutResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4190FD28ACFD8900204734 /* LogoutResponseModel.swift */; };
 		3A41910028ACFD9D00204734 /* LogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4190FF28ACFD9D00204734 /* LogoutService.swift */; };
@@ -69,6 +70,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A1B1B9028AF819D000346D7 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		3A4190FB28ACFD7C00204734 /* LogoutRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequestModel.swift; sourceTree = "<group>"; };
 		3A4190FD28ACFD8900204734 /* LogoutResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponseModel.swift; sourceTree = "<group>"; };
 		3A4190FF28ACFD9D00204734 /* LogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutService.swift; sourceTree = "<group>"; };
@@ -143,6 +145,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A1B1B8F28AF818E000346D7 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				3A1B1B9028AF819D000346D7 /* AlertView.swift */,
+			);
+			path = AlertView;
+			sourceTree = "<group>";
+		};
 		3A4190FA28ACFD4000204734 /* LogoutService */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +431,7 @@
 		3AE4174628A18FAC009E1AFE /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
+				3A1B1B8F28AF818E000346D7 /* AlertView */,
 				3AFC3A6228AC01B50077E14C /* Snackbar */,
 				3AE4174728A18FBA009E1AFE /* Posts load error */,
 			);
@@ -599,6 +610,7 @@
 				3AE4174B28A18FF1009E1AFE /* PostsLoadErrorViewController.swift in Sources */,
 				3A6ADAFD28AA432D00461A46 /* ImagesStorage.swift in Sources */,
 				3AE4173E28A12F7D009E1AFE /* ImageLoader.swift in Sources */,
+				3A1B1B9128AF819D000346D7 /* AlertView.swift in Sources */,
 				3A82DD61289C4A9100453EE2 /* ProfileViewController.swift in Sources */,
 				3AFC3A6628AC02480077E14C /* SnackbarModel.swift in Sources */,
 				3A4190FC28ACFD7D00204734 /* LogoutRequestModel.swift in Sources */,
