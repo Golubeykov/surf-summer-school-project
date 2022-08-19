@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostsLoadErrorViewController" customModule="SurfSummerSchoolProject" customModuleProvider="target">
             <connections>
+                <outlet property="errorDescription" destination="yoy-rg-LOi" id="se0-Eq-7JD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

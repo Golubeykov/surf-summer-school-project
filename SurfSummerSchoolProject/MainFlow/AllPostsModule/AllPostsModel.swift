@@ -10,12 +10,13 @@ import UIKit
 
 final class AllPostsModel {
     static let shared = AllPostsModel.init()
+    static var errorDescription: String = "Что-то пошло не так"
+    
     enum LoadState {
         case idle
         case success
         case error
     }
-    
     var currentState: LoadState = .idle
     var didPostsUpdated: (()->Void)?
     var didPostsFetchErrorHappened: (()->Void)?
@@ -47,9 +48,17 @@ final class AllPostsModel {
                 self?.didPostsUpdated?()
                 
             case .failure(let error):
+                if let networkError = error as? PossibleErrors {
+                    switch networkError {
+                    case .noNetworkConnection:
+                        AllPostsModel.errorDescription = "Отсутствует интернет-соединение \nПопробуйте позже"
+                    default:
+                        AllPostsModel.errorDescription = "Что-то пошло не так"
+                    }
+                }
+                
                 self?.currentState = .error
                 self?.didPostsFetchErrorHappened?()
-                print(error)
             }
         }
     }

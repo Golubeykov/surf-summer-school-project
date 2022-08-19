@@ -38,10 +38,20 @@ class ProfileViewController: UIViewController {
                                 delegate.window?.rootViewController = navigationAuthViewController
                             }
                         }
-                    case .failure:
+                    case .failure(let error):
                         DispatchQueue.main.async {
                             buttonActivityIndicator.hideButtonLoading()
-                            let model = SnackbarModel(text: "Не получилось выйти")
+                            var textForSnackbar = "Не удалось выйти, попробуйте еще раз"
+                            if let currentError = error as? PossibleErrors {
+                                switch currentError {
+                                case .noNetworkConnection:
+                                    textForSnackbar = "Отсутствует интернет-соединение \nПопробуйте позже"
+                                default:
+                                    textForSnackbar = "Не удалось выйти, попробуйте еще раз"
+                                }
+                            }
+                            
+                            let model = SnackbarModel(text: textForSnackbar)
                             let snackbar = SnackbarView(model: model)
                             guard let `self` = self else { return }
                             snackbar.showSnackBar(on: self, with: model)

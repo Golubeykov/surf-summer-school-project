@@ -84,7 +84,8 @@ private extension AllPostsViewController {
                 self.activityIndicatorView.isHidden = true
                 self.fetchPostsErrorVC.view.alpha = 1
                 } else {
-                    let model = SnackbarModel(text: "Не удалось загрузить данные")
+                    let textForSnackBar = AllPostsModel.errorDescription
+                    let model = SnackbarModel(text: textForSnackBar)
                     let snackbar = SnackbarView(model: model)
                     snackbar.showSnackBar(on: self, with: model)
                 }
