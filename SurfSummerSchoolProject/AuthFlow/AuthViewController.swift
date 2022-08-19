@@ -22,10 +22,6 @@ class AuthViewController: UIViewController {
     @IBOutlet private weak var loginBottomLine: UIView!
     @IBOutlet private weak var passwordBottomLine: UIView!
     
-    //MARK: - Private properties
-    private var originalButtonText: String = "Войти"
-    private var activityIndicator: UIActivityIndicatorView!
-    
     //MARK: - Methods
     @IBAction private func loginButtonAction(_ sender: Any) {
         if loginTextField.text == "" {
@@ -35,7 +31,8 @@ class AuthViewController: UIViewController {
             showEmptyPasswordNotification()
         }
         if !(loginTextField.text == "" || passwordTextField.text == "") {
-            showButtonLoading()
+            let buttonActivityIndicator = ButtonActivityIndicator(button: loginButtonLabel, originalButtonText: "Войти")
+            buttonActivityIndicator.showButtonLoading()
             guard let phoneNumber = loginTextField.text else { return }
             let phoneNumberClearedFromMask = clearPhoneNumberFromMask(phoneNumber: phoneNumber)
             guard let password = passwordTextField.text else { return }
@@ -56,7 +53,7 @@ class AuthViewController: UIViewController {
                             let snackbar = SnackbarView(model: model)
                             guard let `self` = self else { return }
                             snackbar.showSnackBar(on: self, with: model)
-                            self.hideButtonLoading()
+                            buttonActivityIndicator.hideButtonLoading()
                         }
                     }
                 }
@@ -212,47 +209,6 @@ extension AuthViewController {
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         dismissEmptyFieldsNotidication()
-    }
-}
-
-//MARK: - Adding activity indicator to Button after tap
-extension AuthViewController {
-    func showButtonLoading() {
-        loginButtonLabel.setTitle("", for: .normal)
-        
-        if (activityIndicator == nil) {
-            activityIndicator = createActivityIndicator()
-        }
-        
-        showSpinning()
-    }
-    
-    func hideButtonLoading() {
-        loginButtonLabel.setTitle(originalButtonText, for: .normal)
-        activityIndicator.stopAnimating()
-    }
-    
-    private func createActivityIndicator() -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = .lightGray
-        return activityIndicator
-    }
-    
-    private func showSpinning() {
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        loginButtonLabel.addSubview(activityIndicator)
-        centerActivityIndicatorInButton()
-        activityIndicator.startAnimating()
-    }
-    
-    private func centerActivityIndicatorInButton() {
-        guard loginButtonLabel != nil else { return }
-        let xCenterConstraint = NSLayoutConstraint(item: loginButtonLabel!, attribute: .centerX, relatedBy: .equal, toItem: activityIndicator, attribute: .centerX, multiplier: 1, constant: 0)
-        loginButtonLabel.addConstraint(xCenterConstraint)
-        
-        let yCenterConstraint = NSLayoutConstraint(item: loginButtonLabel!, attribute: .centerY, relatedBy: .equal, toItem: activityIndicator, attribute: .centerY, multiplier: 1, constant: 0)
-        loginButtonLabel.addConstraint(yCenterConstraint)
     }
 }
 
