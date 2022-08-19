@@ -83,6 +83,14 @@ private extension AllPostsViewController {
                 if self.postModel.posts.isEmpty {
                 self.activityIndicatorView.isHidden = true
                 self.fetchPostsErrorVC.view.alpha = 1
+                //Ниже обработка кейса, когда токен обнулили на сервере, но в приложении время его действия не вышло. Пусть будет, иначе возможно зацикливание приложения, которому даже удаление не поможет. Т.к. токен лежит в keyChain.
+                if AllPostsModel.errorDescription == "Токен недействителен" {
+                    if let delegate = UIApplication.shared.delegate as? AppDelegate {
+                        let authViewController = AuthViewController()
+                        let navigationAuthViewController = UINavigationController(rootViewController: authViewController)
+                        delegate.window?.rootViewController = navigationAuthViewController
+                    }
+                }
                 } else {
                     let textForSnackBar = AllPostsModel.errorDescription
                     let model = SnackbarModel(text: textForSnackBar)

@@ -80,13 +80,7 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
                                 onResponseWasReceived(.failure(PossibleErrors.unknownError))
                             }
                         case 401:
-                            do {
-                                let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
-                                saveResponseToCache(response, cachedData: data, by: request)
-                                onResponseWasReceived(.success(mappedModel))
-                            } catch {
-                                onResponseWasReceived(.failure(PossibleErrors.unknownError))
-                            }
+                            onResponseWasReceived(.failure(PossibleErrors.nonAuthorizedAccess))
                         case 400:
                             do {
                                 if let badRequest = try JSONSerialization.jsonObject(with: data) as? [String:String] {
@@ -111,6 +105,41 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
         }
     }
     
+    func performRequestWithEmptyResponse(
+        input: AbstractInput,
+        _ onResponseWasReceived: @escaping (_ result: Result<String, Error>) -> Void
+    ) {
+        do {
+            let request = try getRequest(with: input)
+            session.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                        onResponseWasReceived(.failure(PossibleErrors.noNetworkConnection))
+                    } else {
+                    onResponseWasReceived(.failure(PossibleErrors.unknownError))
+                    }
+                    
+                } else if let response = response {
+                    if let httpResponse = response as? HTTPURLResponse {
+                        switch httpResponse.statusCode {
+                        case 204:
+                            let success = "Success logout"
+                            onResponseWasReceived(.success(success))
+                        case 401:
+                            onResponseWasReceived(.failure(PossibleErrors.nonAuthorizedAccess))
+                        default:
+                            onResponseWasReceived(.failure(PossibleErrors.unknownServerError))
+                        }
+                    }
+                } else {
+                    onResponseWasReceived(.failure(PossibleErrors.unknownError))
+                }
+            }
+            .resume()
+        } catch {
+            onResponseWasReceived(.failure(PossibleErrors.unknownError))
+        }
+    }
 }
 
 // MARK: - EmptyModel
