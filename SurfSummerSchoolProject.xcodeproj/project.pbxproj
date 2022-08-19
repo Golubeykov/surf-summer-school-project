@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A1B1B9128AF819D000346D7 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1B1B9028AF819D000346D7 /* AlertView.swift */; };
 		3A21D05828AF916300ECC401 /* PhoneMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21D05728AF916300ECC401 /* PhoneMask.swift */; };
+		3A21D05B28AF94D400ECC401 /* ButtonActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21D05A28AF94D400ECC401 /* ButtonActivityIndicator.swift */; };
 		3A4190FC28ACFD7D00204734 /* LogoutRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4190FB28ACFD7C00204734 /* LogoutRequestModel.swift */; };
 		3A4190FE28ACFD8900204734 /* LogoutResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4190FD28ACFD8900204734 /* LogoutResponseModel.swift */; };
 		3A41910028ACFD9D00204734 /* LogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4190FF28ACFD9D00204734 /* LogoutService.swift */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		3A1B1B9028AF819D000346D7 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		3A21D05728AF916300ECC401 /* PhoneMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneMask.swift; sourceTree = "<group>"; };
+		3A21D05A28AF94D400ECC401 /* ButtonActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonActivityIndicator.swift; sourceTree = "<group>"; };
 		3A4190FB28ACFD7C00204734 /* LogoutRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequestModel.swift; sourceTree = "<group>"; };
 		3A4190FD28ACFD8900204734 /* LogoutResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponseModel.swift; sourceTree = "<group>"; };
 		3A4190FF28ACFD9D00204734 /* LogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutService.swift; sourceTree = "<group>"; };
@@ -161,6 +163,14 @@
 				3A21D05728AF916300ECC401 /* PhoneMask.swift */,
 			);
 			path = "User Interface";
+			sourceTree = "<group>";
+		};
+		3A21D05928AF94BE00ECC401 /* ButtonActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				3A21D05A28AF94D400ECC401 /* ButtonActivityIndicator.swift */,
+			);
+			path = ButtonActivityIndicator;
 			sourceTree = "<group>";
 		};
 		3A4190FA28ACFD4000204734 /* LogoutService */ = {
@@ -442,6 +452,7 @@
 		3AE4174628A18FAC009E1AFE /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
+				3A21D05928AF94BE00ECC401 /* ButtonActivityIndicator */,
 				3A1B1B8F28AF818E000346D7 /* AlertView */,
 				3AFC3A6228AC01B50077E14C /* Snackbar */,
 				3AE4174728A18FBA009E1AFE /* Posts load error */,
@@ -600,6 +611,7 @@
 				3AE4173C28A12F1D009E1AFE /* NetworkTask.swift in Sources */,
 				3A82DD79289D942100453EE2 /* AllPostsCollectionViewCell.swift in Sources */,
 				3A41910328AD3CE300204734 /* ProfileStorage.swift in Sources */,
+				3A21D05B28AF94D400ECC401 /* ButtonActivityIndicator.swift in Sources */,
 				3A82DD82289EA36900453EE2 /* DetailedPostViewController.swift in Sources */,
 				3A82DD76289D82EF00453EE2 /* AllPostsModel.swift in Sources */,
 				3AE4172C28A12E42009E1AFE /* TokenContainer.swift in Sources */,
