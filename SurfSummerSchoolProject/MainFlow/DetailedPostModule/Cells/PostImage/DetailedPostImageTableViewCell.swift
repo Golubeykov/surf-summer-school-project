@@ -54,4 +54,7 @@ class DetailedPostImageTableViewCell: UITableViewCell {
         detailedPostImageView.layer.cornerRadius = 12
         detailedPostImageView.contentMode = .scaleAspectFill
     }
+    override func prepareForReuse() {
+        detailedPostImageView.image = UIImage()
+    }
 }
