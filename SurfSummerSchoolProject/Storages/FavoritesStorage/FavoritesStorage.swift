@@ -11,7 +11,7 @@ class FavoritesStorage {
     //MARK: Public properties
     static let shared = FavoritesStorage()
     var myFavorites = [String]()
-    let keyForFavoritesStorage = "favoritePosts"
+    private let keyForFavoritesStorage = "favoritePosts"
     
     //MARK: - Private property
     private let defaults = UserDefaults.standard

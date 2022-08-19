@@ -5,7 +5,6 @@
 //  Created by Антон Голубейков on 19.08.2022.
 //
 
-import Foundation
 import UIKit
 
 func appendConfirmingAlertView(for viewController: UIViewController, text: String, completion: @escaping (UIAlertAction) -> Void) {

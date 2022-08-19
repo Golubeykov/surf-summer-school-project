@@ -9,26 +9,26 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     //MARK: - Constants
-    let profileMainInfoCell: String = "\(ProfileMainInfoCell.self)"
-    let contactsCell: String = "\(ContactsCell.self)"
-    let numberOfRows = 4
-    let mainInfoCellHeight: CGFloat = 160
-    let contactsCellHeight: CGFloat = 72
+    private let profileMainInfoCell: String = "\(ProfileMainInfoCell.self)"
+    private let contactsCell: String = "\(ContactsCell.self)"
+    private let numberOfRows = 4
+    private let mainInfoCellHeight: CGFloat = 160
+    private let contactsCellHeight: CGFloat = 72
     
     //MARK: - Views
-    @IBOutlet weak var logoutButtonLabel: UIButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var logoutButtonLabel: UIButton!
+    @IBOutlet private weak var tableView: UITableView!
     
     //MARK: - Model
-    var profileModel: ProfileModel = ProfileInstance.shared.profileModel
+    private var profileModel: ProfileModel = ProfileInstance.shared.profileModel
     
     //MARK: - Properties
     //Activity indicator для кнопки Войти
     private var originalButtonText: String = "Выйти"
-    var activityIndicator: UIActivityIndicatorView!
+    private var activityIndicator: UIActivityIndicatorView!
     
     //MARK: - Actions
-    @IBAction func logoutButtonAction(_ sender: Any) {
+    @IBAction private func logoutButtonAction(_ sender: Any) {
         appendConfirmingAlertView(for: self, text: "Вы точно хотите выйти из приложения?", completion: { action in
             self.showButtonLoading()
             LogoutService()
@@ -66,10 +66,10 @@ class ProfileViewController: UIViewController {
     }
     
     //MARK: - Methods
-    func configureNavigationBar() {
+    private func configureNavigationBar() {
         navigationItem.title = "Профиль"
     }
-    func configureTableView() {
+    private func configureTableView() {
         tableView.register(UINib(nibName: profileMainInfoCell, bundle: .main), forCellReuseIdentifier: profileMainInfoCell)
         tableView.register(UINib(nibName: contactsCell, bundle: .main), forCellReuseIdentifier: contactsCell)
         tableView.dataSource = self
@@ -128,7 +128,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 //MARK: - Adding activity indicator to Button after tap
-extension ProfileViewController {
+private extension ProfileViewController {
     func showButtonLoading() {
         logoutButtonLabel.setTitle("", for: .normal)
         

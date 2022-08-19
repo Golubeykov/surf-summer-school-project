@@ -25,14 +25,14 @@ class SearchPostsViewController: UIViewController, UIGestureRecognizerDelegate {
     //MARK: - Views
     @IBOutlet private weak var searchUserNotificationImage: UIImageView!
     @IBOutlet private weak var searchUserNotificationText: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     private var searchBar: UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 303, height: 32))
     
     //MARK: - Properties
-    var posts = AllPostsModel.shared.filteredPosts(searchText: "")
+    private var posts = AllPostsModel.shared.filteredPosts(searchText: "")
     
     //MARK: - Methods
-    func configureApperance() {
+    private func configureApperance() {
         searchUserNotificationText.font = .systemFont(ofSize: 14, weight: .light)
         searchUserNotificationImage.image = ConstantImages.searchLens
         searchUserNotificationText.text = "Введите ваш запрос"
@@ -43,7 +43,7 @@ class SearchPostsViewController: UIViewController, UIGestureRecognizerDelegate {
         collectionView.contentInset = .init(top: 10, left: 16, bottom: 10, right: 16)
     }
     
-    func configureNavigationBar() {
+    private func configureNavigationBar() {
         let backButton = UIBarButtonItem(image: ConstantImages.backArrow,
                                          style: .plain,
                                          target: navigationController,
@@ -102,7 +102,7 @@ extension SearchPostsViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(AllPostsCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? AllPostsCollectionViewCell {
-            cell.titleText = posts[indexPath.item].title
+            cell.postTextLabel.text = posts[indexPath.item].title
             cell.isFavorite = posts[indexPath.item].isFavorite
             cell.imageUrlInString = posts[indexPath.item].imageUrlInString
             cell.didFavoriteTap = { [weak self] in

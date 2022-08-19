@@ -10,17 +10,17 @@ import Foundation
 struct BaseProfileStorage: ProfileStorage {
 
     // MARK: - Properties
-    var unprotectedStorage: UserDefaults {
+    private var unprotectedStorage: UserDefaults {
         UserDefaults.standard
     }
     // MARK: - StorageKeys
-    let phoneKey: String = "phone"
-    let emailKey: String = "email"
-    let firstNameKey: String = "firstName"
-    let lastNameKey: String = "lastName"
-    let avatarKey: String = "avatar"
-    let cityKey: String = "city"
-    let aboutKey: String = "about"
+    private let phoneKey: String = "phone"
+    private let emailKey: String = "email"
+    private let firstNameKey: String = "firstName"
+    private let lastNameKey: String = "lastName"
+    private let avatarKey: String = "avatar"
+    private let cityKey: String = "city"
+    private let aboutKey: String = "about"
     
 
     // MARK: - TokenStorage

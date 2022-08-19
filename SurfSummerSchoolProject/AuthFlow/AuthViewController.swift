@@ -10,19 +10,19 @@ import UIKit
 class AuthViewController: UIViewController {
     
     //MARK: - Views
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var loginTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var loginTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var loginButtonLabel: UIButton!
+    @IBOutlet private weak var loginButtonLabel: UIButton!
     private let showHidePasswordButton = UIButton(type: .custom)
     
-    @IBOutlet weak var passwordConstraint: NSLayoutConstraint!
-    @IBOutlet weak var buttonConstraint: NSLayoutConstraint!
-    @IBOutlet weak var loginBottomLine: UIView!
-    @IBOutlet weak var passwordBottomLine: UIView!
+    @IBOutlet private weak var passwordConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var buttonConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var loginBottomLine: UIView!
+    @IBOutlet private weak var passwordBottomLine: UIView!
     
-    //MARK: - Properties
+    //MARK: - Private properties
     //Маска номера телефона
     private let maxNumberCountInPhoneNumberField = 11
     private var regex: NSRegularExpression? {
@@ -36,10 +36,10 @@ class AuthViewController: UIViewController {
     }
     //Activity indicator для кнопки Войти
     private var originalButtonText: String = "Войти"
-    var activityIndicator: UIActivityIndicatorView!
+    private var activityIndicator: UIActivityIndicatorView!
     
     //MARK: - Methods
-    @IBAction func loginButtonAction(_ sender: Any) {
+    @IBAction private func loginButtonAction(_ sender: Any) {
         if loginTextField.text == "" {
             showEmptyLoginNotification()
         }
@@ -74,7 +74,7 @@ class AuthViewController: UIViewController {
                 }
         }
     }
-    @IBAction func demoButtonAction(_ sender: Any) {
+    @IBAction private func demoButtonAction(_ sender: Any) {
         loginTextField.text = "+7 (987) 654-32-19"
         passwordTextField.text = "qwerty"
     }
@@ -138,7 +138,7 @@ extension UITextField {
     }
 }
 //MARK: - Configuring password field
-extension AuthViewController {
+private extension AuthViewController {
     
     func enablePasswordToggle(){
         showHidePasswordButton.setImage(ImagesStorage.passwordIsHiddenIcon, for: .normal)
@@ -193,7 +193,7 @@ extension AuthViewController: UITextFieldDelegate {
         return "+" + number
     }
     
-    func clearPhoneNumberFromMask(phoneNumber: String) -> String {
+    private func clearPhoneNumberFromMask(phoneNumber: String) -> String {
         let phoneNumberClearedFromSymbols = phoneNumber.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
         return phoneNumberClearedFromSymbols
     }
