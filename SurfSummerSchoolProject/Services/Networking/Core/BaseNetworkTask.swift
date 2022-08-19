@@ -50,14 +50,15 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
      ) {
          do {
              let request = try getRequest(with: input)
-             
-             if let cachedResponse = getCachedResponseFromCache(by: request) {
 
-                 let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: cachedResponse.data)
-                 
-                 onResponseWasReceived(.success(mappedModel))
-                 //return
-             } else {
+//Закомментировано для возможности протестировать экран с состояния ошибки загрузки данных из сети. Будет раскомментировано после проверки. 
+//             if let cachedResponse = getCachedResponseFromCache(by: request) {
+//
+//                 let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: cachedResponse.data)
+//
+//                 onResponseWasReceived(.success(mappedModel))
+//                 //return
+//             } else {
 
              session.dataTask(with: request) { data, response, error in
                  if let error = error {
@@ -75,7 +76,7 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
                  }
              }
              .resume()
-             }
+             //}
          } catch {
              onResponseWasReceived(.failure(error))
          }

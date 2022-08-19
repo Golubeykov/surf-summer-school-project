@@ -9,10 +9,10 @@ import UIKit
 
 class SnackbarView: UIView {
     //MARK: - Constants
-    let whiteColor = ColorsStorage.white
+    private let whiteColor = ColorsStorage.white
     
-    //MARK: - Properties
-    let model: SnackbarModel
+    //MARK: - Private properties
+    private let model: SnackbarModel
     private let label: UILabel = {
         let label = UILabel()
         label.textColor = ColorsStorage.white
@@ -49,7 +49,7 @@ class SnackbarView: UIView {
         label.text = model.text
     }
     
-    public func showSnackBar(on viewController: UIViewController, with model: SnackbarModel) {
+    func showSnackBar(on viewController: UIViewController, with model: SnackbarModel) {
         let snackbar = SnackbarView(model: model)
         let width = viewController.view.frame.size.width
         let height: CGFloat = viewController.view.frame.size.width/4

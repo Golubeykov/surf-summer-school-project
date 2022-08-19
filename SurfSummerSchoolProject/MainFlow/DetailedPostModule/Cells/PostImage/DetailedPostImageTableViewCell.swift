@@ -21,7 +21,7 @@ class DetailedPostImageTableViewCell: UITableViewCell {
     @IBOutlet private weak var favoriteButtonLabel: UIButton!
     
     
-    //MARK: - Events // Реализуется позже
+    //MARK: - Events
     var didFavoriteTap: (() -> Void)?
     @IBAction func favoriteButtonAction(_ sender: Any) {        
         didFavoriteTap?()

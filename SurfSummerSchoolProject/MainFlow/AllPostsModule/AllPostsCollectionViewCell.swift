@@ -17,9 +17,8 @@ class AllPostsCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Views
     @IBOutlet private weak var postImageView: UIImageView!
-    @IBOutlet private weak var postTextLabel: UILabel!
     @IBOutlet private weak var favoritePostButtonLabel: UIButton!
-    
+    @IBOutlet weak var postTextLabel: UILabel!
     
     //MARK: - Events
     var didFavoriteTap: (() -> Void)?
@@ -37,11 +36,6 @@ class AllPostsCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Properties
-    var titleText: String = "" {
-        didSet {
-            postTextLabel.text = titleText
-        }
-    }
     var imageUrlInString: String = "" {
         didSet {
             guard let url = URL(string: imageUrlInString) else {
@@ -74,7 +68,7 @@ class AllPostsCollectionViewCell: UICollectionViewCell {
     }
     override func prepareForReuse() {
         imageUrlInString = ""
-        titleText = ""
+        postTextLabel.text = ""
         postImageView.image = UIImage()
         
     }

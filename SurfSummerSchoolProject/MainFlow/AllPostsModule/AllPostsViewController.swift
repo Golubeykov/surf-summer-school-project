@@ -28,7 +28,7 @@ class AllPostsViewController: UIViewController {
     static var favoriteTapStatus: Bool = false
     
     //MARK: - Views
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet private weak var allPostsCollectionView: UICollectionView!
     
     //MARK: - Lifecycle
@@ -120,7 +120,7 @@ extension AllPostsViewController: UICollectionViewDataSource, UICollectionViewDe
         let cell = allPostsCollectionView.dequeueReusableCell(withReuseIdentifier: allPostsCollectionViewCell, for: indexPath)
         if let cell = cell as? AllPostsCollectionViewCell {
             self.activityIndicatorView.isHidden = true
-            cell.titleText = postModel.posts[indexPath.item].title
+            cell.postTextLabel.text = postModel.posts[indexPath.item].title
             cell.isFavorite = postModel.posts[indexPath.item].isFavorite
             cell.imageUrlInString = postModel.posts[indexPath.item].imageUrlInString
             cell.didFavoriteTap = { [weak self] in
