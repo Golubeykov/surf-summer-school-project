@@ -21,6 +21,7 @@ class FavoritePostsViewController: UIViewController {
     private let numberOfRows = 3
     //MARK: - Views
     private let tableView = UITableView()
+    private let refreshControl = UIRefreshControl()
     @IBOutlet private weak var emptyFavoritesNotificationImage: UIImageView!
     @IBOutlet private weak var emptyFavoritesNotificationText: UILabel!
     
@@ -36,6 +37,7 @@ class FavoritePostsViewController: UIViewController {
         super.viewDidLoad()
         configureAppearance()
         configureModel()
+        configurePullToRefresh()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,6 +45,7 @@ class FavoritePostsViewController: UIViewController {
         if !(postModel.favoritePosts.isEmpty) && FavoritePostsViewController.successLoadingPostsAfterZeroScreen {
             nonEmptyFavoritesNotification()
             tableView.reloadData()
+            FavoritePostsViewController.successLoadingPostsAfterZeroScreen = false
         }
         if FavoritePostsViewController.favoriteTapStatus {
             tableView.reloadData()
@@ -65,6 +68,10 @@ private extension FavoritePostsViewController {
                                            action: #selector(goToSearchVC(sender:)))
         navigationItem.rightBarButtonItem = searchButton
         navigationItem.rightBarButtonItem?.tintColor = ColorsStorage.black
+    }
+    @objc func goToSearchVC(sender: UIBarButtonItem) {
+        let vc = SearchPostsViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     func configureModel() {
         emptyFavoritesNotification()
@@ -92,10 +99,16 @@ private extension FavoritePostsViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
     }
-    @objc func goToSearchVC(sender: UIBarButtonItem) {
-        let vc = SearchPostsViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+    func configurePullToRefresh() {
+        refreshControl.addTarget(self, action: #selector(self.pullToRefresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = ColorsStorage.lightGray
+        refreshControl.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        tableView.addSubview(refreshControl)
     }
+    @objc func pullToRefresh(_ sender: AnyObject) {
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+        }
     func emptyFavoritesNotification() {
         view.bringSubviewToFront(emptyFavoritesNotificationImage)
         view.bringSubviewToFront(emptyFavoritesNotificationText)
