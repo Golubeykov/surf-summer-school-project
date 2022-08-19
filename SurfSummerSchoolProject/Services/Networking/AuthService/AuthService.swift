@@ -24,6 +24,7 @@ struct AuthService {
                 do {
                     try dataTask.tokenStorage.set(newToken: TokenContainer(token: responseModel.token, receivingDate: .now))
                     try dataTask.profileStorage.set(profile: responseModel.user_info)
+                    onResponseWasReceived(result)
                 } catch {
                     onResponseWasReceived(result)
                 }

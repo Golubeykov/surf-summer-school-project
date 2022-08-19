@@ -79,6 +79,14 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
                             } catch {
                                 onResponseWasReceived(.failure(PossibleErrors.unknownError))
                             }
+                        case 401:
+                            do {
+                                let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
+                                saveResponseToCache(response, cachedData: data, by: request)
+                                onResponseWasReceived(.success(mappedModel))
+                            } catch {
+                                onResponseWasReceived(.failure(PossibleErrors.unknownError))
+                            }
                         case 400:
                             do {
                                 if let badRequest = try JSONSerialization.jsonObject(with: data) as? [String:String] {
