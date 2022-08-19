@@ -47,9 +47,23 @@ class AuthViewController: UIViewController {
                                 delegate.window?.rootViewController = mainViewController
                             }
                         }
-                    case .failure:
+                    case .failure (let error):
                         DispatchQueue.main.async {
-                            let model = SnackbarModel(text: "Логин или пароль введен неправильно")
+                            var snackbarText = "Что-то пошло не так"
+                            
+                            if let currentError = error as? PossibleErrors {
+                                switch currentError {
+                                case .badRequest(let response):
+                                    if response["message"] == "Неверный логин/пароль" {
+                                        snackbarText = "Логин или пароль введен неправильно"
+                                    }
+                                case .noNetworkConnection:
+                                    snackbarText = "Отсутствует интернет соединение"
+                                default:
+                                    snackbarText = "Что-то пошло не так"
+                                }
+                            }
+                            let model = SnackbarModel(text: snackbarText)
                             let snackbar = SnackbarView(model: model)
                             guard let `self` = self else { return }
                             snackbar.showSnackBar(on: self, with: model)

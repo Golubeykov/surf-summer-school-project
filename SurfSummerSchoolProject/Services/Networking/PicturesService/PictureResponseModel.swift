@@ -17,7 +17,7 @@ struct PictureResponseModel: Decodable {
      let photoUrl: String
 
      var date: Date {
-         Date(timeIntervalSince1970: publicationDate / 1000)/// Почему? В чем прикол присылать дату в миллисекундах?
+         Date(timeIntervalSince1970: publicationDate / 1000)
      }
 
      // MARK: - Private Properties

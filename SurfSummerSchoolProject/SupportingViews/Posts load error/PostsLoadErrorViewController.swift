@@ -11,11 +11,13 @@ class PostsLoadErrorViewController: UIViewController {
 
     var refreshButtonAction: ()->Void = {}
     
+    @IBOutlet weak var errorDescription: UILabel!
     @IBAction private func refreshButton(_ sender: Any) {
         refreshButtonAction()
         self.view.alpha = 0
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        errorDescription.text = "Не удалось загрузить ленту \nОбновите экран или попробуйте позже"
     }
 }

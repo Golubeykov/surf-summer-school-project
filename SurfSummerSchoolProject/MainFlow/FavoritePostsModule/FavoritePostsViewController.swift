@@ -36,8 +36,8 @@ class FavoritePostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAppearance()
-        configureModel()
         configurePullToRefresh()
+        configureModel()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -110,6 +110,7 @@ private extension FavoritePostsViewController {
         refreshControl.endRefreshing()
         }
     func emptyFavoritesNotification() {
+        refreshControl.removeFromSuperview()
         view.bringSubviewToFront(emptyFavoritesNotificationImage)
         view.bringSubviewToFront(emptyFavoritesNotificationText)
         emptyFavoritesNotificationImage.image = ConstantImages.sadSmile
@@ -117,6 +118,7 @@ private extension FavoritePostsViewController {
         emptyFavoritesNotificationText.text = "В избранном пусто"
     }
     func nonEmptyFavoritesNotification() {
+        configurePullToRefresh()
         emptyFavoritesNotificationImage.image = UIImage()
         emptyFavoritesNotificationText.text = ""
     }
