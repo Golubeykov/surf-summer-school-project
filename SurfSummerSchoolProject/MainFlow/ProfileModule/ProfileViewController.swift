@@ -50,11 +50,10 @@ class ProfileViewController: UIViewController {
                                     textForSnackbar = "Не удалось выйти, попробуйте еще раз"
                                 }
                             }
-                            
-                            let model = SnackbarModel(text: textForSnackbar)
-                            let snackbar = SnackbarView(model: model)
                             guard let `self` = self else { return }
-                            snackbar.showSnackBar(on: self, with: model)
+                            let model = SnackbarModel(text: textForSnackbar)
+                            let snackbar = SnackbarView(model: model, viewController: self)
+                            snackbar.showSnackBar()
                         }
                     }
                 }
