@@ -138,11 +138,16 @@ extension UITextField {
 }
 //MARK: - Configuring password field
 private extension AuthViewController {
+
     
     func enablePasswordToggle(){
+        var buttonConfiguration = UIButton.Configuration.filled()
+        buttonConfiguration.baseBackgroundColor = ColorsStorage.clear
+        buttonConfiguration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: -16, bottom: 0, trailing: 0)
+
+        showHidePasswordButton.configuration = buttonConfiguration
         showHidePasswordButton.setImage(ImagesStorage.passwordIsHiddenIcon, for: .normal)
         showHidePasswordButton.setImage(ImagesStorage.passwordIsShownIcon, for: .selected)
-        showHidePasswordButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
         showHidePasswordButton.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
         passwordTextField.rightView = showHidePasswordButton
         passwordTextField.rightViewMode = .always

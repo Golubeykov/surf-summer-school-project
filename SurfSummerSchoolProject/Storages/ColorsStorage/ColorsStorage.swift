@@ -8,6 +8,7 @@
 import UIKit
 
 class ColorsStorage {
+    static let clear = UIColor.clear
     static let white = UIColor(rgb: 0xFFFFFF)
     static let black = UIColor(rgb: 0x000000)
     static let red = UIColor(rgb: 0xF35858)
