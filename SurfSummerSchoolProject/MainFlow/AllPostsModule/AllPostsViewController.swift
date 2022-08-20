@@ -94,8 +94,8 @@ private extension AllPostsViewController {
                 } else {
                     let textForSnackBar = AllPostsModel.errorDescription
                     let model = SnackbarModel(text: textForSnackBar)
-                    let snackbar = SnackbarView(model: model)
-                    snackbar.showSnackBar(on: self, with: model)
+                    let snackbar = SnackbarView(model: model, viewController: self)
+                    snackbar.showSnackBar()
                 }
              }
         }

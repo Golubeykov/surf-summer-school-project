@@ -13,6 +13,7 @@ class SnackbarView: UIView {
     
     //MARK: - Private properties
     private let model: SnackbarModel
+    private let viewController: UIViewController
     private let label: UILabel = {
         let label = UILabel()
         label.textColor = ColorsStorage.white
@@ -22,10 +23,18 @@ class SnackbarView: UIView {
         
         return label
     }()
+    private var snackbarWasSwiped = false
+    
+    //MARK: - Calculated properties
+    var width: CGFloat { viewController.view.frame.size.width }
+    var height: CGFloat { viewController.view.frame.size.width/4 }
+    var initialFrame: CGRect { CGRect(x: 0, y: -height, width: width, height: height) }
+    var movedFrame: CGRect { CGRect(x: 0, y: -height/2, width: width, height: height) }
     
     //MARK: - Init
-    init(model: SnackbarModel) {
+    init(model: SnackbarModel, viewController: UIViewController) {
         self.model = model
+        self.viewController = viewController
         super.init(frame: .zero)
         
         addSubview(label)
@@ -49,32 +58,47 @@ class SnackbarView: UIView {
         label.text = model.text
     }
     
-    func showSnackBar(on viewController: UIViewController, with model: SnackbarModel) {
-        let snackbar = SnackbarView(model: model)
-        let width = viewController.view.frame.size.width
-        let height: CGFloat = viewController.view.frame.size.width/4
-        let initialFrame = CGRect(x: 0, y: -height, width: width, height: height)
-        let movedFrame = CGRect(x: 0, y: -height/2, width: width, height: height)
+    func showSnackBar() {
+        addSwipeGesture()
+        snackbarWasSwiped = false
         //стартовая позиция
-        snackbar.frame = initialFrame
-        viewController.navigationController?.navigationBar.addSubview(snackbar)
+        self.frame = initialFrame
+        viewController.navigationController?.navigationBar.addSubview(self)
         //анимация выезда шторки вниз
-        UIView.animate(withDuration: 0.3, delay: 0, animations: {
-            snackbar.frame = movedFrame
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.allowUserInteraction] , animations: {
+            self.frame = self.movedFrame
         }, completion: { done in
             if done {
                 DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                    if !self.snackbarWasSwiped {
                     UIView.animate(withDuration: 0.3, delay: 0, animations: {
-                        snackbar.frame = initialFrame
+                        self.frame = self.initialFrame
                     }, completion: {done in
                         if done {
-                            snackbar.removeFromSuperview()
+                            self.removeFromSuperview()
                         }
                     })
+                }
                 }
             }
         }
         )
         
+    }
+    func addSwipeGesture() {
+        let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUpSnackBar))
+        swipeUpGesture.direction = .up
+        self.addGestureRecognizer(swipeUpGesture)
+        self.isUserInteractionEnabled = true
+    }
+    @objc func swipeUpSnackBar() {
+        snackbarWasSwiped = true
+        UIView.animate(withDuration: 0.3, delay: 0, animations: {
+            self.frame = self.initialFrame
+        }, completion: { done in
+            if done {
+                self.removeFromSuperview()
+            }
+        })
     }
 }

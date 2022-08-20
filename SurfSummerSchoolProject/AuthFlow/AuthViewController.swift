@@ -63,10 +63,10 @@ class AuthViewController: UIViewController {
                                     snackbarText = "Что-то пошло не так"
                                 }
                             }
-                            let model = SnackbarModel(text: snackbarText)
-                            let snackbar = SnackbarView(model: model)
                             guard let `self` = self else { return }
-                            snackbar.showSnackBar(on: self, with: model)
+                            let model = SnackbarModel(text: snackbarText)
+                            let snackbar = SnackbarView(model: model, viewController: self)
+                            snackbar.showSnackBar()
                             buttonActivityIndicator.hideButtonLoading()
                         }
                     }
