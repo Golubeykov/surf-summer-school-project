@@ -22,6 +22,7 @@ struct LogoutService {
                 do {
                     try dataTask.tokenStorage.removeTokenFromContainer()
                     try dataTask.profileStorage.removeProfile()
+                    AllPostsModel.shared.removeAllPosts()
                     onResponseWasReceived(result)
                 } catch {
                     onResponseWasReceived(result)

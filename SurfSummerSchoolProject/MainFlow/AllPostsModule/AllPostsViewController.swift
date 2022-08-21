@@ -16,6 +16,7 @@ class AllPostsViewController: UIViewController {
     }
     private enum ConstantImages {
         static let searchBar: UIImage? = ImagesStorage.searchBar
+        static let sadSmile: UIImage? = ImagesStorage.sadSmile
     }
     private let fetchPostsErrorVC = PostsLoadErrorViewController()
     private let cellProportion: Double = 246/168
@@ -30,7 +31,15 @@ class AllPostsViewController: UIViewController {
     //MARK: - Views
     @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet private weak var allPostsCollectionView: UICollectionView!
+    @IBOutlet private weak var emptyPostsNotificationImage: UIImageView!
+    @IBOutlet private weak var emptyPostsNotificationLabel: UILabel!
+    @IBOutlet private weak var zeroScreenButtonLabel: UIButton!
     private let refreshControl = UIRefreshControl()
+    
+    //MARK: - Actions
+    @IBAction func zeroScreenButtonAction(_ sender: Any) {
+        postModel.loadPosts()
+    }
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -39,6 +48,7 @@ class AllPostsViewController: UIViewController {
         configureAppearence()
         configureModel()
         configurePullToRefresh()
+        configureZeroStateButton()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -81,6 +91,7 @@ private extension AllPostsViewController {
             DispatchQueue.main.async {
                 guard let `self` = self else { return }
                 if self.postModel.posts.isEmpty {
+                    self.nonEmptyPostListNotification()
                 self.activityIndicatorView.isHidden = true
                 self.fetchPostsErrorVC.view.alpha = 1
                 //Ниже обработка кейса, когда токен обнулили на сервере, но в приложении время его действия не вышло. Пусть будет, иначе возможно зацикливание приложения, которому даже удаление не поможет. Т.к. токен лежит в keyChain.
@@ -101,9 +112,11 @@ private extension AllPostsViewController {
         }
         postModel.didPostsUpdated = { [weak self] in
             DispatchQueue.main.async {
-                self?.activityIndicatorView.isHidden = true
-                self?.allPostsCollectionView.reloadData()
+                guard let `self` = self else { return }
+                self.activityIndicatorView.isHidden = true
+                self.allPostsCollectionView.reloadData()
                 FavoritePostsViewController.successLoadingPostsAfterZeroScreen = true
+                self.postModel.posts.isEmpty ? self.emptyPostListNotification() : self.nonEmptyPostListNotification()
              }
         }
     }
@@ -122,6 +135,12 @@ private extension AllPostsViewController {
         self.postModel.loadPosts()
         refreshControl.endRefreshing()
         }
+    func configureZeroStateButton() {
+        zeroScreenButtonLabel.titleLabel?.text = "Обновить данные"
+        zeroScreenButtonLabel.backgroundColor = ColorsStorage.black
+        zeroScreenButtonLabel.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        zeroScreenButtonLabel.isHidden = true
+    }
     
     func appendStateViewController(refreshButtonAction: @escaping ()->Void) {
         fetchPostsErrorVC.view.translatesAutoresizingMaskIntoConstraints = false
@@ -135,6 +154,21 @@ private extension AllPostsViewController {
         fetchPostsErrorVC.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         fetchPostsErrorVC.view.alpha = 0
         fetchPostsErrorVC.refreshButtonAction = refreshButtonAction
+    }
+    func emptyPostListNotification() {
+        configureZeroStateButton()
+        zeroScreenButtonLabel.isHidden = false
+        emptyPostsNotificationImage.image = ConstantImages.sadSmile
+        emptyPostsNotificationLabel.font = .systemFont(ofSize: 14, weight: .light)
+        emptyPostsNotificationLabel.text = "В постах пусто"
+        view.bringSubviewToFront(emptyPostsNotificationImage)
+        view.bringSubviewToFront(emptyPostsNotificationLabel)
+        view.bringSubviewToFront(zeroScreenButtonLabel)
+    }
+    func nonEmptyPostListNotification() {
+        zeroScreenButtonLabel.isHidden = true
+        emptyPostsNotificationImage.image = UIImage()
+        emptyPostsNotificationLabel.text = ""
     }
     
 }

@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     //MARK: - Model
-    private var profileModel: ProfileModel = ProfileInstance.shared.profileModel
+    private var profileModel: ProfileModel = getProfileInstance()
     
     //MARK: - Actions
     @IBAction private func logoutButtonAction(_ sender: Any) {

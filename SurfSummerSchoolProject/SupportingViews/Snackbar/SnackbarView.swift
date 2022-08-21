@@ -14,6 +14,7 @@ class SnackbarView: UIView {
     //MARK: - Private properties
     private let model: SnackbarModel
     private let viewController: UIViewController
+    private let viewForSwipeRecognizer = UIView()
     private let label: UILabel = {
         let label = UILabel()
         label.textColor = ColorsStorage.white
@@ -38,11 +39,13 @@ class SnackbarView: UIView {
         super.init(frame: .zero)
         
         addSubview(label)
+        viewController.view.addSubview(viewForSwipeRecognizer)
         
         backgroundColor = ColorsStorage.red
         clipsToBounds = true
         
-        configure()
+        configureTextLabel()
+        configureViewForSwipeRecognizer()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -51,11 +54,15 @@ class SnackbarView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         label.frame = CGRect(x: 16, y: bounds.height/2, width: bounds.width-32, height: bounds.height/2)
+        viewForSwipeRecognizer.frame = CGRect(x: 0, y: -height/2, width: width, height: height+100)
     }
     
     //MARK: - Private methods
-    private func configure() {
+    private func configureTextLabel() {
         label.text = model.text
+    }
+    private func configureViewForSwipeRecognizer() {
+        viewForSwipeRecognizer.backgroundColor = ColorsStorage.clear
     }
     
     func showSnackBar() {
@@ -88,8 +95,8 @@ class SnackbarView: UIView {
     func addSwipeGesture() {
         let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUpSnackBar))
         swipeUpGesture.direction = .up
-        self.addGestureRecognizer(swipeUpGesture)
-        self.isUserInteractionEnabled = true
+        viewForSwipeRecognizer.addGestureRecognizer(swipeUpGesture)
+        viewForSwipeRecognizer.isUserInteractionEnabled = true
     }
     @objc func swipeUpSnackBar() {
         snackbarWasSwiped = true
@@ -98,6 +105,7 @@ class SnackbarView: UIView {
         }, completion: { done in
             if done {
                 self.removeFromSuperview()
+                self.viewForSwipeRecognizer.removeFromSuperview()
             }
         })
     }
