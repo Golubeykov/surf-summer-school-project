@@ -62,7 +62,7 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
             
             session.dataTask(with: request) { data, response, error in
                 if let error = error {
-                    if error.localizedDescription == "The Internet connection appears to be offline." {
+                    if error.localizedDescription == LocalizedDescriptions.noNetworkSimulator || error.localizedDescription == LocalizedDescriptions.noNetworkDevice {
                         onResponseWasReceived(.failure(PossibleErrors.noNetworkConnection))
                     } else {
                     onResponseWasReceived(.failure(PossibleErrors.unknownError))
@@ -113,7 +113,7 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
             let request = try getRequest(with: input)
             session.dataTask(with: request) { data, response, error in
                 if let error = error {
-                    if error.localizedDescription == "The Internet connection appears to be offline." || error.localizedDescription == "A data connection is not currently allowed." {
+                    if error.localizedDescription == LocalizedDescriptions.noNetworkSimulator || error.localizedDescription == LocalizedDescriptions.noNetworkDevice {
                         onResponseWasReceived(.failure(PossibleErrors.noNetworkConnection))
                     } else {
                     onResponseWasReceived(.failure(PossibleErrors.unknownError))

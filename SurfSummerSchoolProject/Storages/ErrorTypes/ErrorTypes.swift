@@ -18,3 +18,8 @@ enum PossibleErrors: Error {
     case unknownServerError
     case nonAuthorizedAccess
 }
+
+struct LocalizedDescriptions {
+    static let noNetworkSimulator = "The Internet connection appears to be offline."
+    static let noNetworkDevice = "A data connection is not currently allowed."
+}
