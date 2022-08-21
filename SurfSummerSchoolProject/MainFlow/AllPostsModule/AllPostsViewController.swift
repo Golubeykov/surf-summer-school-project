@@ -31,9 +31,15 @@ class AllPostsViewController: UIViewController {
     //MARK: - Views
     @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet private weak var allPostsCollectionView: UICollectionView!
-    @IBOutlet weak var emptyPostsNotificationImage: UIImageView!
-    @IBOutlet weak var emptyPostsNotificationLabel: UILabel!
+    @IBOutlet private weak var emptyPostsNotificationImage: UIImageView!
+    @IBOutlet private weak var emptyPostsNotificationLabel: UILabel!
+    @IBOutlet private weak var zeroScreenButtonLabel: UIButton!
     private let refreshControl = UIRefreshControl()
+    
+    //MARK: - Actions
+    @IBAction func zeroScreenButtonAction(_ sender: Any) {
+        postModel.loadPosts()
+    }
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -42,6 +48,7 @@ class AllPostsViewController: UIViewController {
         configureAppearence()
         configureModel()
         configurePullToRefresh()
+        configureZeroStateButton()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -128,6 +135,12 @@ private extension AllPostsViewController {
         self.postModel.loadPosts()
         refreshControl.endRefreshing()
         }
+    func configureZeroStateButton() {
+        zeroScreenButtonLabel.titleLabel?.text = "Обновить данные"
+        zeroScreenButtonLabel.backgroundColor = ColorsStorage.black
+        zeroScreenButtonLabel.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        zeroScreenButtonLabel.isHidden = true
+    }
     
     func appendStateViewController(refreshButtonAction: @escaping ()->Void) {
         fetchPostsErrorVC.view.translatesAutoresizingMaskIntoConstraints = false
@@ -143,16 +156,17 @@ private extension AllPostsViewController {
         fetchPostsErrorVC.refreshButtonAction = refreshButtonAction
     }
     func emptyPostListNotification() {
-        refreshControl.isUserInteractionEnabled = true
-        //refreshControl.removeFromSuperview()
-        //view.bringSubviewToFront(emptyPostsNotificationImage)
-        //view.bringSubviewToFront(emptyPostsNotificationLabel)
+        configureZeroStateButton()
+        zeroScreenButtonLabel.isHidden = false
         emptyPostsNotificationImage.image = ConstantImages.sadSmile
         emptyPostsNotificationLabel.font = .systemFont(ofSize: 14, weight: .light)
         emptyPostsNotificationLabel.text = "В постах пусто"
+        view.bringSubviewToFront(emptyPostsNotificationImage)
+        view.bringSubviewToFront(emptyPostsNotificationLabel)
+        view.bringSubviewToFront(zeroScreenButtonLabel)
     }
     func nonEmptyPostListNotification() {
-        //configurePullToRefresh()
+        zeroScreenButtonLabel.isHidden = true
         emptyPostsNotificationImage.image = UIImage()
         emptyPostsNotificationLabel.text = ""
     }
