@@ -99,7 +99,6 @@ class SnackbarView: UIView {
         viewForSwipeRecognizer.isUserInteractionEnabled = true
     }
     @objc func swipeUpSnackBar() {
-        print("swipe")
         snackbarWasSwiped = true
         UIView.animate(withDuration: 0.3, delay: 0, animations: {
             self.frame = self.initialFrame
